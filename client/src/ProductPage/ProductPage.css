@@ -21,6 +21,11 @@
     font-size: 60px;
 }
 
+.cart-icon {
+    color: #ffffff;
+    margin: 0.5px;
+}
+
 .addToCart {
     position:absolute;
     top:0;
