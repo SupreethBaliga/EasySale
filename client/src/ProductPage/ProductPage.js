@@ -15,7 +15,7 @@ class ProductPage extends Component {
         super(props);
         this.state = {
             totalAmt: 0,
-            quantity: {/*this.props.defaultValue*/}
+            quantity: {/*this.props.defaultValue*/ }
         }
     }
 
@@ -28,7 +28,7 @@ class ProductPage extends Component {
 
     updateTotal = () => {
         this.setState((state, props) => ({
-            totalAmt: {/*state.quantity * props.rate*/}
+            totalAmt: {/*state.quantity * props.rate*/ }
         }))
     }
 
@@ -68,7 +68,7 @@ class ProductPage extends Component {
                                     </div>
                                     <div className="form-group">
                                         <span>Quantity:</span>
-                                        <NumericInput className="form-control" {/*step={this.props.step} value={this.state.quantity} min={0}*/} id="quantity" onChange={()=>this.calculateTotal()}/>
+                                        {/*<NumericInput className="form-control" {/*step={this.props.step} value={this.state.quantity} min={0}} id="quantity" onChange={()=>this.calculateTotal()}/>*/}
                                         <small>Sold in quantities of {/*this.props.step*/}</small>
                                     </div>
                                 </form>
