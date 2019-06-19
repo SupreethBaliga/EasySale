@@ -12,7 +12,7 @@ class ProductListPage extends Component {
 
     listItems = this.props.products.map((product) => {
         return (
-            <ProductCard key={toString(product.id)} {...product} />
+            <ProductCard key={product.id} {...product} />
         );
     });
 

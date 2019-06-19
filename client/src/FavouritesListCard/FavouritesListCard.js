@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import './ProductCard.css';
+import './FavouritesListCard.css';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import CardActions from '@material-ui/core/CardActions';
-import Fab from '@material-ui/core/Fab';
-
+import Button from '@material-ui/core/Button';
 
 // let props = {
 //     products: [
@@ -54,15 +53,7 @@ import Fab from '@material-ui/core/Fab';
 //     ]
 //   }
 
-class ProductCard extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            totalAmount: this.props.rate * this.props.defaultQuantity
-        }
-    }
-
+class FavouritesListCard extends Component {
     render() {
         return (
             <Card className='card m-3 ml-2'>
@@ -74,24 +65,19 @@ class ProductCard extends Component {
                 </CardMedia>
                 <CardContent>
                     <div>
-                        <span className='totalAmt'> &#8377; {this.state.totalAmount}</span>&nbsp;&nbsp;
-                        <span className='minQuantity'>for pack of {this.props.defaultQuantity}</span>
+                        <span class="description text text-muted">Rate: &#8377; {this.props.rate} for pack of {this.props.defaultQuantity}</span>
                     </div>
                     <Typography variant="body" color="textSecondary" component="p">
                         {this.props.description}
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Fab color="primary" aria-label="AddToCart" className='ml-2 mr-2'>
-                        <i className="material-icons">add_shopping_cart</i>
-                    </Fab>
-                    <Fab color="secondary" aria-label="AddToFavourites" className='ml-2 mr-2'>
-                        <i className="material-icons">favorite</i>
-                    </Fab>
+                    <Button variant='contained' color='primary' className='m-1'>VIEW PRODUCT</Button>
+                    <Button variant='contained' color='secondary'>REMOVE FROM FAVOURITES</Button>
                 </CardActions>
             </Card>
         )
     }
 }
 
-export default ProductCard;
+export default FavouritesListCard;
