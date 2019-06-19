@@ -1,0 +1,60 @@
+.brand {
+    color: yellowgreen;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    font-size: 50px;
+}
+
+.brand:hover {
+    text-decoration: none;
+    color: aquamarine;
+}
+
+nav {
+    width: 100%;
+    padding: 0 45px 0 0;
+    list-style-type: none;
+    background-color: #212121;
+    color: #ccc;
+    display: block;
+}
+
+li {
+    height: 100%;
+    text-align: center;
+    /* float: left; */
+    display: block;
+    justify-content: center;
+    transition: all 0.3s ease-in;
+    cursor: pointer;
+    padding: 8px 15px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+li:hover {
+    background: #848484;
+    color: #212121;
+}
+
+.material-icons {
+    font-size: 28px;
+    vertical-align: middle;
+}
+
+.nav-link:link{
+    text-decoration: none;
+    color: white;
+}
+
+.nav-link:visited{
+    text-decoration: none;
+    color: lightseagreen;
+}
+
+.nav-link:hover{
+    text-decoration: none;
+    color: red;
+}
