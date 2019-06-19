@@ -67,15 +67,15 @@ class ProductCard extends Component {
         return (
             <Card className='card m-3 ml-2'>
                 <CardHeader title={this.props.name} subheader={"Product ID: " + this.props.id} />
-                <CardMedia class='media'>
-                    <div class="container">
-                        <img src={this.props.image} alt="prod1" className='prodImage'></img>
+                <CardMedia className='media'>
+                    <div className="container">
+                        <img src={this.props.image} alt="prodImage" className='prodImage'></img>
                     </div>
                 </CardMedia>
                 <CardContent>
                     <div>
-                        <span class='totalAmt'> &#8377; {this.state.totalAmount}</span>&nbsp;&nbsp;
-                        <span class='minQuantity'>for pack of {this.props.defaultQuantity}</span>
+                        <span className='totalAmt'> &#8377; {this.state.totalAmount}</span>&nbsp;&nbsp;
+                        <span className='minQuantity'>for pack of {this.props.defaultQuantity}</span>
                     </div>
                     <Typography variant="body" color="textSecondary" component="p">
                         {this.props.description}
@@ -83,10 +83,10 @@ class ProductCard extends Component {
                 </CardContent>
                 <CardActions>
                     <Fab color="primary" aria-label="AddToCart" className='ml-2 mr-2'>
-                        <i class="material-icons">add_shopping_cart</i>
+                        <i className="material-icons">add_shopping_cart</i>
                     </Fab>
                     <Fab color="secondary" aria-label="AddToFavourites" className='ml-2 mr-2'>
-                        <i class="material-icons">favorite</i>
+                        <i className="material-icons">favorite</i>
                     </Fab>
                 </CardActions>
             </Card>

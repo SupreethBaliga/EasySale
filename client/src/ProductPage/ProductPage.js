@@ -14,7 +14,7 @@ class ProductPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            totalAmt: 0,
+            totalAmt: this.props.defaultValue * this.props.rate,
             quantity: {/*this.props.defaultValue*/ }
         }
     }
@@ -32,12 +32,6 @@ class ProductPage extends Component {
         }))
     }
 
-    componentDidMount() {
-        this.setState((state, props) => ({
-            quantity: document.getElementById('quantity').value
-        }));
-        this.updateTotal();
-    }
 
     render() {
         return (
