@@ -4,7 +4,7 @@ import './App.css';
 //import ProductPage from './ProductPage/ProductPage';
 //import ProductListPage from './ProductListPage/ProductListPage';
 //import OrderList from './OrderList/OrderList';
-// import NavBar from './NavBar/NavBar';
+//import NavBar from './NavBar/NavBar';
 class App extends Component {
   // constructor(props) {
   //   super(props);

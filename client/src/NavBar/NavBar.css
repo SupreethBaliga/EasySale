@@ -1,12 +1,12 @@
-.brand {
+.navbar-brand {
     color: yellowgreen;
     text-decoration: none;
     font-weight: bold;
     text-align: center;
-    font-size: 50px;
+    font-size: 35px;
 }
 
-.brand:hover {
+.navbar-brand:hover {
     text-decoration: none;
     color: aquamarine;
 }
@@ -23,7 +23,7 @@ nav {
 li {
     height: 100%;
     text-align: center;
-    /* float: left; */
+    float: left;
     display: block;
     justify-content: center;
     transition: all 0.3s ease-in;
@@ -31,7 +31,7 @@ li {
     padding: 8px 15px;
     text-decoration: none;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 22px;
 }
 
 li:hover {
@@ -40,7 +40,7 @@ li:hover {
 }
 
 .material-icons {
-    font-size: 28px;
+    font-size: 22px;
     vertical-align: middle;
 }
 
