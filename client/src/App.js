@@ -7,7 +7,8 @@ import './App.css';
 // import CartList from './CartList/CartList';
 // import NavBar from './NavBar/NavBar';
 // import FavouritesList from './FavouritesList/FavouritesList';
-import OrderPage from './OrderPage/OrderPage';
+// import OrderPage from './OrderPage/OrderPage';
+// import ProfilePage from './ProfilePage/ProfilePage';
 class App extends Component {
   // constructor(props) {
   //   super(props);
