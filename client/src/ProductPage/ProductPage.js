@@ -36,7 +36,8 @@ class ProductPage extends Component {
     render() {
         return (
             <div className="col-md-12 mt-5">
-                <button className="btn btn-primary addToCart"><i class='material-icons'>add_shopping_cart</i>Add To Cart</button>
+                <button className="btn btn-primary addToCart"><i class='material-icons'>add_shopping_cart</i>ADD TO CART</button>
+                <button className="btn btn-primary addToFav"><i class='material-icons'>ADD TO FAVOURITES</i></button>
                 <div className="container background">
                     <div className="row">
                         <div className="col-md-4">

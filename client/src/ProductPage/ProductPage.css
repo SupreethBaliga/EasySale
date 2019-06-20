@@ -28,8 +28,14 @@
 
 .addToCart {
     position:absolute;
-    top:0;
+    top:5px;
     right:15px;
+}
+
+.addToFav {
+    position: absolute;
+    top: 5px;
+    right: 25px;
 }
 
 p {

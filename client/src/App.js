@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-//import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
-//import ProductPage from './ProductPage/ProductPage';
-//import ProductListPage from './ProductListPage/ProductListPage';
-//import OrderList from './OrderList/OrderList';
-//import CartList from './CartList/CartList';
-//import NavBar from './NavBar/NavBar';
-//import FavouritesList from './FavouritesList/FavouritesList';
+// import ProductPage from './ProductPage/ProductPage';
+// import ProductListPage from './ProductListPage/ProductListPage';
+// import OrderList from './OrderList/OrderList';
+// import CartList from './CartList/CartList';
+// import NavBar from './NavBar/NavBar';
+// import FavouritesList from './FavouritesList/FavouritesList';
+import OrderPage from './OrderPage/OrderPage';
 class App extends Component {
   // constructor(props) {
   //   super(props);
