@@ -1,0 +1,39 @@
+.edit-profile-top-bar {
+    font-size: 40px;
+    background: #bfbfbf;
+    color: #262626;
+    font-weight: bold;
+}
+
+i {
+    vertical-align: middle;
+    font-size: 10px;
+}
+
+.saveText {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.labelText {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.expansion-summary-text {
+    color: #333333;
+}
+
+.down-arrow {
+    float: right;
+    position: absolute;
+    right: 10px;
+}
+
+.no-dec {
+    text-decoration-style: none;
+}
+
+.no-dec :hover {
+    text-decoration-style: none;
+}

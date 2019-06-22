@@ -25,7 +25,7 @@ class ProfilePage extends Component {
                         {this.props.orgName}
                     </div>
                     <div className='col-md-1'>
-                        <button className='btn btn-dark top-div-btn'><i className='material-icons'>edit</i>Edit</button>
+                        <button className='btn btn-dark top-div-btn'><i className='material-icons'>edit</i>&nbsp;&nbsp;Edit</button>
                     </div>
                 </div>
                 <div className='row m-2 text-fields'>

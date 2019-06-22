@@ -9,6 +9,7 @@ import './App.css';
 // import FavouritesList from './FavouritesList/FavouritesList';
 // import OrderPage from './OrderPage/OrderPage';
 // import ProfilePage from './ProfilePage/ProfilePage';
+// import EditProfile from './EditProfile/EditProfile';
 class App extends Component {
   // constructor(props) {
   //   super(props);
