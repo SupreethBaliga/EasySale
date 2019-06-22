@@ -1,0 +1,9 @@
+.main-card {
+    margin:auto;
+    width: 65vw;
+    font-size: 30px;
+    font-weight: bold;
+    position: absolute;
+    top: 20vh;
+    left: 15vw;
+}
