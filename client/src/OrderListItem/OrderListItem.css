@@ -1,0 +1,37 @@
+.orderNumber {
+    font-size: 30px;
+    color: #000000;
+}
+
+/* .status {
+    display: inline;
+} */
+
+.order-info {
+   color: #262626;     
+}
+
+.list-item {
+    padding: 0 !important;
+    width: 100%;
+    outline:0;
+    /* text-decoration: none; */
+}
+
+.list-item :hover {
+    background: #b3b3b3;
+    /* text-decoration: none; */
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.list-item :active {
+    background: #b3b3b3;
+}
+
+.arrow {
+    color: #f2f2f2;
+    font-size: 35px;
+}

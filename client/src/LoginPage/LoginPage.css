@@ -1,0 +1,15 @@
+.login-page {
+    background: #d9d9d9;
+    width: 60vw;
+    height: 60vh;
+}
+
+.loginLabelText {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.button {
+    font-weight: bold;
+    font-size: 20px;
+}

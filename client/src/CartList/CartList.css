@@ -1,0 +1,23 @@
+.top-bar {
+    background: #dadad5;
+    height: 11vh;
+}
+
+.checkoutButton {
+    position: absolute;
+    top:0;
+    right: 15px;
+    float: right;
+    font-weight: bold;
+    background-color: #000000;
+}
+
+.amountPayable {
+    font-size:30px;
+    font-weight: bold;
+}
+
+.totalAmount {
+    font-size: 40px;
+    font-weight: bold;
+}

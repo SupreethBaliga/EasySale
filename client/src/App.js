@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+// import logo from './logo.svg';
 import './App.css';
+// import ProductPage from './ProductPage/ProductPage';
+// import ProductListPage from './ProductListPage/ProductListPage';
+// import OrderList from './OrderList/OrderList';
+// import CartList from './CartList/CartList';
+// import NavBar from './NavBar/NavBar';
+// import FavouritesList from './FavouritesList/FavouritesList';
+// import OrderPage from './OrderPage/OrderPage';
+// import ProfilePage from './ProfilePage/ProfilePage';
+// import EditProfile from './EditProfile/EditProfile';
+// import CheckoutPage from './CheckoutPage/CheckoutPage';
+// import LoginAndSignup from './LoginAndSignup/LoginAndSignup';
+class App extends Component {
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  render() {
+
+    return (
+      <div>
+        Hello
+      </div>
+    )
+  }
 }
 
 export default App;

@@ -1,0 +1,43 @@
+.background {
+    background: #ffffff;
+}
+
+.productImage {
+    box-shadow: 10px 10px 5px rgb(136, 133, 133);   
+    border: 2px solid rgb(37, 36, 36);
+    object-fit: fill;
+}
+
+.detail {
+    background: #9b9291;
+    border: 1px solid #ffffff;
+}
+
+.rateTitle {
+    font-size: 30px;
+}
+
+.totalRate {
+    font-size: 60px;
+}
+
+.cart-icon {
+    color: #ffffff;
+    margin: 0.5px;
+}
+
+.addToCart {
+    position:absolute;
+    top:5px;
+    right:15px;
+}
+
+.addToFav {
+    position: absolute;
+    top: 5px;
+    right: 25px;
+}
+
+p {
+    text-align: justify;
+}
