@@ -11,14 +11,8 @@ import './App.css';
 // import ProfilePage from './ProfilePage/ProfilePage';
 // import EditProfile from './EditProfile/EditProfile';
 // import CheckoutPage from './CheckoutPage/CheckoutPage';
+// import LoginAndSignup from './LoginAndSignup/LoginAndSignup';
 class App extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     defaultValue: "100",
-  //     step: 100
-  //   }
-  // }
 
   render() {
 
