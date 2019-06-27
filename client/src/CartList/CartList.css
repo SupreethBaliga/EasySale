@@ -5,7 +5,7 @@
 
 .checkoutButton {
     position: absolute;
-    top:0;
+    top: 80px;
     right: 15px;
     float: right;
     font-weight: bold;

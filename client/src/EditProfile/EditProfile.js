@@ -80,7 +80,7 @@ class EditProfile extends Component {
                         <div className='form-group'>
                             <Paper>
                                 <div class="accordion" id="accordionExample">
-                                    <div class="card">
+                                    <div class="card card-main">
                                         <div class="card-header" id="headingOne">
                                             <button class="btn btn-link no-dec" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                                 <div className='row m-0'>
@@ -91,7 +91,7 @@ class EditProfile extends Component {
                                             </button>
                                         </div>
 
-                                        <div id="collapseOne" className="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
+                                        <div id="collapseOne" className="collapse " data-parent="#accordionExample">
                                             <div className="card-body">
                                                 <div className='row'>
                                                     <div className='col-md-6'>
@@ -103,8 +103,8 @@ class EditProfile extends Component {
                                                     <div className='col-md-6 form-group'>
                                                         <label className='labelText'>Landline No:</label>
                                                         <div className='row'>
-                                                            <input placeholder={this.props.landlineCode} size='4' /> &nbsp;-&nbsp;
-                                                            <input placeholder={this.props.landlineNumber} size='20' />
+                                                            <input placeholder={this.props.landlineCode} size='4' type='text' /> &nbsp;-&nbsp;
+                                                            <input placeholder={this.props.landlineNumber} size='20' type='text' />
                                                         </div>
                                                     </div>
                                                 </div>
