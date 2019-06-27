@@ -12,13 +12,20 @@ import './App.css';
 // import EditProfile from './EditProfile/EditProfile';
 // import CheckoutPage from './CheckoutPage/CheckoutPage';
 // import LoginAndSignup from './LoginAndSignup/LoginAndSignup';
+import AboutSeller from './AboutSeller/AboutSeller';
 class App extends Component {
 
   render() {
 
+    let props = {
+      sellerName: 'Seller123',
+      instruction: 'lwsnlqninwionoiwnfioqnoinionqinio',
+      description: 'aonionfwksakflknalkndfonoiinasoaonoianoinifoniaonfioninfiondsfnjnfinfionaio'
+    }
+
     return (
       <div>
-        Hello
+        <AboutSeller {...props} />
       </div>
     )
   }
