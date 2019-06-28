@@ -1,0 +1,23 @@
+{
+  "name": "backendb",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "if [[ $NODE_ENV == 'production' ]]; then node ./bin/www; else nodemon ./bin/www; fi"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "morgan": "~1.9.1",
+    "mysql2": "^1.6.5",
+    "pg": "^7.11.0",
+    "sequelize": "^5.8.12",
+    "sequelize-cli": "^5.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
