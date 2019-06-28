@@ -4,13 +4,14 @@ import './App.css';
 // import AboutSeller from './AboutSeller/AboutSeller';
 // import AboutSellerEdit from './AboutSellerEdit/AboutSellerEdit';
 // import ProductsList from './ProductsList/ProductsList';
-import AddProduct from './AddProduct/AddProduct';
+// import AddProduct from './AddProduct/AddProduct';
+// import NavBar from './NavBar/NavBar';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <AddProduct />
+        Hello
       </div>
     )
   }
