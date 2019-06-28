@@ -11,11 +11,11 @@ import './App.css';
 import AboutSeller from './AboutSeller/AboutSeller';
 import NavBar from './NavBar/NavBar';
 // import OrderCombinedView from './OrderCombinedView/OrderCombinedView';
-class App extends Component {
+class App extends Component() {
 
   // Tasks left:
   // 1. Making OrderCombinedView ...Done
-  // 2. Making Auth Page
+  // 2. Making Auth Page ...Done
   // 3. Linking ProductList to ProductPage (First API needed)s
 
   render() {

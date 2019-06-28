@@ -25,7 +25,7 @@ class ProfilePage extends Component {
                         {this.props.orgName}
                     </div>
                     <div className='col-md-1'>
-                        <a className='btn btn-dark top-div-btn' href="http://172.17.75.45:3000/editprofile"><i className='material-icons'>edit</i>&nbsp;&nbsp;Edit</a>
+                        <a className='btn btn-dark top-div-btn' href="/editprofile"><i className='material-icons'>edit</i> Edit</a>
                     </div>
                 </div>
                 <div className='row m-2 text-fields'>
