@@ -1,3 +1,36 @@
 .add-product-page {
     background: #d9d9d9;
+    height: 100vh;
+}
+
+.add-product-form-class {
+    /* margin-top: 10px; */
+    padding-top: 70px;
+}
+
+.prodLabelText {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.add-product-img-card {
+    height:70vh;
+}
+
+.add-product-cardheader {
+    text-align: center;
+    vertical-align: center;
+}
+
+.add-product-cardmedia {
+    text-align: center;
+    height:70%;
+}
+
+.img-not {
+    font-size: 30px;
+}
+
+.btn {
+    vertical-align: middle;
 }
