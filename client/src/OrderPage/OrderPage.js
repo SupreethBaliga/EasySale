@@ -39,11 +39,12 @@ class OrderPage extends Component {
     }
 
     componentDidMount() {
+        //eslint-disable-next-line
         this.productOrders.map((product) => {
             this.setState((state, props) => ({
                 grandTotal: state.grandTotal + product.amount
             }))
-        })
+        });
     }
 
     render() {
@@ -52,7 +53,7 @@ class OrderPage extends Component {
                 <div className='row orderPageTopBar'>
                     <div className='col-md-3 m-2 orderNumberDiv'>
                         <span className='OPorderNumber'>
-                            {'#' + this.props.orderNumber}
+                            {'#' + this.props.orderId}
                         </span>
                     </div>
                     <div className='col-md-3 m-2 text text-muted deliveryDates'>

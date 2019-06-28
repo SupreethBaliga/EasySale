@@ -10,12 +10,13 @@ import './App.css';
 // import LoginAndSignup from './LoginAndSignup/LoginAndSignup';
 import AboutSeller from './AboutSeller/AboutSeller';
 import NavBar from './NavBar/NavBar';
+// import OrderCombinedView from './OrderCombinedView/OrderCombinedView';
 class App extends Component {
 
   // Tasks left:
-  // 1. Making OrderCombinedView
+  // 1. Making OrderCombinedView ...Done
   // 2. Making Auth Page
-  // 3. Linking ProductList to ProductPage (First API needed)
+  // 3. Linking ProductList to ProductPage (First API needed)s
 
   render() {
 
@@ -34,7 +35,8 @@ class App extends Component {
               <Route exact path='/cart' render={(props) => <CartList {...props} {...cart} />} />
               <Route exact path='/favourites' render={(props) => <FavouritesList {...props} {...favs} />} />
               <Route exact path='/profile' render={(props) => <ProfilePage {...props} {...profile} />} />
-              <Route exact path='/editprofile' render={(props) => <EditProfile {...props} {...profile} />} />*/}
+              <Route exact path='/editprofile' render={(props) => <EditProfile {...props} {...profile} />} />
+              <Route path='/myOrders' render={(props) => <OrderCombinedView />} />*/}
             </div>
           </BrowserRouter>
         </div>
