@@ -7,7 +7,8 @@ import './App.css';
 // import AddProduct from './AddProduct/AddProduct';
 // import NavBar from './NavBar/NavBar';
 // import ProductPage from './ProductPage/ProductPage';
-import OrderCombinedView from './OrderCombinedView/OrderCombinedView';
+// import OrderCombinedView from './OrderCombinedView/OrderCombinedView';
+// import RequestedOrdersList from './RequestedOrdersList/RequestedOrdersList';
 
 class App extends Component {
 
@@ -15,7 +16,7 @@ class App extends Component {
 
     return (
       <div>
-        <OrderCombinedView />
+        Hello
       </div>
     )
   }
