@@ -6,9 +6,12 @@ import './App.css';
 // import ProductsList from './ProductsList/ProductsList';
 // import AddProduct from './AddProduct/AddProduct';
 // import NavBar from './NavBar/NavBar';
+// import ProductPage from './ProductPage/ProductPage';
 
 class App extends Component {
+
   render() {
+
     return (
       <div>
         Hello
