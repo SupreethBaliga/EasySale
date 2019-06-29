@@ -10,16 +10,15 @@ import './App.css';
 // import LoginAndSignup from './LoginAndSignup/LoginAndSignup';
 import AboutSeller from './AboutSeller/AboutSeller';
 import NavBar from './NavBar/NavBar';
+// import ProductPage from './ProductPage/ProductPage';
 // import OrderCombinedView from './OrderCombinedView/OrderCombinedView';
-class App extends Component() {
+class App extends Component {
 
   // Tasks left:
   // 1. Making OrderCombinedView ...Done
   // 2. Making Auth Page ...Done
-  // 3. Linking ProductList to ProductPage (First API needed)s
 
   render() {
-
 
     return (
       <div>
