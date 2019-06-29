@@ -1,7 +1,9 @@
 .orderNumber {
     font-size: 30px;
     color: #000000;
+    text-decoration: none;
 }
+
 
 /* .status {
     display: inline;
@@ -11,14 +13,17 @@
    color: #262626;     
 }
 
-.list-item {
+/* .list-item {
+} */
+
+a {
     padding: 0 !important;
     width: 100%;
     outline:0;
-    /* text-decoration: none; */
+    text-decoration: none;
 }
 
-a :hover {
+ a :hover {
     background: #b3b3b3;
     text-decoration: none;
 }
