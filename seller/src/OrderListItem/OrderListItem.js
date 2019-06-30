@@ -4,40 +4,10 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import './OrderListItem.css';
 
-// let props = {
-//     orders: [
-//       {
-//         orderNumber: 1,
-//         status: 'Pending',
-//         expectedDate: '12/6/19'
-//       },
-//       {
-//         orderNumber: 2,
-//         status: 'Processed',
-//         expectedDate: '10/6/19'
-//       },
-//       {
-//         orderNumber: 3,
-//         status: 'Checking',
-//         expectedDate: '8/6/19'
-//       },
-//       {
-//         orderNumber: 4,
-//         status: 'Dispatched',
-//         expectedDate: '7/6/19'
-//       },
-//       {
-//         orderNumber: 5,
-//         status: 'Delivered',
-//         expectedDate: '5/6/19'
-//       }
-//     ]
-//   }
-
 class OrderListItem extends Component {
     render() {
         return (
-            <a class='btn' href={"/orders/" + this.props.orderId}>
+            <a className='btn list-item' href={"/seller/orders/" + this.props.orderId}>
                 <ListItem alignItems='flex-start'>
                     <ListItemAvatar>
                         <span className="orderNumber">&#35;{this.props.orderId}</span>

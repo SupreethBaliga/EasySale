@@ -80,3 +80,22 @@
     height: 35px;
     font-weight: bold;
 }
+
+.order-page-client-detail-label {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.order-page-client-detail-value {
+    font-size: 17px;
+
+}
+
+/* .add-padding {
+    padding-left: 30px;
+} */
+
+.order-page-scroll-mech {
+    height: 88vh;
+    overflow-y: scroll;
+}

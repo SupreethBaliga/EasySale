@@ -1,9 +1,7 @@
 .orderNumber {
     font-size: 30px;
     color: #000000;
-    text-decoration: none;
 }
-
 
 /* .status {
     display: inline;
@@ -13,24 +11,29 @@
    color: #262626;     
 }
 
-/* .list-item {
-} */
+.list-item {
+    padding-right:0 !important;
+    padding-left:0 !important;
+    border-radius:0px !important;
+    outline: 0 !important;
+}
 
-a {
+.order-list-item-main {
     padding: 0 !important;
     width: 100%;
     outline:0;
-    text-decoration: none;
+    /* text-decoration: none; */
 }
 
- a :hover {
+.order-list-item-main a :hover {
     background: #b3b3b3;
     text-decoration: none;
 }
 
-a :active {
+.order-list-item-main a :active {
     background: #b3b3b3;
 }
+
 
 .arrow {
     color: #f2f2f2;

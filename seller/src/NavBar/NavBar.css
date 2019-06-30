@@ -3,7 +3,8 @@
     text-decoration: none;
     font-weight: bold;
     text-align: center;
-    font-size: 55px;
+    font-size: 40px;
+    outline: 0;
 }
 
 .navbar-brand:hover {
@@ -31,7 +32,9 @@ li {
     padding: 8px 15px;
     text-decoration: none;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 20px;
+    border-radius: 20px;
+    outline: 0;
 }
 
 li:hover {
@@ -47,6 +50,7 @@ li:hover {
 .nav-link:link{
     text-decoration: none;
     color: white;
+    outline: 0;
 }
 
 .nav-link:visited{

@@ -99,9 +99,9 @@ class RequestedOrderPage extends Component {
                     </Paper>
                 </div>
                 <br />
-                <div className='col-md-8 offset-md-2'>
+                <div className='col-md-10 offset-md-1'>
                     <div className='row'>
-                        <div className='col-md-6 mb-4 accept-reject-border-div'>
+                        <div className='col-md-5 mb-4 accept-reject-border-div'>
                             <div className='accept-reject-label'>
                                 <label>Accept Order</label>
                             </div>
@@ -118,7 +118,8 @@ class RequestedOrderPage extends Component {
                                 <button className='btn btn-dark form-control accept-order-btn'>ACCEPT</button>
                             </div>
                         </div>
-                        <div className='col-md-6 mb-4 accept-reject-border-div'>
+                        <div className='col-md-2'></div>
+                        <div className='col-md-5 mb-4 accept-reject-border-div'>
                             <div className='accept-reject-label'>
                                 <label>Reject Order</label>
                             </div>

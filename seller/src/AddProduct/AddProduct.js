@@ -26,7 +26,7 @@ class AddProduct extends Component {
                                 <CardMedia className='add-product-cardmedia'>
                                     {(() => {
                                         switch (this.state.imageSelected) {
-                                            case true: return <img className='text text-muted'>Not Provided</img>;
+                                            case true: return <img className='text text-muted' alt='Failed to Load' />;
                                             default: return <span className='text text-muted img-not'>Image Not Provided</span>
                                         }
                                     })()}

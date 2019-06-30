@@ -14,10 +14,15 @@ class OrderCombinedView extends Component {
             orderedOnDate: '12/3/2019',
             expectedByDate: '20/3/2019',
             statusOfOrder: 'Payment Pending',
+            orgName: 'Supreeth Baliga Paper Products And Materials',
+            contactNo: '3712840901',
+            email: 'supreethbaligapaper@gmail.com',
+            deliveryAddress: 'C-204, Manavsthal Heights, Off Military Road, Andheri.',
             productId: ['12321421', '12332145', '16453', '2356', '2543'],
             productName: ['Product1', 'Product2', 'Product3', 'Product4', 'Product5'],
             rate: [10, 20, 30, 35, 5],
-            quantity: [150, 200, 100, 50, 250]
+            quantity: [150, 200, 100, 50, 250],
+            total: 123421
         }
 
         let orderListProps = {
@@ -78,8 +83,8 @@ class OrderCombinedView extends Component {
                     </div>
                     <div className='col-md-9' id='order-page-frame'>
                         <BrowserRouter>
-                            <Route exact path='/orders' render={(props) => <OrderPage {...props} {...orderPageProps} />} />
-                            <Route path='/orders/:orderId' render={(props) => <OrderPage {...props} {...orderPageProps} />} />
+                            <Route exact path='/seller/orders' render={(props) => <OrderPage {...props} {...orderPageProps} />} />
+                            <Route exact path='/seller/orders/:orderId' render={(props) => <OrderPage {...props} {...orderPageProps} />} />
                         </BrowserRouter>
                     </div>
                 </div>

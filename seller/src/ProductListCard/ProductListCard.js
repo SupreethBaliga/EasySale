@@ -6,8 +6,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import CardActions from '@material-ui/core/CardActions';
-import Fab from '@material-ui/core/Fab';
-
+import Button from '@material-ui/core/Button';
 // let prodprops = {
 //   products: [
 //     {
@@ -62,6 +61,11 @@ class ProductCard extends Component {
         }
     }
 
+    goToProdPage = () => {
+        console.log('Hello');
+        return;
+    }
+
     render() {
         return (
             <Card className='card m-3 ml-2'>
@@ -81,12 +85,9 @@ class ProductCard extends Component {
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Fab color="primary" aria-label="AddToCart" className='ml-2 mr-2'>
-                        <i className="material-icons">add_shopping_cart</i>
-                    </Fab>
-                    <Fab color="secondary" aria-label="AddToFavourites" className='ml-2 mr-2'>
-                        <i className="material-icons">favorite</i>
-                    </Fab>
+                <a href={'/seller/product/' + this.props.id}>
+                    <Button variant="contained" color="primary">VIEW PRODUCT</Button>
+                </a>    
                 </CardActions>
             </Card>
         )

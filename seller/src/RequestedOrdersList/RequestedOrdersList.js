@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import './RequestedOrdersList.css';
 
-// let props = {
+// let reqProps = {
 //     orders: [
 //       {
+//         uniqueId: '12340901',
 //         orgName: 'Supreeth Baliga',
 //         orderedOn: '12/4/12',
 //         deliveryAddress: 'C204, Manavsthal Heights, Off Military Road, Andheri',
@@ -16,6 +17,7 @@ import './RequestedOrdersList.css';
 //         total: 12323
 //       },
 //       {
+//         uniqueId: '12340901',
 //         orgName: 'Supreeth Baliga',
 //         orderedOn: '12/4/12',
 //         deliveryAddress: 'C204, Manavsthal Heights, Off Military Road, Andheri',
@@ -28,6 +30,7 @@ import './RequestedOrdersList.css';
 //         total: 12323
 //       },
 //       {
+//         uniqueId: '12340901',
 //         orgName: 'Supreeth Baliga',
 //         orderedOn: '12/4/12',
 //         deliveryAddress: 'C204, Manavsthal Heights, Off Military Road, Andheri',
@@ -40,6 +43,7 @@ import './RequestedOrdersList.css';
 //         total: 12323
 //       },
 //       {
+//         uniqueId: '12340901',
 //         orgName: 'Supreeth Baliga',
 //         orderedOn: '12/4/12',
 //         deliveryAddress: 'C204, Manavsthal Heights, Off Military Road, Andheri',
@@ -70,12 +74,12 @@ class RequestedOrdersList extends Component {
                         &#8377; {order.total}
                     </div>
                     <div className='col-md-2 arrow-div'>
-                        <a href='https://www.google.com'>
-                            <i className='material-icons arrow'>arrow_forward_ios</i>
+                        <a href={'/reqorders/' + order.uniqueId}>
+                            <i className='material-icons arrow' style={{ color: '#bfbfbf' }}>arrow_forward_ios</i>
                         </a>
                     </div>
                 </div>
-            </div>
+            </div >
         )
     })
 

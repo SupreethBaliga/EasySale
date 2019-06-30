@@ -32,13 +32,13 @@
 
 .order-list-item-full a{
     text-decoration: none;
-    color: #bfbfbf;
+    color: #bfbfbf !important;
     outline: 0;
 }
 
 .order-list-item-full a :hover {
     text-decoration: none;
-    color: #4d4d4d;
+    color: #4d4d4d !important;
 }
 
 .ordered-on-text {

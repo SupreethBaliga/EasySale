@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './OrderList.css';
 import List from '@material-ui/core/List';
-import ListSubheader from '@material-ui/core/ListSubheader';
+// import ListSubheader from '@material-ui/core/ListSubheader';
 import OrderListItem from '../OrderListItem/OrderListItem';
 
 class OrderList extends Component {
@@ -16,11 +16,7 @@ class OrderList extends Component {
     render() {
         return (
             <div className="col-md-12 order-list">
-                <List subheader={
-                    <ListSubheader>
-                        Your Orders
-                </ListSubheader>
-                }>
+                <List>
                     {this.orderListItems}
                 </List>
             </div>

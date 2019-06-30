@@ -16,12 +16,6 @@ import Paper from '@material-ui/core/Paper';
 
 class OrderPage extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            grandTotal: 0
-        }
-    }
 
     productOrders = [];
 
@@ -38,18 +32,10 @@ class OrderPage extends Component {
         }
     }
 
-    componentDidMount() {
-        //eslint-disable-next-line
-        this.productOrders.map((product) => {
-            this.setState((state, props) => ({
-                grandTotal: state.grandTotal + product.amount
-            }))
-        });
-    }
 
     render() {
         return (
-            <div className='col-md-12'>
+            <div className='col-md-12 order-page-scroll-mech'>
                 <div className='row orderPageTopBar'>
                     <div className='col-md-3 m-2 orderNumberDiv'>
                         <span className='OPorderNumber'>
@@ -68,6 +54,45 @@ class OrderPage extends Component {
                         <span className='order-status'>Order Status : {this.props.statusOfOrder}</span>
                     </div>
                 </div>
+                <div className='col-md-10 offset-md-1'>
+                    <div className='row mt-3'>
+                        <div className='col-md-8'>
+                            <div className='col-md-4 order-page-client-detail-label'>
+                                Organisation:
+                            </div>
+                            <div className='col-md-8 order-page-client-detail-value'>
+                                {this.props.orgName}
+                            </div>
+                        </div>
+                        <div className='col-md-4'>
+                            <div className='col-md-4 order-page-client-detail-label'>
+                                Contact:
+                        </div>
+                            <div className='col-md-8 order-page-client-detail-value'>
+                                {this.props.contactNo}
+                            </div>
+                        </div>
+                    </div>
+                    <div className='row mt-3'>
+                        <div className='col-md-8'>
+                            <div className='col-md-4 order-page-client-detail-label'>
+                                Delivery Address:
+                            </div>
+                            <div className='col-md-8 order-page-client-detail-value'>
+                                {this.props.deliveryAddress}
+                            </div>
+                        </div>
+                        <div className='col-md-4'>
+                            <div className='col-md-4 order-page-client-detail-label'>
+                                Email:
+                        </div>
+                            <div className='col-md-8 order-page-client-detail-value'>
+                                {this.props.email}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div className='orderSummary'>
                     Order Summary:
                 </div>
@@ -98,15 +123,17 @@ class OrderPage extends Component {
                                 <tr className='total-row'>
                                     <td className='table-active' colSpan='4' />
                                     <td className='table-active'>Grand Total : </td>
-                                    <td className='table-active'>&#8377; {this.state.grandTotal}</td>
+                                    <td className='table-active'>&#8377; {this.props.total}</td>
                                 </tr>
                             </tbody>
                         </table>
                     </Paper>
                 </div>
+                <br />
                 <form className='col-md-12'>
 
-                    <div className='row'>
+                    <div className='row add-padding'>
+                        <div className='col-md-2'></div>
                         <div className='col-md-2'>
                             <label className='label-text'>Order Status:</label>
                         </div>
@@ -118,8 +145,11 @@ class OrderPage extends Component {
                         <div className='col-md-2'>
                             <button className='btn btn-dark form-control set-status-btn'>SET STATUS</button>
                         </div>
+                        <div className='col-md-2'></div>
                     </div>
                 </form>
+                <br />
+                <br />
             </div>
         )
     }

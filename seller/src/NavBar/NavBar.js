@@ -14,21 +14,21 @@ class NavBar extends Component {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="nav mr-auto">
                         <li className="nav-item active" data-toggle="collapse" data-target=".navbar-collapse">
-                            <a className="nav-link" href="/products">
+                            <a className="nav-link" href="/seller/products">
                                 <i className="material-icons">border_all</i>
                                 Products
                             </a>
                         </li>
                         <li className="nav-item active" data-toggle="collapse" data-target=".navbar-collapse">
-                            <a className="nav-link" href="/myOrders">
+                            <a className="nav-link" href="/seller/orders">
                                 <i className="material-icons">list_alt</i>
                                 Orders
                             </a>
                         </li>
                         <li className="nav-item active" data-toggle="collapse" data-target=".navbar-collapse">
-                            <a className="nav-link" href="/favourites">
-                                <i className="material-icons">account_circle</i>
-                                Users
+                            <a className="nav-link" href="/reqorders">
+                                <i className="material-icons">assignment_returned</i>
+                                Order Requests
                             </a>
                         </li>
                     </ul>
