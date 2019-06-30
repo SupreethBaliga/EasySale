@@ -9,10 +9,12 @@ import './App.css';
 // import ProductPage from './ProductPage/ProductPage';
 // import OrderCombinedView from './OrderCombinedView/OrderCombinedView';
 // import RequestedOrdersList from './RequestedOrdersList/RequestedOrdersList';
+// import RequestedOrderPage from './RequestedOrderPage/RequestedOrderPage';
 
 class App extends Component {
 
   render() {
+
 
     return (
       <div>
