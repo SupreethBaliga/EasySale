@@ -37,3 +37,7 @@ i {
 .no-dec :hover {
     text-decoration-style: none;
 }
+
+.card-main {
+    width: 100%;
+}

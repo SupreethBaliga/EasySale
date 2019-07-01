@@ -1,0 +1,8 @@
+.order-list {
+    background: #f2f2f2;
+    height:88vh;
+    overflow-y:scroll;
+    border-right: 5px double #000000;
+    padding-right: 0;
+    text-decoration: none;
+}

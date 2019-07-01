@@ -1,0 +1,9 @@
+.seller-title {
+    font-size: 60px;
+    font-weight: bold;
+}
+
+.text {
+    text-align: justify;
+    object-fit: contain;
+}

@@ -1,3 +1,8 @@
+/* .order-page-main {
+    height: 100vh;
+    overflow-y:scroll;
+} */
+
 .OPorderNumber {
     font-size: 40px;
     font-weight: bold;
@@ -63,3 +68,4 @@
 .bottom-bar {
     text-align: center;
 }
+

@@ -1,0 +1,120 @@
+/* .order-page-main {
+    height: 100vh;
+    overflow-y:scroll;
+} */
+
+.orgName-border {
+    font-size: 35px;
+    font-weight: bold;
+    margin-left: 10px;
+    margin-top: 5px;
+    text-align: justify;
+    color: #595959;
+}
+
+.orgName-div {
+    text-align: center;
+    padding: 10px;
+    border-radius: 20px;
+    background: #bfbfbf;
+    font-style: italic;
+}
+
+/* .orderNumberDiv {
+    background: #ffffff;
+} */
+
+.deliveryDates {
+    font-size: 20px;
+}
+
+.orderPageTopBar {
+    background: #e6e6e6;
+}
+
+.order-status {
+    background: #ffffff;
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 5px;
+    padding: 2px;
+    border: 2px solid #000000;
+    float: right;
+}
+
+
+/* .test {
+    background: #ffffff;
+} */
+
+.orderSummary {
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    margin-top: 2vh;
+    color: #4d4d4d;
+}
+
+.ordersTable {
+    margin-top: 3vh;
+}
+
+.table-body {
+    font-size: 18px;
+}
+
+.total-row {
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.table-style {
+    margin: auto;
+    /* align: center */
+    width: 90%;
+}  
+
+.label-text {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* .select {
+    width: 100%;
+}
+
+.set-status-btn {
+    height: 35px;
+    font-weight: bold;
+} */
+
+.top-bar-labels {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.accept-reject-border-div {
+    border: 2px solid #666666;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.accept-reject-label {
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.accept-reject-field-label {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.accept-order-btn {
+    margin-top: 11px;
+    font-weight: bold;
+}
+
+.reject-order-btn {
+    font-weight: bold;
+}

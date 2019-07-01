@@ -1,0 +1,46 @@
+.orgName-div {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.order-total {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.arrow {
+    vertical-align: bottom;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.arrow-div {
+    padding-top: 10px;
+}
+
+.orders-list-full-page {
+    height: 100vh;
+    overflow-y: scroll;
+    background: #a6a6a6;
+}
+
+.order-list-item-full {
+    background: #e6e6e6;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.order-list-item-full a{
+    text-decoration: none;
+    color: #bfbfbf !important;
+    outline: 0;
+}
+
+.order-list-item-full a :hover {
+    text-decoration: none;
+    color: #4d4d4d !important;
+}
+
+.ordered-on-text {
+    font-size: 15px;
+}

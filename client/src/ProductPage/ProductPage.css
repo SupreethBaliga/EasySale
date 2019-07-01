@@ -1,11 +1,13 @@
 .background {
-    background: #ffffff;
+    background: #d9d9d9;
+    padding-top: 15px;
 }
 
 .productImage {
     box-shadow: 10px 10px 5px rgb(136, 133, 133);   
     border: 2px solid rgb(37, 36, 36);
     object-fit: fill;
+    margin-left: 15px;
 }
 
 .detail {
@@ -19,6 +21,7 @@
 
 .totalRate {
     font-size: 60px;
+    font-weight: bold;
 }
 
 .cart-icon {
@@ -27,17 +30,26 @@
 }
 
 .addToCart {
-    position:absolute;
-    top:5px;
-    right:15px;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 .addToFav {
-    position: absolute;
-    top: 5px;
-    right: 25px;
+    font-size: 15px;
+    font-weight: bold;
 }
 
-p {
+.product-description {
     text-align: justify;
+    background: #f2f2f2;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+h1 {
+    font-weight: bold;
+}
+
+.product-page-label {
+    font-weight: bold;
 }

@@ -1,0 +1,12 @@
+.add-icon{
+    vertical-align: top;
+}
+
+.add-icon-text {
+    font-size:20px;
+    font-weight:bold;
+}
+.add-product-btn {
+    margin-top: 20px;
+    /* margin-right: 100px; */
+}

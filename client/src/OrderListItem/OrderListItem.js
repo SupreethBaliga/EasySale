@@ -37,10 +37,10 @@ import './OrderListItem.css';
 class OrderListItem extends Component {
     render() {
         return (
-            <a className='list-item' href="https://www.google.com">
+            <a className='list-item btn' href={"/myOrders/" + this.props.orderId}>
                 <ListItem alignItems='flex-start'>
                     <ListItemAvatar>
-                        <span className="orderNumber">&#35;{this.props.orderNumber}</span>
+                        <span className="orderNumber">&#35;{this.props.orderId}</span>
                     </ListItemAvatar>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <ListItemText primary={this.props.status} secondary={'Expected By: ' + this.props.expectedDate} className='order-info' />

@@ -1,0 +1,25 @@
+{
+  "name": "Easy-Sale",
+  "version": "1.0.0",
+  "description": "Contains the code for IITK Summer of Code-19 project.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"cd backend && node server.js\" \"cd client && yarn start\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SupreethBaliga/EasySale.git"
+  },
+  "keywords": [],
+  "author": "Supreeth Baliga <supreethbaliga@gmail.com> (https://supreethbaliga.github.io/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SupreethBaliga/EasySale/issues"
+  },
+  "homepage": "https://github.com/SupreethBaliga/EasySale#readme",
+  "dependencies": {
+    "concurrently": "^4.1.1",
+    "nodemon": "^1.19.1"
+  }
+}

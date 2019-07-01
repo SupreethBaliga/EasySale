@@ -18,16 +18,12 @@
     /* text-decoration: none; */
 }
 
-.list-item :hover {
+a :hover {
     background: #b3b3b3;
-    /* text-decoration: none; */
-}
-
-a:hover {
     text-decoration: none;
 }
 
-.list-item :active {
+a :active {
     background: #b3b3b3;
 }
 

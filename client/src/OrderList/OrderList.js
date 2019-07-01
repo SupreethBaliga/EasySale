@@ -6,6 +6,7 @@ import OrderListItem from '../OrderListItem/OrderListItem';
 
 class OrderList extends Component {
 
+
     orderListItems = this.props.orders.map((order) => {
         return (
             <OrderListItem key={toString(order.orderNumber)} {...order} />
@@ -14,12 +15,12 @@ class OrderList extends Component {
 
     render() {
         return (
-            <div className="col-md-3 order-list">
+            <div className="col-md-12 order-list">
                 <List subheader={
                     <ListSubheader>
                         Your Orders
                 </ListSubheader>
-                } component="nav">
+                }>
                     {this.orderListItems}
                 </List>
             </div>
