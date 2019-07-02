@@ -58,7 +58,7 @@ class ProductCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            totalAmount: this.props.rate * this.props.defaultQuantity
+            totalAmount: this.props.rate * this.props.step
         }
     }
 
@@ -74,7 +74,7 @@ class ProductCard extends Component {
                 <CardContent>
                     <div>
                         <span className='totalAmt'> &#8377; {this.state.totalAmount}</span>&nbsp;&nbsp;
-                        <span className='minQuantity'>for pack of {this.props.defaultQuantity}</span>
+                        <span className='minQuantity'>for pack of {this.props.step}</span>
                     </div>
                     <Typography variant="body" color="textSecondary" component="p">
                         {this.props.description}

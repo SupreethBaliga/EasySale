@@ -1,20 +1,38 @@
 import React, { Component } from 'react';
 import './ProductsList.css';
 import ProductCard from '../ProductListCard/ProductListCard';
-
-class ProductListPage extends Component {
-    /*constructor(props) {
+import axios from 'axios';
+class ProductsList extends Component {
+    constructor(props) {
         super(props);
         this.state = {
-
+            products: []
         }
-    }*/
+    }
 
-    listItems = this.props.products.map((product) => {
-        return (
-            <ProductCard key={product.id} {...product} />
+    componentDidMount(){
+        axios.get('http://localhost:8000/api/products')
+        .then(res => {
+            const persons = res.data;
+            console.log({persons});
+            this.setState({
+                products: persons.rows
+            });
+            console.log(this.state.products);
+            this.populate();
+        });
+    }
+
+    listItems=[];
+
+    populate= () => {
+        this.listItems = this.state.products.map((product)=> 
+                <ProductCard key={product.id} {...product} />
         );
-    });
+        this.setState({
+            products: this.state.products
+        });
+    }   
 
     render() {
         return (
@@ -33,4 +51,4 @@ class ProductListPage extends Component {
     }
 }
 
-export default ProductListPage;
+export default ProductsList;
