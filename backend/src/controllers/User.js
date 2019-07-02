@@ -56,19 +56,18 @@ const User = {
     async update(req, res) {
         const findOneQuery = 'SELECT * FROM users WHERE id = $1';
         const updateOneQuery =`UPDATE users
-            SET contactNumber=$1,deliveryAddress=$2,deliveryPostalCode=$3,organisationName=$4,GSTNumber=$5,officeNumber=$6,companyAddress=$7,companyPostalCode=$8
-            WHERE id=$9 returning *`;
+            SET name=$1,contactNumber=$2,deliveryAddress=$3,deliveryPostalCode=$4,officeNumber=$5,companyAddress=$6,companyPostalCode=$7
+            WHERE id=$8 returning *`;
         try {
             const { rows } = await db.query(findOneQuery, [req.params.id]);
             if(!rows[0]) {
                 return res.status(404).send({'message': 'user not found'});
             }
             const values = [
+                req.body.name || rows[0].name,
                 req.body.contactNumber || rows[0].contactNumber,
                 req.body.deliveryAddress || rows[0].deliveryAddress,
                 req.body.deliveryPostalCode || rows[0].deliveryPostalCode,
-                req.body.organisationName || rows[0].organisationName,
-                req.body.GSTNumber || rows[0].GSTNumber,
                 req.body.officeNumber || rows[0].officeNumber,
                 req.body.companyAddress || rows[0].companyAddress,
                 req.body.companyPostalCode || rows[0].companyPostalCode,
