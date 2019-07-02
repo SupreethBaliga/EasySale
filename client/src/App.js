@@ -4,7 +4,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Main from './Main/Main';
 import LoginAndSignup from './LoginAndSignup/LoginAndSignup';
-// import Login2 from './LoginAndSignup/LoginAndSignup';
+// import ProductPage from './ProductPage/ProductPage';
+// import OrderCombinedView from './OrderCombinedView/OrderCombinedView';
 class App extends Component {
 
   render() {

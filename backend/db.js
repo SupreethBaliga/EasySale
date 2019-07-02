@@ -11,20 +11,32 @@ pool.on('connect', () => {
     console.log('connected to the db');
 })
 
+const createSequence = () => {
+    const queryText = 'CREATE SEQUENCE IF NOT EXISTS orderSequence INCREMENT BY 1 START WITH 1';
+    pool.query(queryText)
+        .then((res) => {
+            console.log(res);
+            pool.end();
+        })
+        .catch((err) => {
+            console.log(err);
+            pool.end();
+        });
+}
+
 const createOrderTable = () => {
     const queryText =
         `CREATE TABLE IF NOT EXISTS
             orders(
-                id UUID PRIMARY KEY,
-                orderNumber SERIAL,
-                orderedOn DATE NOT NULL DEFAULT CURRENT_DATE,
+                orderNumber INTEGER DEFAULT NEXTVAL('orderSequence') PRIMARY KEY,
+                orderedOn DATE DEFAULT CURRENT_DATE,
                 expectedBy DATE,
                 status TEXT NOT NULL,
                 productId VARCHAR [],
                 productName VARCHAR [],
                 rate INTEGER [],
                 quantity INTEGER [],
-                totalAmount INTEGER,
+                totalAmount INTEGER NOT NULL,
                 user_id UUID NOT NULL,
                 name VARCHAR,
                 email VARCHAR,
@@ -81,10 +93,24 @@ const createProductTable = () => {
                 id VARCHAR PRIMARY KEY,
                 image VARCHAR NOT NULL,
                 description VARCHAR NOT NULL,
-                rate INTEGER,
-                step INTEGER
+                rate INTEGER NOT NULL,
+                step INTEGER NOT NULL
             )`;
     
+    pool.query(queryText)
+        .then((res) => {
+            console.log(res);
+            pool.end();
+        })
+        .catch((err) => {
+            console.log(err);
+            pool.end();
+        });
+}
+
+const dropSequence = () => {
+    const queryText = `DROP SEQUENCE IF EXISTS orderSequence`;
+
     pool.query(queryText)
         .then((res) => {
             console.log(res);
@@ -139,9 +165,11 @@ const dropProductTable = () => {
 }
 
 module.exports = {
+    createSequence,
     createOrderTable,
     createUserTable,
     createProductTable,
+    dropSequence,
     dropUserTable,
     dropOrderTable,
     dropProductTable
