@@ -49,17 +49,14 @@ const Product = {
     async update(req, res) {
         const findOneQuery = 'SELECT * FROM products WHERE id = $1';
         const updateOneQuery =`UPDATE products
-            SET name=$1,image=$2,description=$3,rate=$4,step=$5
-            WHERE id=$6 returning *`;
+            SET rate=$1,step=$2
+            WHERE id=$3 returning *`;
         try {
             const { rows } = await db.query(findOneQuery, [req.params.id]);
             if(!rows[0]) {
                 return res.status(404).send({'message': 'product not found'});
             }
             const values = [
-                req.body.name || rows[0].name,
-                req.body.image || rows[0].image,
-                req.body.description || rows[0].description,
                 req.body.rate || rows[0].rate,
                 req.body.step || rows[0].step,
                 req.params.id

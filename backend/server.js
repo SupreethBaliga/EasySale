@@ -4,8 +4,6 @@ import Product from './src/controllers/Product';
 import User from './src/controllers/User';
 var cors = require('cors');
 
-
-
 const port = 3000;
 
 const app = express();
@@ -23,6 +21,7 @@ app.put('/api/products/:id', Product.update);
 app.delete('/api/products/:id', Product.delete);
 
 app.post('/api/users/', User.create);
+app.get('/api/users', User.getAll);
 app.get('/api/users/:id', User.getOne);
 app.put('/api/users/:id', User.update);
 

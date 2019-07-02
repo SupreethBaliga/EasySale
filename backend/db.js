@@ -20,11 +20,11 @@ const createOrderTable = () => {
                 orderedOn DATE NOT NULL DEFAULT CURRENT_DATE,
                 expectedBy DATE,
                 status TEXT NOT NULL,
-                productId VARCHAR [],
-                productName VARCHAR [],
-                rate INTEGER [],
-                quantity INTEGER [],
-                totalAmount INTEGER,
+                productId VARCHAR NOT NULL [],
+                productName VARCHAR NOT NULL [],
+                rate INTEGER NOT NULL [],
+                quantity INTEGER NOT NULL [],
+                totalAmount INTEGER NOT NULL,
                 user_id UUID NOT NULL,
                 name VARCHAR,
                 email VARCHAR,
@@ -81,8 +81,8 @@ const createProductTable = () => {
                 id VARCHAR PRIMARY KEY,
                 image VARCHAR NOT NULL,
                 description VARCHAR NOT NULL,
-                rate INTEGER,
-                step INTEGER
+                rate INTEGER NOT NULL,
+                step INTEGER NOT NULL
             )`;
     
     pool.query(queryText)
