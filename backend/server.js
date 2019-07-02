@@ -4,7 +4,7 @@ import Product from './src/controllers/Product';
 import User from './src/controllers/User';
 var cors = require('cors');
 
-const port = 3000;
+const port = 8000;
 
 const app = express();
 app.use(cors());
