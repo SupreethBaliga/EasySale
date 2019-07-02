@@ -24,10 +24,15 @@ class CartList extends Component {
     });
     render() {
         return (
-            <div>
+            <div className='col-md-12'>
                 <div className='row top-bar'>
-                    <span className='amountPayable ml-5 mt-2'>Amount Payable:</span>&nbsp;&nbsp;<span className='totalAmount ml-3'>&#8377;{this.state.grandTotal}</span>
-                    <button className='checkoutButton btn btn-dark m-3 ml-5'>PROCEED TO CHECKOUT</button>
+                    <div className='col-md-9'>
+                        <span className='amountPayable mt-2'>Amount Payable:</span>&nbsp;&nbsp;<span className='totalAmount ml-3'>&#8377;{this.state.grandTotal}</span>
+                    </div>
+                    <div className='col-md-1'></div>
+                    <div className='col-md-2'>
+                        <button className='checkoutButton btn btn-dark mt-3'>PROCEED TO CHECKOUT</button>
+                    </div>
                 </div>
                 <div className='row m-3'>
                     {this.cartListItems}

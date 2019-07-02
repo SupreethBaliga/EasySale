@@ -4,6 +4,7 @@
     font-weight: bold;
     text-align: center;
     font-size: 35px;
+    outline: 0;
 }
 
 .navbar-brand:hover {
@@ -32,11 +33,14 @@ li {
     text-decoration: none;
     font-weight: bold;
     font-size: 22px;
+    outline: 0 !important;
+    border-radius: 20px;
 }
 
 li:hover {
     background: #848484;
     color: #212121;
+    outline: 0;
 }
 
 .material-icons {

@@ -1,53 +1,64 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './LoginAndSignup.css';
-import Tab from 'react-bootstrap/Tab';
-import Nav from 'react-bootstrap/Nav';
+import PropTypes from 'prop-types';
+import SwipeableViews from 'react-swipeable-views';
+import { useTheme } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
 import LoginPage from '../LoginPage/LoginPage';
 import SignupPage from '../SignupPage/SignupPage';
-class LoginAndSignup extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            key: 'login'
-        }
-    }
-
-    changeToSignup = () => {
-        this.setState((state, props) => ({
-            key: 'signup'
-        }))
-    }
-
-    render() {
-        return (
-            <div className='background-div'>
-                <div className='container tab-container'>
-                    <Tab.Container activeKey={this.state.key} onSelect={key => this.setState({ key })}>
-                        <div className='row'>
-                            <Nav variant='tabs'>
-                                <Nav.Item className='nav-item'>
-                                    <Nav.Link eventKey='signup' className='nav-link'>Signup</Nav.Link>
-                                </Nav.Item>
-                                <Nav.Item className='nav-item'>
-                                    <Nav.Link eventKey='login'>Login</Nav.Link>
-                                </Nav.Item>
-                            </Nav>
-                        </div>
-                        <div className='row'>
-                            <Tab.Content>
-                                <Tab.Pane eventKey='signup'>
-                                    <SignupPage />
-                                </Tab.Pane>
-                                <Tab.Pane eventKey='login'>
-                                    <LoginPage changeToSignup={this.changeToSignup} />
-                                </Tab.Pane>
-                            </Tab.Content>
-                        </div>
-                    </Tab.Container>
-                </div>
-            </div>
-        );
-    }
+function TabContainer({ children, dir }) {
+    return (
+        <Typography component="div" dir={dir} style={{ padding: 8 * 3 }}>
+            {children}
+        </Typography>
+    );
 }
-export default LoginAndSignup;
+
+TabContainer.propTypes = {
+    children: PropTypes.node.isRequired,
+    dir: PropTypes.string.isRequired,
+};
+
+
+export default function FullWidthTabs() {
+    const theme = useTheme();
+    const [value, setValue] = React.useState(0);
+
+    function handleChange(event, newValue) {
+        setValue(newValue);
+    }
+
+    function handleChangeIndex(index) {
+        setValue(index);
+    }
+
+    return (
+        <div className='background-div'>
+            <AppBar color="default" class='tab-container'>
+                <Tabs
+                    value={value}
+                    onChange={handleChange}
+                    indicatorColor="primary"
+                    textColor="primary"
+                    variant="fullWidth"
+                >
+                    <Tab label="SIGNUP" />
+                    <Tab label="LOGIN" />
+                </Tabs>
+            </AppBar>
+            <SwipeableViews
+                axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+                index={value}
+                onChangeIndex={handleChangeIndex}
+                class='swipe-tabs'
+            >
+                <TabContainer dir={theme.direction} class='tab-container-swipe'><SignupPage /></TabContainer>
+                <TabContainer dir={theme.direction} class='tab-container-swipe'><LoginPage /></TabContainer>
+            </SwipeableViews>
+        </div>
+    );
+}
