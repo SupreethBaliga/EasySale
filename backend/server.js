@@ -2,11 +2,14 @@ import express from 'express';
 import 'babel-polyfill';
 import Product from './src/controllers/Product';
 import User from './src/controllers/User';
+var cors = require('cors');
+
+
 
 const port = 3000;
 
-const app = express()
-
+const app = express();
+app.use(cors());
 app.use(express.json())
 
 app.get('/', (req, res) => {
