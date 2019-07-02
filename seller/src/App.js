@@ -16,50 +16,50 @@ class App extends Component {
 
   render() {
 
-    let prodprops = {
-      products: [
-        {
-          id: 1,
-          name: "Prod1",
-          description: "This is product 1. Enter some more description about it so that it looks as big as 4 to 5 lines. This is what I am trying to do right now but it doesn't seem to work. Keep on seeing. Still seeing. And still see.",
-          image: require('./assets/images/prod1.jpeg'),
-          rate: 4,
-          defaultQuantity: 100
-        },
-        {
-          id: 2,
-          name: "Prod2",
-          description: "This is product 2. Enter some more description about it so that it looks as big as 4 to 5 lines. This is what I am trying to do right now but it doesn't seem to work. Keep on seeing. Still seeing. And still see.",
-          image: require('./assets/images/prod2.jpeg'),
-          rate: 6,
-          defaultQuantity: 120
-        },
-        {
-          id: 3,
-          name: "Prod3",
-          description: "This is product 3. Enter some more description about it so that it looks as big as 4 to 5 lines. This is what I am trying to do right now but it doesn't seem to work. Keep on seeing. Still seeing. And still see.",
-          image: require('./assets/images/prod3.jpeg'),
-          rate: 5,
-          defaultQuantity: 100
-        },
-        {
-          id: 4,
-          name: "Prod4",
-          description: "This is product 4. Enter some more description about it so that it looks as big as 4 to 5 lines. This is what I am trying to do right now but it doesn't seem to work. Keep on seeing. Still seeing. And still see.",
-          image: require('./assets/images/prod4.jpeg'),
-          rate: 9,
-          defaultQuantity: 50
-        },
-        {
-          id: 5,
-          name: "Prod5",
-          description: "This is product 5. Enter some more description about it so that it looks as big as 4 to 5 lines. This is what I am trying to do right now but it doesn't seem to work. Keep on seeing. Still seeing. And still see.",
-          image: require('./assets/images/prod5.jpeg'),
-          rate: 7,
-          defaultQuantity: 130
-        }
-      ]
-    }
+    // let prodprops = {
+    //   products: [
+    //     {
+    //       id: 1,
+    //       name: "Prod1",
+    //       description: "This is product 1. Enter some more description about it so that it looks as big as 4 to 5 lines. This is what I am trying to do right now but it doesn't seem to work. Keep on seeing. Still seeing. And still see.",
+    //       image: require('./assets/images/prod1.jpeg'),
+    //       rate: 4,
+    //       defaultQuantity: 100
+    //     },
+    //     {
+    //       id: 2,
+    //       name: "Prod2",
+    //       description: "This is product 2. Enter some more description about it so that it looks as big as 4 to 5 lines. This is what I am trying to do right now but it doesn't seem to work. Keep on seeing. Still seeing. And still see.",
+    //       image: require('./assets/images/prod2.jpeg'),
+    //       rate: 6,
+    //       defaultQuantity: 120
+    //     },
+    //     {
+    //       id: 3,
+    //       name: "Prod3",
+    //       description: "This is product 3. Enter some more description about it so that it looks as big as 4 to 5 lines. This is what I am trying to do right now but it doesn't seem to work. Keep on seeing. Still seeing. And still see.",
+    //       image: require('./assets/images/prod3.jpeg'),
+    //       rate: 5,
+    //       defaultQuantity: 100
+    //     },
+    //     {
+    //       id: 4,
+    //       name: "Prod4",
+    //       description: "This is product 4. Enter some more description about it so that it looks as big as 4 to 5 lines. This is what I am trying to do right now but it doesn't seem to work. Keep on seeing. Still seeing. And still see.",
+    //       image: require('./assets/images/prod4.jpeg'),
+    //       rate: 9,
+    //       defaultQuantity: 50
+    //     },
+    //     {
+    //       id: 5,
+    //       name: "Prod5",
+    //       description: "This is product 5. Enter some more description about it so that it looks as big as 4 to 5 lines. This is what I am trying to do right now but it doesn't seem to work. Keep on seeing. Still seeing. And still see.",
+    //       image: require('./assets/images/prod5.jpeg'),
+    //       rate: 7,
+    //       defaultQuantity: 130
+    //     }
+    //   ]
+    // }
 
     let reqProps = {
       orders: [
@@ -154,7 +154,7 @@ class App extends Component {
             <div>
               <Route exact path='/' render={(props) => <AboutSeller {...props} />} />
               <Route exact path='/editAboutSeller' render={(props) => <AboutSellerEdit {...props} />} />
-              <Route exact path='/seller/products' render={(props) => <ProductsList {...props} {...prodprops} />} />
+              <Route exact path='/seller/products' render={(props) => <ProductsList {...props}  />} />
               <Route exact path='/seller/product/:id' render={(props) => <ProductPage {...props} {...productPageProps} />} />
               <Route exact path='/addProduct' render={(props) => <AddProduct {...props} />} />
               <Route exact path='/reqorders' render={(props) => <RequestedOrdersList {...props} {...reqProps} />} />

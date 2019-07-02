@@ -1,20 +1,20 @@
 Arguments: 
-  /usr/bin/node /usr/share/yarn/bin/yarn.js start
+  /usr/local/bin/node /usr/share/yarn/bin/yarn.js start
 
 PATH: 
-  /home/supreethbaliga/gems/bin:/home/supreethbaliga/gems/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+  /home/destroyer/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lib/jvm/java-11-oracle/bin:/usr/lib/jvm/java-11-oracle/db/bin:/usr/local/go/bin
 
 Yarn version: 
-  1.15.2
+  1.16.0
 
 Node version: 
-  12.4.0
+  12.3.1
 
 Platform: 
   linux x64
 
 Trace: 
-  SyntaxError: /home/supreethbaliga/Desktop/Easy-Sale/client/package.json: Unexpected token / in JSON at position 785
+  SyntaxError: /home/destroyer/Easy/EasySale/client/package.json: Unexpected token } in JSON at position 894
       at JSON.parse (<anonymous>)
       at /usr/share/yarn/lib/cli.js:1625:59
       at Generator.next (<anonymous>)
@@ -29,12 +29,14 @@ npm manifest:
     "dependencies": {
       "@material-ui/core": "^4.1.1",
       "bootstrap": "^4.3.1",
+      "concurrently": "^4.1.1",
+      "express": "^4.17.1",
       "react": "^16.8.6",
       "react-bootstrap": "^1.0.0-beta.9",
       "react-dom": "^16.8.6",
       "react-numeric-input": "^2.2.3",
       "react-router-dom": "^5.0.1",
-      "react-scripts": "3.0.1"
+      "react-scripts": "^1.1.1"
     },
     "scripts": {
       "start": "react-scripts start",
@@ -56,8 +58,10 @@ npm manifest:
         "last 1 firefox version",
         "last 1 safari version"
       ]
-    }
-    // "proxy": "http://localhost:5001"
+    },
+    "devDependencies": {
+      "nodemon": "^1.19.1"
+    },
   }
 
 yarn manifest: 
