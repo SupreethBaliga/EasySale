@@ -49,6 +49,16 @@ function getaccount(req, res) {
     }
 }
 
+function auth(req)
+{
+    if(req.isAuthenticated())
+    {
+        console.log(typeof req.user);
+        return req.user;
+    }
+    else return null;
+}
+
 function getlogin(req, res) {
     if (req.isAuthenticated()) {
         res.redirect('/api/account');
@@ -102,7 +112,7 @@ passport.use('local', new LocalStrategy({passReqToCallback : true}, (req, userna
                         return done();
                     }
                     else if (check){
-                        return done(null, [{email: result.rows[0].email, name: result.rows[0].name}]);
+                        return done(null, [{email: result.rows[0].email, name: result.rows[0].name, id: result.rows[0].id}]);
                     }
                     else{
                     // req.flash(‘danger’, “Oops. Incorrect login details.”);
@@ -123,6 +133,7 @@ passport.deserializeUser(function(user, done) {
 });
 
 module.exports = {
+    auth,
     getjoin,
     postjoin,
     getaccount,

@@ -1,32 +1,42 @@
 import db from '../db';
-
+var auth = require('./Authentication');
 const Order = {
     async create(req, res) {
-        const text = `INSERT INTO
+        var data = auth.auth(req);
+        console.log(data);
+        if(data !== null)
+        {
+            const text = `INSERT INTO
             orders(expectedBy, status, productId, productName, rate, quantity, totalAmount, user_id, name, email, contactNumber, deliveryAddress)
             VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
             returning *`;
-        const values = [
-            req.body.expectedBy,
-            req.body.status,
-            req.body.productId,
-            req.body.productName,
-            req.body.rate,
-            req.body.quantity,
-            req.body.totalAmount,
-            req.body.user_id,
-            req.body.name,
-            req.body.email,
-            req.body.contactNumber,
-            req.body.deliveryAddress,
-        ];
+            var values = [
+                req.body.expectedBy,
+                req.body.status,
+                req.body.productId,
+                req.body.productName,
+                req.body.rate,
+                req.body.quantity,
+                req.body.totalAmount,
+                data[0].id,
+                data[0].name,
+                data[0].email,
+                req.body.contactNumber,
+                req.body.deliveryAddress,
+            ];
 
-        try {
-            const { rows } = await db.query(text, values);
-            return res.status(201).send(rows[0]);
-        } catch(error) {
-            return res.status(400).send(error);
+            try {
+                const { rows } = await db.query(text, values);
+                return res.status(201).send(rows[0]);
+            } catch(error) {
+                return res.status(400).send(error);
+            }
         }
+        else
+        {
+            res.status(400).send({'message' : 'Order cannot be created.'});
+        }
+        
     },
 
     async getAll(req, res) {
