@@ -1,8 +1,25 @@
 import React, { Component } from 'react';
 import './AboutSellerEdit.css';
+import axios from 'axios';
 
 
 class AboutSellerEdit extends Component {
+
+    // constructor(props) {
+    //     super(props);
+    //     // this.state = {
+    //     //     details: []
+    //     // }
+    // }
+
+    // handleSubmit(event){
+    //    // event.preventDefault();
+
+    // }
+
+
+
+
     render() {
         return (
             <div className='col-md-12'>
@@ -11,7 +28,7 @@ class AboutSellerEdit extends Component {
                         EDIT ABOUT SELLER
                     </div>
                     <div className='col-md-1'>
-                        <button form='about-seller-edit' type='submit' className='btn btn-dark'><i className='material-icons'>save</i>&nbsp;<span className='saveTest'>SAVE</span></button>
+                        <button form='about-seller-edit' type='submit' className='btn btn-dark' onClick={this.handleSubmit()}><i className='material-icons'>save</i>&nbsp;<span className='saveTest'>SAVE</span></button>
                     </div>
                 </div>
                 <div className='col-md-6 offset-md-3 mt-3'>

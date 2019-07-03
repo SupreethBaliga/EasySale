@@ -31,6 +31,7 @@ class AddProduct extends Component {
             "description": this.state.description,
             "rate": this.state.rate,
             "step": this.state.step
+            
         }
         const imageurl = "http://localhost:8000/api/imageupload";
         const formdata = new FormData();
@@ -62,6 +63,17 @@ class AddProduct extends Component {
             id: document.getElementById("product_id_add_product").value
         }));
         // console.log(this.state.id);
+    }
+    componentDidMount(){
+        
+    }
+    handleSubmit(event){
+        event.preventDefault();
+        axios({
+            method:"post",
+            url:"http://localhost:8000/api/users",
+            data: "as"
+        })
     }
 
     onChangeRate = (event) => {
@@ -96,7 +108,7 @@ class AddProduct extends Component {
     render() {
         return (
             <div className='col-md-12 add-product-page'>
-                <form id='add-product-form' className='add-product-form-class'>
+                <form id='add-product-form' className='add-product-form-class' onSubmit={this.handleSubmit()}>
                     <div className='row'>
                         <div className='col-md-10'></div>
                         <div className='col-md-2'>

@@ -13,11 +13,11 @@ app.use(cors());
 app.use(express.json())
 
 app.get('/', (req, res) => {
-	return res.status(200).send({ 'message': 'Testing for Server' });
+  return res.status(200).send({'message': 'YAY! Congratulations! Your first endpoint is working'});
 })
 
 app.post('/api/products/', Product.create);
-app.get('/api/products/', Product.getAll);
+app.get('/api/products/', Product.getAll);//done in both seller and client
 app.get('/api/products/:id', Product.getOne);
 app.put('/api/products/:id', Product.update);
 app.delete('/api/products/:id', Product.delete);
@@ -26,12 +26,7 @@ app.post('/api/users/', User.create);
 app.post('/api/users/login/', User.login);
 app.get('/api/users/', User.getAll);
 app.get('/api/users/:id', User.getOne);
-app.put('/api/users/:id', User.update);
-
-app.post('/api/orders/', Order.create);
-app.get('/api/orders/', Order.getAll);
-app.get('/api/orders/:orderNumber', Order.getOne);
-app.put('/api/orders/:orderNumber', Order.update);
+app.put('/api/users/:id', User.update);//done
 
 var storage = multer.diskStorage({
 	destination: function (req, file, cb) {
