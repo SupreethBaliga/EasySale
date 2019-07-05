@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './CartList.css';
 import CardListCard from '../CartListCard/CartListCard'
-// import Button from '@material-ui/core/Button'
+import axios from 'axios';
 class CartList extends Component {
 
     constructor(props) {
@@ -9,6 +9,15 @@ class CartList extends Component {
         this.state = {
             grandTotal: 0
         }
+    }
+
+    handleProceedToCheckout = () => {
+        var params = {
+            "status": "Pending",
+            "totalAmount": this.state.grandTotal
+        }
+        console.log("Request Sent");
+        axios.post("/api/orders",params);
     }
 
     updateGrandTotal = (cost) => {
@@ -31,7 +40,7 @@ class CartList extends Component {
                     </div>
                     <div className='col-md-1'></div>
                     <div className='col-md-2'>
-                        <button className='checkoutButton btn btn-dark mt-3'>PROCEED TO CHECKOUT</button>
+                        <button type='button' className='checkoutButton btn btn-dark mt-3' onClick={() => this.handleProceedToCheckout()}>PROCEED TO CHECKOUT</button>
                     </div>
                 </div>
                 <div className='row m-3'>

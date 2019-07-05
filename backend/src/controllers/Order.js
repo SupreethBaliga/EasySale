@@ -1,9 +1,8 @@
 import db from '../db';
-var auth = require('./Authentication');
+let auth = require('./Authentication');
 const Order = {
     async create(req, res) {
-        var data = auth.auth(req);
-        console.log(data);
+        let data = auth.auth(req);
         if(data !== null)
         {
             const text = `INSERT INTO
@@ -18,9 +17,9 @@ const Order = {
                 req.body.rate,
                 req.body.quantity,
                 req.body.totalAmount,
-                data[0].id,
-                data[0].name,
-                data[0].email,
+                data.id,
+                data.name,
+                data.email,
                 req.body.contactNumber,
                 req.body.deliveryAddress,
             ];

@@ -3,9 +3,9 @@ import 'babel-polyfill';
 import Product from './src/controllers/Product';
 import User from './src/controllers/User';
 import Order from './src/controllers/Order'
-var auth = require('./src/controllers/Authentication');
+let auth = require('./src/controllers/Authentication');
 
-var cors = require('cors');
+let cors = require('cors');
 const port = process.env.PORT || 8000;
 const flash = require('connect-flash');
 const passport = require("passport");

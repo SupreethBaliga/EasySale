@@ -53,8 +53,7 @@ function auth(req)
 {
     if(req.isAuthenticated())
     {
-        console.log(typeof req.user);
-        return req.user;
+        return req.session.passport.user[0];
     }
     else return null;
 }
