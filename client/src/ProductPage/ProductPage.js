@@ -1,33 +1,48 @@
 import React, { Component } from "react";
 import "./ProductPage.css";
 import NumericInput from 'react-numeric-input';
-//import App from "../App";
-
-//Props required for this page:
-/*
-props= [rate,productid,imageLink,content,filters[],productTitle,step]
-*/
-
-
-// let productPageProps = {
-//     rate: 4,
-//     productId: "oi2j812u082u4",
-//     imageLink: require('./assets/images/prod5.jpeg'),
-//     content: "woihjwiorhe1 uwhdouqh qiehqw oiqheioqhe qoiehiqowhe oqihweio iiqheioqhe qioeqiowje oqehqwioheioqh ohqroihwrhqiorh",
-//     productTitle: "Prod5",
-//     step: 100,
-//     defaultValue: 100
-//   }
-
-
+import axios from 'axios';
 
 class ProductPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            totalAmt: this.props.defaultValue * this.props.rate,
-            quantity: this.props.defaultValue
+            totalAmt: 0,
+            quantity: 0,
+            product: {},
+            image: ''
         }
+    }
+
+    componentDidMount() {
+        var patharray = window.location.pathname.split("/");
+        // console.log(patharray[2]);
+        var id = patharray[2];
+        axios.get("http://localhost:8000/api/products/" + id)
+            .then(res => {
+                var data = res.data;
+                // console.log({ data });
+                this.setState((state, props) => ({
+                    product: data
+                }));
+            })
+            .then(res => {
+                this.updatePage();
+            })
+            .catch(err => {
+                console.log(err);
+            });
+        // console.log(this.state.product);
+    }
+
+    updatePage = () => {
+        // console.log(this.state.product);
+        let images = require.context('../assets/images/');
+        this.setState((state, props) => ({
+            totalAmt: state.product.step * state.product.rate,
+            quantity: state.product.step,
+            image: images('./' + state.product.image)
+        }))
     }
 
     calculateTotal = () => {
@@ -39,10 +54,17 @@ class ProductPage extends Component {
 
     updateTotal = () => {
         this.setState((state, props) => ({
-            totalAmt: state.quantity * props.rate
+            totalAmt: state.quantity * state.product.rate
         }));
     }
 
+    addToCartProdPage = () => {
+        //code for adding to cart
+    }
+
+    addToFavProdPage = () => {
+        //code for adding to favourites
+    }
 
     render() {
         return (
@@ -51,28 +73,28 @@ class ProductPage extends Component {
                     <div className="row">
                         <div className="col-md-4">
                             <div className='row'>
-                                <img src={this.props.imageLink} alt={this.props.productTitle} height="400px" width="350px" className="productImage" />
+                                <img src={this.state.image} alt={this.state.product.name} height="400px" width="350px" className="productImage" />
                             </div>
                             <br />
                             <div className='row'>
                                 <div className='col-md-5'>
-                                    <button className="btn btn-dark addToCart"><i className='material-icons'>add_shopping_cart</i>ADD TO CART</button>
+                                    <button className="btn btn-dark addToCart" onClick={() => this.addToCartProdPage()}><i className='material-icons'>add_shopping_cart</i>ADD TO CART</button>
                                 </div>
                                 <div className='col-md-7'>
-                                    <button className="btn btn-dark addToFav"><i className='material-icons'>favorite</i>ADD TO FAVOURITES</button>
+                                    <button className="btn btn-dark addToFav" onClick={() => this.addToFavProdPage()} ><i className='material-icons'>favorite</i>ADD TO FAVOURITES</button>
                                 </div>
                             </div>
                         </div>
                         <div className="col-md-6 offset-md-1">
                             <div className="row">
                                 <div className="ml-5">
-                                    <h1>{this.props.productTitle}</h1>
+                                    <h1>{this.state.product.name}</h1>
                                 </div>
                             </div>
                             <hr />
                             <div className="row ml-5">
                                 <div className="form-group">
-                                    <span className='product-page-label'>Product Code :</span> {this.props.productId}
+                                    <span className='product-page-label'>Product Code :</span> {this.state.product.id}
                                 </div>
                             </div>
                             <hr />
@@ -83,20 +105,20 @@ class ProductPage extends Component {
                                     </div>
                                     <div className="form-group">
                                         <span className='product-page-label'>Quantity:</span>
-                                        <NumericInput className="form-control" step={this.props.step} value={this.state.quantity} min={0} id="quantity" onChange={() => this.calculateTotal()} />
-                                        <small className='text text-muted'>Sold in quantities of {this.props.step}</small>
+                                        <NumericInput className="form-control" step={this.state.product.step} value={this.state.quantity} min={0} id="quantity" onChange={() => this.calculateTotal()} />
+                                        <small className='text text-muted'>Sold in quantities of {this.state.product.step}</small>
                                     </div>
                                 </form>
                             </div>
-                            <div className="ml-5 form-group">
+                            {/*<div className="ml-5 form-group">
                                 <label className='product-page-label'>Filters:</label>
                                 <p>Add Filters over here.</p>
-                            </div>
+                            </div>*/}
                             <hr />
                             <div className="row ml-5">
                                 <label className='product-page-label'>Description:</label>
                                 <p className='product-description'>
-                                    {this.props.content}
+                                    {this.state.product.description}
                                 </p>
                             </div>
                         </div>

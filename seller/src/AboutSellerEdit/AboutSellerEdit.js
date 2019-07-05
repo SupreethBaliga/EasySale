@@ -1,25 +1,8 @@
 import React, { Component } from 'react';
 import './AboutSellerEdit.css';
-import axios from 'axios';
 
 
 class AboutSellerEdit extends Component {
-
-    // constructor(props) {
-    //     super(props);
-    //     // this.state = {
-    //     //     details: []
-    //     // }
-    // }
-
-    // handleSubmit(event){
-    //    // event.preventDefault();
-
-    // }
-
-
-
-
     render() {
         return (
             <div className='col-md-12'>
