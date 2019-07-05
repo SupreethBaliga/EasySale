@@ -11,7 +11,7 @@ class AboutSellerEdit extends Component {
                         EDIT ABOUT SELLER
                     </div>
                     <div className='col-md-1'>
-                        <button form='about-seller-edit' type='submit' className='btn btn-dark'><i className='material-icons'>save</i>&nbsp;<span className='saveTest'>SAVE</span></button>
+                        <button form='about-seller-edit' type='submit' className='btn btn-dark' onClick={this.handleSubmit()}><i className='material-icons'>save</i>&nbsp;<span className='saveTest'>SAVE</span></button>
                     </div>
                 </div>
                 <div className='col-md-6 offset-md-3 mt-3'>

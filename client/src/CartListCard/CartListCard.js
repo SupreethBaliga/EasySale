@@ -11,7 +11,7 @@ import Fab from '@material-ui/core/Fab';
 //import $ from 'jquery';
 
 
-// let props = {
+// let cart = {
 //     cartListItems: [
 //       {
 //         productName: 'Product1',

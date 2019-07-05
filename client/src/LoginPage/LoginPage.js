@@ -27,14 +27,6 @@ class LoginPage extends Component {
                                 <button type='submit' className='btn btn-dark form-control button'>LOGIN</button>
                             </div>
                         </div>
-                        <div className='row'>
-                            <div className='col-sm-6'>
-                                <button type='button' className='btn btn-link form-control'>Forgot Password?</button>
-                            </div>
-                            <div className='col-sm-6'>
-                                <button type='button' className='btn btn-link' onClick={() => this.changeToSignup()}>New to EasySale? Sign Up</button>
-                            </div>
-                        </div>
                     </div>
                 </form>
             </div>

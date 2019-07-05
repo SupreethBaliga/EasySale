@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './ProfilePage.css';
 
 
-// let props = {
+// let profile = {
 //   customerName: 'Dipesh Khandelwal',
 //   orgName: 'Khandelwal Paper Products',
 //   gstNo: '12345678f0b23a5',

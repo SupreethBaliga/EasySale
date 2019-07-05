@@ -1,31 +1,29 @@
 .background-div {
-    height: 142vh;
+    height: 160vh;
     width: 100vw;
     background: #999999;
+    padding-top: 5vh !important;
 }
 
 .tab-container {
-    position: absolute;
     width: 60vw;
-    left: 20vw;
-    right: 20vw;
-    top: 5vh;
-    background: #999999;
+    margin-left: 20vw;
+    margin-right: 20vw;
+    margin-top: 2vh;
+    background: #ffffff;
+    padding: 0px !important;
 }
 
-.nav-item {
-    width: 30vw;
-    text-align: center;
-    font-size: 25px;
-    font-weight: bold;
-    color: #ffffff !important;
-    border: 1px solid #ffffff;
+.swipe-tabs {
+    width: 62vw;
+    margin-left:18.3vw;
+    margin-right: 19.7vw !important;
+    padding:0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    text-align: left;
 }
 
-.nav-link {
-    color: #ffffff;
-}
-
-.nav-link:hover {
-    color: #d9d9d9;
+.tab-container-swipe {
+    padding: 0px !important;
 }

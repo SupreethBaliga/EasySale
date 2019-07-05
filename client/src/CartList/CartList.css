@@ -1,15 +1,12 @@
 .top-bar {
     background: #dadad5;
-    height: 11vh;
+    /* height: 11vh; */
 }
 
 .checkoutButton {
-    position: absolute;
-    top: 80px;
-    right: 15px;
-    float: right;
     font-weight: bold;
     background-color: #000000;
+    /* vertical-align: top; */
 }
 
 .amountPayable {
