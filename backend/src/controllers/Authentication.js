@@ -51,13 +51,14 @@ function getaccount(req, res) {
     }
 }
 
-function auth(req)
+function auth(req,res)
 {
     if(req.isAuthenticated())
     {
-        return req.session.passport.user[0];
+        console.log(req.session.passport.user[0]);
+        res.send(req.session.passport.user[0]) ;
     }
-    else return null;
+    else res.send("null");
 }
 
 function getlogin(req, res) {

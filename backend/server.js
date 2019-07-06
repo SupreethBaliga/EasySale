@@ -55,6 +55,7 @@ app.get('/api/account/', auth.getaccount);
 app.get('/api/login/', auth.getlogin);
 app.post('/api/login/', auth.authFunction, auth.postlogin);
 app.get('/api/logout/', auth.getlogout);
+app.get('/api/getuser/', auth.auth);
 
 var storage = multer.diskStorage({
 	destination: function (req, file, cb) {
