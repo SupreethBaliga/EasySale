@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './ProfilePage.css';
-
+import axios from 'axios';
 
 // let profile = {
 //   customerName: 'Dipesh Khandelwal',
@@ -17,12 +17,36 @@ import './ProfilePage.css';
 // }
 
 class ProfilePage extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            info:[]
+        }
+    }
+    componentDidMount(){
+        var user_id = "f0ef6937-b529-4fe2-bef0-85d38b2ee468";
+        // get user_id from session here
+        axios.get("http://localhost:8000/api/users/"+user_id)
+        .then(res => {
+            const data1 = res.data;
+            this.setState({
+                info: data1
+            })
+            console.log(this.state.info);
+            this.populate();
+        })
+    }
+    populate(){
+        this.setState({
+            info: this.state.info
+        })
+    }
     render() {
         return (
             <div className='full-page col-md-12'>
                 <div className='row top-div'>
                     <div className='col-md-11 orgName'>
-                        {this.props.orgName}
+                        {this.state.info.organisationname}
                     </div>
                     <div className='col-md-1'>
                         <a className='btn btn-dark top-div-btn' href="/editprofile"><i className='material-icons'>edit</i> Edit</a>
@@ -31,7 +55,7 @@ class ProfilePage extends Component {
                 <div className='row m-2 text-fields'>
                     <div className='col-md-4'>
                         <label className='field-label'>Customer Name : &nbsp;</label>
-                        <span className='field-label-value'> {this.props.customerName}</span>
+                        <span className='field-label-value'> {this.state.info.name}</span>
                     </div>
                 </div>
                 <div className='row m-2 text-fields'>
@@ -39,9 +63,9 @@ class ProfilePage extends Component {
                         <label className='field-label'>GST No. : &nbsp;</label>
                         <span className='field-label-value'>
                             {(() => {
-                                switch (this.props.gstNo) {
+                                switch (this.state.info.gstnumber) {
                                     case '': return <span className='text text-muted'>Not Provided</span>;
-                                    default: return this.props.gstNo
+                                    default: return this.state.info.gstnumber
                                 }
                             })()}
                         </span>
@@ -50,7 +74,7 @@ class ProfilePage extends Component {
                 <div className='row m-2 text-fields'>
                     <div className='col-md-5'>
                         <label className='field-label'>E-mail : &nbsp;</label>
-                        <span className='field-label-value'>{this.props.email}</span>
+                        <span className='field-label-value'>{this.state.info.email}</span>
                     </div>
                 </div>
                 <div className='row m-2 text-fields'>
@@ -58,12 +82,12 @@ class ProfilePage extends Component {
                         <label className='field-label'>Delivery Address :&nbsp;</label>
                     </div>
                     <div className='col-md-4'>
-                        {this.props.deliveryAddr + '.'}
+                        {this.state.info.deliveryaddress + '.'}
                     </div>
                     <div className='col-md-2'></div>
                     <div className='col-md-4'>
                         <label className='field-label'>Delivery Postal Code :&nbsp;</label>
-                        <span className='field-label-value'>{this.props.deliveryPostalCode}</span>
+                        <span className='field-label-value'>{this.state.info.deliverypostalcode}</span>
                     </div>
                 </div>
                 <div className='row m-2 text-fields'>
@@ -72,9 +96,9 @@ class ProfilePage extends Component {
                     </div>
                     <div className='col-md-4'>
                         {(() => {
-                            switch (this.props.companyAddr) {
+                            switch (this.state.info.companyaddress) {
                                 case '': return <span className='text text-muted'>Not Provided</span>;
-                                default: return this.props.companyAddr + '.';
+                                default: return this.state.info.companyaddress + '.';
                             }
                         })()}
                     </div>
@@ -83,9 +107,9 @@ class ProfilePage extends Component {
                         <label className='field-label'>Company Postal Code :&nbsp;</label>
                         <span className='field-label-value'>
                             {(() => {
-                                switch (this.props.companyAddr) {
+                                switch (this.state.info.companyaddress) {
                                     case '': return <span className='text text-muted'>Not Provided</span>;
-                                    default: return <span className='field-label-value'>{this.props.companyPostalCode}</span>
+                                    default: return <span className='field-label-value'>{this.state.info.companypostalcode}</span>
                                 }
                             })()}
                         </span>
@@ -96,9 +120,9 @@ class ProfilePage extends Component {
                         <label className='field-label'>Landline : &nbsp;</label>
                         <span className='field-label-value'>
                             {(() => {
-                                switch (this.props.landlineNumber) {
+                                switch (this.state.info.officenumber) {
                                     case '': return <span className='text text-muted'>Not Provided</span>;
-                                    default: return this.props.landlineCode + '-' + this.props.landlineNumber
+                                    default: return this.state.info.officenumber
                                 }
                             })()}
                         </span>
@@ -107,7 +131,7 @@ class ProfilePage extends Component {
                 <div className='row m-2 text-fields'>
                     <div className='col-md-4'>
                         <label className='field-label'>Mobile : &nbsp;</label>
-                        <span className='field-label-value'>{this.props.mobileNumber}</span>
+                        <span className='field-label-value'>{this.state.info.contactnumber}</span>
                     </div>
                 </div>
             </div>

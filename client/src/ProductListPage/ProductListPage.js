@@ -29,9 +29,10 @@ class ProductListPage extends Component {
         this.listItems = this.state.products.map((product) =>
             <ProductCard key={product.id} {...product} />
         );
-        this.setState({
-            products: this.state.products
-        });
+        this.setState((state,props) => ({
+            products: state.products
+        }))
+
     }
 
     render() {

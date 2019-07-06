@@ -1,11 +1,12 @@
 .add-product-page {
     background: #d9d9d9;
-    height: 87vh;
+    height: 100%;
+    padding-bottom: 8vh;
 }
 
 .add-product-form-class {
     /* margin-top: 10px; */
-    padding-top: 40px;
+    padding-top: 20px;
 }
 
 .prodLabelText {
@@ -33,4 +34,9 @@
 
 .btn {
     vertical-align: middle;
+}
+
+.add-product-save {
+    font-size: 20px;
+    font-weight: bold;
 }
