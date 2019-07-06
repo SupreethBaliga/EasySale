@@ -1,0 +1,162 @@
+All the ids are to be filled after the entries are created.
+
+users : {
+    {
+        "id": "",
+        "password": "supreeth",
+        "name": "baliga",
+        "email": "baliga@gmail.com",
+        "contactNumber": "33333",
+        "deliveryAddress": "Mumbai",
+        "deliveryPostalCode": "303030",
+        "organisationName": "Org2",
+        "GSTNumber": "ADX153",
+        "officeNumber": "0141-330",
+        "companyAddress": "Delhi",
+        "companyPostalCode": "202020"
+    },
+    {
+        "id": "",
+        "password": "destroyer",
+        "name": "sarthak",
+        "email": "sarthak@gmail.com",
+        "contactNumber": "22222",
+        "deliveryAddress": "Delhi",
+        "deliveryPostalCode": "202020",
+        "organisationName": "Org1",
+        "GSTNumber": "ADX152",
+        "officeNumber": "0141-220",
+        "companyAddress": "Mumbai",
+        "companyPostalCode": "303030"
+    }
+}
+
+products: {
+    {
+        "name": "prod1",
+        "id": "id1",
+        "image": "img1",
+        "description": "desc1",
+        "rate": 200,
+        "step": 80
+    },
+    {
+        "name": "prod2",
+        "id": "id2",
+        "image": "img2",
+        "description": "desc2",
+        "rate": 800,
+        "step": 80
+    },
+    {
+        "name": "prod3",
+        "id": "id3",
+        "image": "img3",
+        "description": "desc3",
+        "rate": 400,
+        "step": 50
+    }
+}
+
+orders: {
+    {
+        "expectedBy": "2019-07-25",
+        "status": "confirmation to be done",
+        "totalAmount": 8000,
+        "user_id": ""
+    },
+    {
+        "expectedBy": "2019-07-23",
+        "status": "confirmed",
+        "totalAmount": 8000,
+        "user_id": ""
+    },
+    {
+        "expectedBy": "2019-07-27",
+        "status": "payment pending",
+        "totalAmount": 8000,
+        "user_id": ""
+    },
+    {
+        "expectedBy": "2019-07-31",
+        "status": "delivered",
+        "totalAmount": 8000,
+        "user_id": ""
+    }
+}
+
+favourites: {
+    {
+        "favid": "",
+        "user_id": "",
+        "product_id": "id3"
+    },
+    {
+        "favid": "",
+        "user_id": "",
+        "product_id": "id2"
+    },
+    {
+        "favid": "",
+        "user_id": "",
+        "product_id": "id1"
+    },
+    {
+        "favid": "",
+        "user_id": "",
+        "product_id": "id1"
+    }
+}
+
+cart: {
+    {
+        "cartid": "",
+        "user_id": "",
+        "name": "prod1",
+        "id": "id1",
+        "image": "img1",
+        "rate": 200,
+        "step": 80,
+        "quantity": 160
+    },
+    {
+        "cartid": "",
+        "user_id": "",
+        "name": "prod3",
+        "id": "id3",
+        "image": "img3",
+        "rate": 400,
+        "step": 50,
+        "quantity": 2000
+    },
+    {
+        "cartid": "",
+        "user_id": "",
+        "name": "prod1",
+        "id": "id1",
+        "image": "img1",
+        "rate": 200,
+        "step": 80,
+        "quantity": 320
+    },
+    {
+        "cartid": "",
+        "user_id": "",
+        "name": "prod2",
+        "id": "id2",
+        "image": "img2",
+        "rate": 800,
+        "step": 80,
+        "quantity": 240
+    },
+    {
+        "cartid": "",
+        "user_id": "",
+        "name": "prod3",
+        "id": "id3",
+        "image": "img3",
+        "rate": 400,
+        "step": 50,
+        "quantity": 200
+    }
+}

@@ -3,22 +3,16 @@ import db from '../db';
 const Order = {
     async create(req, res) {
         const text = `INSERT INTO
-            orders(expectedBy, status, productId, productName, rate, quantity, totalAmount, user_id, name, email, contactNumber, deliveryAddress)
-            VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
+            orders(expectedBy, status, id, name, rate, quantity, totalAmount, user_id)
+            SELECT $1, $2, array_agg(id ORDER BY cartid), array_agg(name ORDER BY cartid), array_agg(rate ORDER BY cartid), array_agg(quantity ORDER BY cartid), $3, $4
+            FROM cart WHERE user_id=$4 GROUP BY user_id
             returning *`;
+
         const values = [
             req.body.expectedBy,
             req.body.status,
-            req.body.productId,
-            req.body.productName,
-            req.body.rate,
-            req.body.quantity,
             req.body.totalAmount,
-            req.body.user_id,
-            req.body.name,
-            req.body.email,
-            req.body.contactNumber,
-            req.body.deliveryAddress,
+            req.body.user_id
         ];
 
         try {

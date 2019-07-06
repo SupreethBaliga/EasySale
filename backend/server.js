@@ -4,6 +4,8 @@ import 'babel-polyfill';
 import Product from './src/controllers/Product';
 import User from './src/controllers/User';
 import Order from './src/controllers/Order';
+import Favourites from './src/controllers/Favourites';
+import Cart from './src/controllers/Cart';
 const fs = require('fs');
 var cors = require('cors');
 
@@ -38,6 +40,18 @@ app.post('/api/orders/', function(req,res){return Order.create});
 app.get('/api/orders/', Order.getAll);
 app.get('/api/orders/:orderNumber', Order.getOne);
 app.put('/api/orders/:orderNumber', Order.update);
+
+app.post('/api/favs/', Favourites.create);
+app.get('/api/favs/', Favourites.getAll);
+app.get('/api/favs/:user_id', Favourites.getOneUser);
+app.delete('/api/favs/:user_id/:product_id', Favourites.delete);
+
+app.post('/api/cart/', Cart.create);
+app.get('/api/cart/', Cart.getAll);
+app.get('/api/cart/:user_id', Cart.getOneUser);
+app.put('/api/cart/:user_id/:id', Cart.update);
+app.delete('/api/cart/:user_id/:id', Cart.deleteProduct);
+app.delete('/api/cart/:user_id', Cart.deleteCart);
 
 var storage = multer.diskStorage({
 	destination: function (req, file, cb) {
