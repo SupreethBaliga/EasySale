@@ -174,7 +174,7 @@ class EditProfile extends Component {
                             <div className='col-md-6'>
                                 <div className='form-group'>
                                     <label className='labelText'>Mobile No:</label>
-                                    <input type='text' id="mobile_number_edit_profile" onChange={() => this.changeMobile()}className='form-control' placeholder={this.props.mobileNumber} />
+                                    <input type='text' id="mobile_number_edit_profile" onChange={() => this.changeMobile()} className='form-control' placeholder={this.props.mobileNumber} />
                                 </div>
                             </div>
                         </div>
