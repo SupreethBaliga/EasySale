@@ -19,6 +19,7 @@ async function postjoin (req, res) {
         await JSON.stringify(client.query('SELECT id FROM "users" WHERE "email"=$1', [req.body.username], function(err, result) {
         if(result.rows[0]){
         // req.flash(‘warning’, “This email address is already registered. <a href=’/login’>Log in!</a>”);
+            console.log("This email address is already registered.");
             res.redirect('/api/join');
         }
         else{
@@ -28,6 +29,7 @@ async function postjoin (req, res) {
                     client.query('COMMIT')
                     console.log(result.command);
                     // req.flash(‘success’,’User created.’)
+                    console.log("user created");
                     res.redirect('/api/login');
                     return;
                 }

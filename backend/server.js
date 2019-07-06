@@ -46,12 +46,12 @@ app.get('/api/orders/', Order.getAll);
 app.get('/api/orders/:orderNumber', Order.getOne);
 app.put('/api/orders/:orderNumber', Order.update);
 
-app.get('/api/join', auth.getjoin);
-app.post('/api/join', auth.postjoin);
-app.get('/api/account', auth.getaccount);
-app.get('/api/login', auth.getlogin);
-app.post('/api/login', auth.authFunction, auth.postlogin);
-app.get('/api/logout', auth.getlogout);
+app.get('/api/join/', auth.getjoin);
+app.post('/api/join/', auth.postjoin);
+app.get('/api/account/', auth.getaccount);
+app.get('/api/login/', auth.getlogin);
+app.post('/api/login/', auth.authFunction, auth.postlogin);
+app.get('/api/logout/', auth.getlogout);
 
 app.listen(port, () => {
     console.log(`App running on port ${port}`);
