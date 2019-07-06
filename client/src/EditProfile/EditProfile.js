@@ -59,7 +59,9 @@ class EditProfile extends Component {
                 landline_number: this.state.info.officenumber.split('-')[1]
             })
             console.log(this.state.info.deliverypostalcode);
-            
+            // this.setState((state,props)=>({
+            //     customerName: this.state.info.name
+            // }));
             
 
         })
