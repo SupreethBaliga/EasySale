@@ -40,10 +40,9 @@ app.get('/api/products/:id', Product.getOne);//done
 app.put('/api/products/:id', Product.update);//done
 app.delete('/api/products/:id', Product.delete);//done
 
-app.post('/api/users/', User.create);//done 
-app.get('/api/users/', User.getAll);//not needed
-app.get('/api/users/:id', User.getOne);//done
-app.put('/api/users/:id', User.update);//done
+app.get('/api/users/', User.getAll);
+app.get('/api/users/:id', User.getOne);
+app.put('/api/users/:id', User.update);
 
 app.post('/api/orders/', Order.create);//done
 app.get('/api/orders/', Order.getAll);
