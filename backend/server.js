@@ -1,19 +1,34 @@
 import express from 'express';
-const multer = require('multer');
 import 'babel-polyfill';
 import Product from './src/controllers/Product';
 import User from './src/controllers/User';
 import Order from './src/controllers/Order';
 import Favourites from './src/controllers/Favourites';
 import Cart from './src/controllers/Cart';
+
+const multer = require('multer');
+let auth = require('./src/controllers/Authentication');
 const fs = require('fs');
-var cors = require('cors');
-
 const port = 8000;
-
+let cors = require('cors');
+const flash = require('connect-flash');
+const passport = require("passport");
+const expressSession = require('express-session');
+const bodyParser = require('body-parser');
 const app = express();
+
+app.engine('html', require('ejs').renderFile);
 app.use(cors());
 app.use(express.json())
+app.use(require('cookie-parser')());
+app.use(require('body-parser').urlencoded({ extended: true }));
+app.use(expressSession({secret: 'mySecretKey'}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use('/public', express.static(__dirname + '/public'));
+app.use(flash());
+app.use(bodyParser());
+app.use(express.static('public')); 
 
 app.get('/', (req, res) => {
 	return res.status(200).send({ 'message': 'Testing for Server' });
@@ -36,10 +51,13 @@ app.get('/api/orders/', Order.getAll);
 app.get('/api/orders/:orderNumber', Order.getOne);
 app.put('/api/orders/:orderNumber', Order.update);
 
-app.post('/api/orders/', function(req,res){return Order.create});
-app.get('/api/orders/', Order.getAll);
-app.get('/api/orders/:orderNumber', Order.getOne);
-app.put('/api/orders/:orderNumber', Order.update);
+app.get('/api/join/', auth.getjoin);
+app.post('/api/join/', auth.postjoin);
+app.get('/api/account/', auth.getaccount);
+app.get('/api/login/', auth.getlogin);
+app.post('/api/login/', auth.authFunction, auth.postlogin);
+app.get('/api/logout/', auth.getlogout);
+app.get('/api/getuser/', auth.auth);
 
 app.post('/api/favs/', Favourites.create);
 app.get('/api/favs/', Favourites.getAll);

@@ -17,7 +17,7 @@ import Axios from 'axios';
 //   companyPostalCode: '789162',
 //   deliveryPostalCode: '400072'
 // }
-
+let user_id = "";
 
 class EditProfile extends Component {
     constructor(props) {
@@ -35,36 +35,48 @@ class EditProfile extends Component {
             company_postal_code: ""
         }
     }
+    
     componentDidMount(){
-        var user_id = "f0ef6937-b529-4fe2-bef0-85d38b2ee468";
+        
         //get user_id here from session
-        //console.log("adiaiudh");
-        Axios.get("http://localhost:8000/api/users/"+user_id)
-        .then(res => {
-            const data1 = res.data;
-            //console.log({data1});
-            this.setState({
-                info: data1
-            })
-            console.log(this.state.info);
-            this.populate();
-            this.setState({
-                customer_name : this.state.info.name,
-                address : this.state.info.deliveryaddress,
-                mobile_number: this.state.info.contactnumber,
-                delivery_postal_code: this.state.info.deliverypostalcode,
-                company_address: this.state.info.companyaddress,
-                company_postal_code: this.state.info.companypostalcode,
-                landline_code: this.state.info.officenumber.split('-')[0],
-                landline_number: this.state.info.officenumber.split('-')[1]
-            })
-            console.log(this.state.info.deliverypostalcode);
-            // this.setState((state,props)=>({
-            //     customerName: this.state.info.name
-            // }));
-            
-
+        // console.log("adiaiudh");
+        var url = "/api/users/"
+        Axios.get("/api/getuser/")
+        .then( res => {
+            user_id = res.data.id;
+            url = url + user_id;
+            console.log(url);
         })
+        .then(res => {
+            Axios.get(url)
+                .then(res => {
+                    console.log(url);
+                    const data1 = res.data;
+                    //console.log({data1});
+                    this.setState({
+                        info: data1
+                    })
+                    console.log(this.state.info);
+                    this.populate();
+                    this.setState({
+                        customer_name : this.state.info.name,
+                        address : this.state.info.deliveryaddress,
+                        mobile_number: this.state.info.contactnumber,
+                        delivery_postal_code: this.state.info.deliverypostalcode,
+                        company_address: this.state.info.companyaddress,
+                        company_postal_code: this.state.info.companypostalcode,
+                        landline_code: this.state.info.officenumber.split('-')[0],
+                        landline_number: this.state.info.officenumber.split('-')[1]
+                    })
+                // console.log(this.state.info.deliverypostalcode);
+                    // this.setState((state,props)=>({
+                    //     customerName: this.state.info.name
+                    // }));
+                    
+
+                })
+        })
+        
     }
     populate = () =>{
         this.setState({
@@ -114,7 +126,7 @@ class EditProfile extends Component {
 
     handleClick = (event) => {
         // event.preventDefault();
-        var user_id = "f0ef6937-b529-4fe2-bef0-85d38b2ee468";
+        // var user_id = "f0ef6937-b529-4fe2-bef0-85d38b2ee468";
         //find user_id from session here
         console.log(this.state.info);
         console.log(this.state.info.email);

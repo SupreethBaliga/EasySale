@@ -1,5 +1,5 @@
 import db from '../db';
-
+let auth = require('./Authentication');
 const Order = {
     async create(req, res) {
         const text = `INSERT INTO
@@ -15,12 +15,18 @@ const Order = {
             req.body.user_id
         ];
 
-        try {
-            const { rows } = await db.query(text, values);
-            return res.status(201).send(rows[0]);
-        } catch(error) {
-            return res.status(400).send(error);
+            try {
+                const { rows } = await db.query(text, values);
+                return res.status(201).send(rows[0]);
+            } catch(error) {
+                return res.status(400).send(error);
+            }
         }
+        else
+        {
+            res.status(400).send({'message' : 'Order cannot be created.'});
+        }
+        
     },
 
     async getAll(req, res) {
