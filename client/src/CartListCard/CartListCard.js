@@ -7,70 +7,23 @@ import CardContent from '@material-ui/core/CardContent';
 import NumericInput from 'react-numeric-input';
 import CardActions from '@material-ui/core/CardActions'
 import Button from '@material-ui/core/Button';
-import Fab from '@material-ui/core/Fab';
-//import $ from 'jquery';
+import axios from 'axios';
 
-
-// let cart = {
-//     cartListItems: [
-//       {
-//         productName: 'Product1',
-//         productId: '124jfwoq',
-//         imageUrl: require('./assets/images/prod1.jpeg'),
-//         quantity: 100,
-//         rate: 23,
-//         step: 100,
-//         defaultQuantity: 100
-//       },
-//       {
-//         productName: 'Product2',
-//         productId: '124j441oq',
-//         imageUrl: require('./assets/images/prod2.jpeg'),
-//         quantity: 34,
-//         rate: 12,
-//         step: 23,
-//         defaultQuantity: 20
-//       }, {
-//         productName: 'Product3',
-//         productId: '124jfw642',
-//         imageUrl: require('./assets/images/prod3.jpeg'),
-//         quantity: 87,
-//         rate: 12,
-//         step: 50,
-//         defaultQuantity: 200
-//       }, {
-//         productName: 'Product4',
-//         productId: '2343jfwoq',
-//         imageUrl: require('./assets/images/prod4.jpeg'),
-//         quantity: 12,
-//         rate: 10,
-//         step: 200,
-//         defaultQuantity: 150
-//       }, {
-//         productName: 'Product5',
-//         productId: '124j890',
-//         imageUrl: require('./assets/images/prod5.jpeg'),
-//         quantity: 123,
-//         rate: 9,
-//         step: 100,
-//         defaultQuantity: 50
-//       }
-//     ]
-//   }
-
-
+var user_id = "";
 class CartListCard extends Component {
     constructor(props) {
         super(props);
+        let images = require.context('../assets/images');
         this.state = {
             totalAmt: this.props.rate * this.props.quantity,
-            newQuantity: this.props.quantity
+            newQuantity: this.props.quantity,
+            image: images('./' + this.props.image)
         };
     }
 
     calculateTotal = () => {
         this.setState((state, props) => ({
-            newQuantity: document.getElementById('quantity' + this.props.productId).value,
+            newQuantity: document.getElementById('quantity' + this.props.id).value,
         }));
         this.updateTotal();
     }
@@ -93,21 +46,40 @@ class CartListCard extends Component {
         this.props.updateGrandTotal(this.state.totalAmt);
     }
 
+    handleRemoveFromCart = () => {
+        axios.get('/api/getuser/')
+            .then(res => {
+                user_id = res.data.id;
+                console.log("Id Received");
+            })
+            .then(res => {
+                axios.delete("/api/cart/" + user_id + '/' + this.props.id)
+                    .then(res => {
+                        console.log("Product Deleted");
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
 
     render() {
         return (
             <Card className='card ml-3 m-2'>
-                <CardHeader title={this.props.productName} subheader={'Product ID: ' + this.props.productId} />
+                <CardHeader title={this.props.name} subheader={'Product ID: ' + this.props.id} />
                 <CardMedia className='media'>
                     <div className='container'>
-                        <img src={this.props.imageUrl} alt='ProductImage' className='prodImage' />
+                        <img src={this.state.image} alt={this.props.name} className='prodImage' />
                     </div>
                 </CardMedia>
                 <CardContent>
                     <div>
-                        <span className='text text-muted'>Rate: &#8377;{this.props.rate} for a pack of {this.props.defaultQuantity} </span><br />
+                        <span className='text text-muted'>Rate: &#8377;{this.props.rate} for a pack of {this.props.step} </span><br />
                         <span className='text text-muted'>Quantity:
-                            <NumericInput step={this.props.step} value={this.state.newQuantity} min={0} id={'quantity' + this.props.productId} onChange={() => this.calculateTotal()} />
+                            <NumericInput step={this.props.step} value={this.state.newQuantity} min={0} id={'quantity' + this.props.id} onChange={() => this.calculateTotal()} />
                         </span>
                     </div>
                     <div>
@@ -117,10 +89,7 @@ class CartListCard extends Component {
                 </CardContent>
                 <hr />
                 <CardActions>
-                    <Button variant='contained' color='primary' className='ml-2 mb-2'>REMOVE FROM CART</Button>
-                    <Fab color='secondary' aria-label='Add To Favourites' className='ml-4 mb-2'>
-                        <i className='material-icons'>favorite</i>
-                    </Fab>
+                    <Button variant='contained' color='primary' className='ml-2 mb-2' onClick={() => this.handleRemoveFromCart()}>REMOVE FROM CART</Button>
                 </CardActions>
             </Card>
         )

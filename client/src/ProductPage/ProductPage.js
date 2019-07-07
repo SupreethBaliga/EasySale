@@ -3,6 +3,8 @@ import "./ProductPage.css";
 import NumericInput from 'react-numeric-input';
 import axios from 'axios';
 
+var user_id="";
+
 class ProductPage extends Component {
     constructor(props) {
         super(props);
@@ -59,7 +61,31 @@ class ProductPage extends Component {
     }
 
     addToCartProdPage = () => {
-        //code for adding to cart
+        axios.get('/api/getuser')
+        .then(res => {
+            user_id = res.data.id;
+            console.log("ID Received");
+        })
+        .then(res => {
+            var params = {
+                "user_id": user_id,
+                "rate": this.state.product.rate,
+                "step": this.state.product.step,
+                "image": this.state.product.image,
+                "name": this.state.product.name,
+                "quantity": this.state.quantity
+            }
+            axios.post('/api/cart',params)
+            .then(res => {
+                console.log("Added to Cart");
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        })
+        .catch(err => {
+            console.log(err);
+        })
     }
 
     addToFavProdPage = () => {

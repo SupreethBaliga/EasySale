@@ -8,12 +8,12 @@ class AboutSeller extends Component {
         return (
             <div>
                 <div className='container col-md-12'>
-                    <div className='row mt-4'>
+                    {/*<div className='row mt-4'>
                         <div className='col-md-10'></div>
                         <div className='col-md-2'>
                             <a className='btn btn-dark edit-top-btn' href='/editAboutSeller'><i className='material-icons'>edit</i>&nbsp;EDIT</a>
                         </div>
-                    </div>
+                    </div>*/}
                     <br />
                     <center><h1 className='seller-title'>Seller 123hroqwhfouqwhfh</h1></center>
                     <br />

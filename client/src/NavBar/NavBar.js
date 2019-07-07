@@ -1,7 +1,25 @@
 import React, { Component } from "react";
 import './NavBar.css';
+import axios from 'axios';
 
 class NavBar extends Component {
+
+    handleLogout = () => {
+        console.log("For Logout");
+        axios.get('http://localhost:8000/api/logout')
+            .then(res => {
+                console.log("Before Logout");
+                console.log(res);
+                console.log("Logged Out");
+            })
+            .then(res => {
+                window.location.pathname = "/login";
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
+
     render() {
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark col-md-12">
@@ -47,10 +65,10 @@ class NavBar extends Component {
                             </a>
                         </li>
                         <li className="nav-item active" data-toggle="collapse" data-target=".navbar-collapse">
-                            <a className="nav-link" href="/home">
+                            <button className="nav-link btn" onClick={() => this.handleLogout()}>
                                 <i className="material-icons">input</i>
                                 &nbsp;Logout
-                            </a>
+                            </button>
                         </li>
                     </ul>
                 </div>
