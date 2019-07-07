@@ -36,14 +36,14 @@ app.get('/', (req, res) => {
 
 app.post('/api/products/', Product.create);
 app.get('/api/products/', Product.getAll);//done in both seller and client
-app.get('/api/products/:id', Product.getOne);
-app.put('/api/products/:id', Product.update);
-app.delete('/api/products/:id', Product.delete);
+app.get('/api/products/:id', Product.getOne);//done
+app.put('/api/products/:id', Product.update);//done
+app.delete('/api/products/:id', Product.delete);//done
 
-app.post('/api/users/', User.create);
-app.get('/api/users/', User.getAll);
-app.get('/api/users/:id', User.getOne);
-app.put('/api/users/:id', User.update);
+app.post('/api/users/', User.create);//done 
+app.get('/api/users/', User.getAll);//not needed
+app.get('/api/users/:id', User.getOne);//done
+app.put('/api/users/:id', User.update);//done
 
 app.post('/api/orders/', Order.create);//done
 app.get('/api/orders/', Order.getAll);
@@ -60,10 +60,10 @@ app.post('/api/login/', auth.authFunction, auth.postlogin);
 app.get('/api/logout/', auth.getlogout);
 app.get('/api/getuser/', auth.auth);
 
-app.post('/api/favs/', Favourites.create);
-app.get('/api/favs/', Favourites.getAll);
-app.get('/api/favs/:user_id', Favourites.getOneUser);
-app.delete('/api/favs/:user_id/:product_id', Favourites.delete);
+app.post('/api/favs/', Favourites.create);//done
+app.get('/api/favs/', Favourites.getAll);//not needed
+app.get('/api/favs/:user_id', Favourites.getOneUser);//done
+app.delete('/api/favs/:user_id/:product_id', Favourites.delete);//done
 
 app.post('/api/cart/', Cart.create); //done for both product Card and page
 app.get('/api/cart/', Cart.getAll); //not there

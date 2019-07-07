@@ -15,6 +15,7 @@ const Order = {
             req.body.user_id
         ];
 
+<<<<<<< HEAD
         try {
             const { rows } = await db.query(text, values);
             return res.status(201).send(rows[0]);
@@ -31,6 +32,17 @@ const Order = {
         } catch(error) {
             return res.status(400).send(error);
         }
+=======
+            try {
+                const { rows } = await db.query(text, values);
+                return res.status(201).send(rows[0]);
+            } catch(error) {
+                return res.status(400).send(error);
+            }
+        
+        
+        
+>>>>>>> favourites functionality added
     },
 
     async getAll(req, res) {

@@ -7,7 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
-
+import axios from 'axios';
 // let favs = {
 //     products: [
 //       {
@@ -52,20 +52,55 @@ import Button from '@material-ui/core/Button';
 //       }
 //     ]
 //   }
-
+// let user_id = "";
 class FavouritesListCard extends Component {
+    constructor(props){
+        let images = require.context('../assets/images');
+        super(props);
+        this.state = {
+            image: images('./' + this.props.image)
+        }
+    }
+    // componentDidMount(){
+    //     var url = "/api/favs"
+    //     axios.get("/api/getuser")
+    //     .then(res => {
+    //         user_id = res.data.id;
+    //         url = url + user_id;
+    //     })
+    //     .then(res => {
+            
+    //     })
+    // }
+    removeFavourite(){
+        var user_id = "";
+        var url = ""
+        axios.get("/api/getuser")
+        .then(res=>{
+            user_id = res.data.id;
+            url = "/api/favs/"+user_id+"/"+this.props.id;
+        })
+        .then(res=>{
+            axios.delete(url);
+        })
+        .catch(error=>{
+            console.log(error);
+        })
+        
+    }
+
     render() {
         return (
             <Card className='card m-3 ml-2'>
                 <CardHeader title={this.props.name} subheader={"Product ID: " + this.props.id} />
                 <CardMedia className='media'>
                     <div className="container">
-                        <img src={this.props.image} alt={this.props.name} className='prodImage'></img>
+                        <img src={this.state.image} alt={this.props.name} className='prodImage'></img>
                     </div>
                 </CardMedia>
                 <CardContent>
                     <div>
-                        <span class="description text text-muted">Rate: &#8377; {this.props.rate} for pack of {this.props.defaultQuantity}</span>
+                        <span class="description text text-muted">Rate: &#8377; {this.props.rate} for pack of {this.props.step}</span>
                     </div>
                     <Typography variant="body" color="textSecondary" component="p">
                         {this.props.description}
@@ -73,7 +108,7 @@ class FavouritesListCard extends Component {
                 </CardContent>
                 <CardActions>
                     <Button variant='contained' color='primary' className='m-1'>VIEW PRODUCT</Button>
-                    <Button variant='contained' color='secondary'>REMOVE FROM FAVOURITES</Button>
+                    <Button onClick={()=> this.removeFavourite()} variant='contained' color='secondary'>REMOVE FROM FAVOURITES</Button>
                 </CardActions>
             </Card>
         )
