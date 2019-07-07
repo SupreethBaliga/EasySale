@@ -3,8 +3,9 @@
     text-decoration: none;
     font-weight: bold;
     text-align: center;
-    font-size: 40px;
+    font-size: 45px;
     outline: 0;
+    font-style: italic;
 }
 
 .navbar-brand:hover {
@@ -32,14 +33,16 @@ li {
     padding: 8px 15px;
     text-decoration: none;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 22px;
     border-radius: 20px;
     outline: 0;
 }
 
-li:hover {
+li a:hover {
     background: #848484;
     color: #212121;
+    border-radius: 20px;
+    /* font-size: 25px; */
 }
 
 .material-icons {
@@ -53,12 +56,12 @@ li:hover {
     outline: 0;
 }
 
-.nav-link:visited{
-    text-decoration: none;
-    color: lightseagreen;
-}
 
 .nav-link:hover{
     text-decoration: none;
-    color: red;
+    color: #f1f1f1;
+}
+
+.navbar {
+    background: #0d0d0d !important;
 }

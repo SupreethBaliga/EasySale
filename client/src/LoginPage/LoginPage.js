@@ -26,25 +26,26 @@ class LoginPage extends Component {
             console.log(res);
         }).catch(error=>{
             console.log(error);
-        })
-        
+        });
     }
     emailLogin = () => {
         this.setState((state,props) => ({
             email: document.getElementById("email-login-page").value
         }));
+        // console.log(this.state.email);
     }
 
     passwordLogin = () => {
         this.setState((state,props) => ({
             password: document.getElementById("password-login-page").value
         }));
+        // console.log(this.state.password);
     }
                 
     render() {
         return (
             <div>
-                <form action='' method='post'>
+                <form>
                     <br /><br /><br />
                     <div className='col-sm-10 offset-sm-1'>
                         <div className='form-group ml-2 mr-2 mb-2'>

@@ -18,7 +18,6 @@ const Order = {
                 req.body.totalAmount,
                 req.body.user_id
             ];
-
             try {
                 const { rows } = await db.query(text, values);
                 return res.status(201).send(rows[0]);
@@ -26,9 +25,15 @@ const Order = {
                 return res.status(400).send(error);
             }
         }
-        else
-        {
-            res.status(400).send({'message' : 'Favourites cannot be created.'});
+    },
+
+    async getAllPending(req, res) {
+        const findAllQuery = `SELECT * FROM orders WHERE status='pending' ORDER BY orderNumber DESC`;
+        try {
+            const { rows, rowCount } = await db.query(findAllQuery);
+            return res.status(200).send({ rows, rowCount });
+        } catch(error) {
+            return res.status(400).send(error);
         }
     },
 
@@ -47,6 +52,16 @@ const Order = {
         else
         {
             res.status(400).send({'message' : 'Product cannot be created.'});
+        }
+    },
+
+    async getOneUser(req, res) {
+        const findAllQuery = 'SELECT * FROM orders WHERE user_id = $1 ORDER BY orderNumber DESC';
+        try {
+            const { rows, rowCount } = await db.query(findAllQuery, [req.params.user_id]);
+            return res.status(200).send({ rows, rowCount });
+        } catch(error) {
+            return res.status(400).send(error);
         }
     },
     
