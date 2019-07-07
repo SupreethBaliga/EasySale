@@ -55,10 +55,18 @@ function auth(req,res)
 {
     if(req.isAuthenticated())
     {
-        console.log(req.session.passport.user[0]);
         res.send(req.session.passport.user[0]) ;
     }
     else res.send("null");
+}
+
+function authuser(req)
+{
+    if(req.isAuthenticated())
+    {
+        return(req.session.passport.user[0]) ;
+    }
+    else return null;
 }
 
 function getlogin(req, res) {
@@ -135,6 +143,7 @@ passport.deserializeUser(function(user, done) {
 });
 
 module.exports = {
+    authuser,
     auth,
     getjoin,
     postjoin,

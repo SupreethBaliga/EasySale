@@ -34,14 +34,12 @@ app.get('/', (req, res) => {
 	return res.status(200).send({ 'message': 'Testing for Server' });
 })
 
-app.post('/api/products/', function(req,res){return Product.create});
+app.post('/api/products/', Product.create);
 app.get('/api/products/', Product.getAll);//done in both seller and client
 app.get('/api/products/:id', Product.getOne);
 app.put('/api/products/:id', Product.update);
 app.delete('/api/products/:id', Product.delete);
 
-app.post('/api/users/', function(req,res){return User.create});
-app.post('/api/users/login/', function(req,res){return User.login});
 app.get('/api/users/', User.getAll);
 app.get('/api/users/:id', User.getOne);
 app.put('/api/users/:id', User.update);
