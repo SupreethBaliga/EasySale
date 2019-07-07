@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './RequestedOrdersList.css';
+import axios from 'axios';
 
 // let reqProps = {
 //     orders: [
@@ -60,28 +61,65 @@ import './RequestedOrdersList.css';
 
 class RequestedOrdersList extends Component {
 
-    orderList = this.props.orders.map((order) => {
-        return (
-            <div className='col-md-6 offset-md-3 mt-3 order-list-item-full'>
-                <div className='row'>
-                    <div className='col-md-5'>
-                        <div className='orgName-div'>
-                            {order.orgName}
+    constructor(props) {
+        super(props);
+        this.state = {
+            reqorders: []
+        }
+    }
+
+    componentDidMount() {
+        axios.get('/api/orders/pending')
+            .then(res => {
+                this.setState((state, props) => ({
+                    reqorders: res.data.rows
+                }))
+                console.log("orders received")
+            })
+            .then(res => {
+                this.populateReqOrders()
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
+    orderList = []
+
+    populateReqOrders = () => {
+        this.orderList = this.state.reqorders.map((order) => {
+            var user;
+            axios.get('/api/users/' + order.user_id)
+                .then(res => {
+                    user = res.data;
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+
+            return (
+                <div className='col-md-6 offset-md-3 mt-3 order-list-item-full'>
+                    <div className='row'>
+                        <div className='col-md-5'>
+                            <div className='orgName-div'>
+                                {user.organisationName}
+                            </div>
+                            <small className='text text-muted ordered-on-text'>Ordered On : {order.orderedOn}</small>
                         </div>
-                        <small className='text text-muted ordered-on-text'>Ordered On : {order.orderedOn}</small>
-                    </div>
-                    <div className='col-md-5 order-total'>
-                        &#8377; {order.total}
-                    </div>
-                    <div className='col-md-2 arrow-div'>
-                        <a href={'/reqorders/' + order.uniqueId}>
-                            <i className='material-icons arrow' style={{ color: '#bfbfbf' }}>arrow_forward_ios</i>
-                        </a>
+                        <div className='col-md-5 order-total'>
+                            &#8377; {order.totalAmount}
+                        </div>
+                        <div className='col-md-2 arrow-div'>
+                            <a href={'/reqorders/' + order.orderNumber}>
+                                <i className='material-icons arrow' style={{ color: '#bfbfbf' }}>arrow_forward_ios</i>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div >
-        )
-    })
+            )
+        })
+    }
+
 
     render() {
         return (

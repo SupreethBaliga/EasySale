@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './RequestedOrderPage.css';
 import Paper from '@material-ui/core/Paper';
-
+import axios from 'axios';
 
 // let props = {
 //     orgName: 'Supreeth Baliga Paper Products And Materials',
@@ -20,19 +20,85 @@ import Paper from '@material-ui/core/Paper';
 
 class RequestedOrderPage extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            order: {},
+            user: {}
+        }
+    }
+
+    componentDidMount() {
+
+        var patharray = window.location.pathname.split('/');
+        var orderNumber = parseInt(patharray[2], 10);
+        axios.get('/api/orders/' + orderNumber)
+            .then(res => {
+                this.setState((state, props) => ({
+                    order: res.data,
+                }));
+                console.log("Order Data Received");
+            })
+            .then(res => {
+                axios.get('/api/users/' + this.state.order.user_id)
+                    .then(res => {
+                        this.setState((state, props) => ({
+                            user: res.data
+                        }));
+                        console.log("User Data Received");
+                    })
+                    .then(res => {
+                        this.populateOrderTable();
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
+
     productOrders = [];
 
-    componentWillMount() {
-        for (var i = 0; i < this.props.orderDetails.productName.length; i++) {
+    populateOrderTable = () => {
+        for (var i = 0; i < this.state.order.name.length; i++) {
             this.productOrders.push({
                 srNo: i + 1,
-                productId: this.props.orderDetails.productId[i],
-                productName: this.props.orderDetails.productName[i],
-                rate: this.props.orderDetails.rate[i],
-                quantity: this.props.orderDetails.quantity[i],
-                amount: this.props.orderDetails.quantity[i] * this.props.orderDetails.rate[i]
+                id: this.state.order.id[i],
+                name: this.state.order.name[i],
+                rate: this.state.order.rate[i],
+                quantity: this.state.order.quantity[i],
+                amount: this.state.order.rate[i] * this.state.order.quantity[i]
             });
         }
+    }
+
+    acceptReqOrder = () => {
+        // console.log("Put in for accept");
+        var params = {
+            status: "Payment Pending"
+        }
+        axios.put('/api/orders/' + this.state.order.orderNumber, params)
+            .then(res => {
+                console.log("Order Accepted");
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
+    rejectReqOrder = () => {
+        var params = {
+            status: "Rejected"
+        }
+        axios.put('/api/orders/' + this.state.order.orderNumber, params)
+            .then(res => {
+                console.log("Order Rejected");
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
 
     render() {
@@ -41,24 +107,24 @@ class RequestedOrderPage extends Component {
                 <div className='row orderPageTopBar'>
                     <div className='col-md-4 m-3 orgName-div'>
                         <span className='orgName-border'>
-                            {this.props.orgName}
+                            {this.state.user.organisationName}
                         </span>
                     </div>
                     <div className='col-md-4 mt-3 text text-muted deliveryDates'>
                         <div className='row'>
-                            <span className='top-bar-labels'>Ordered On :&nbsp;</span>{this.props.orderedOn}
+                            <span className='top-bar-labels'>Ordered On :&nbsp;</span>{this.state.order.orderedOn}
                         </div>
                         <div className='row'>
-                            <span className='top-bar-labels'>Contact :&nbsp;</span>{this.props.contactNo}
+                            <span className='top-bar-labels'>Contact :&nbsp;</span>{this.state.user.contactNumber}
                         </div>
                         <div className='row'>
-                            <span className='top-bar-labels'>Email :&nbsp;</span>{this.props.orgEmail}
+                            <span className='top-bar-labels'>Email :&nbsp;</span>{this.state.user.email}
                         </div>
                     </div>
                     <div className='col-md-3 mt-3 text text-muted'>
                         <label className='top-bar-labels'>Delivery Address:</label>
                         <p className=''>
-                            {this.props.deliveryAddress}
+                            {this.state.user.deliveryAddress}
                         </p>
                     </div>
                 </div>
@@ -82,8 +148,8 @@ class RequestedOrderPage extends Component {
                                 {this.productOrders.map((product) => (
                                     <tr>
                                         <th scope='row'>{product.srNo}</th>
-                                        <td>{product.productId}</td>
-                                        <td>{product.productName}</td>
+                                        <td>{product.id}</td>
+                                        <td>{product.name}</td>
                                         <td>&#8377; {product.rate}</td>
                                         <td>{product.quantity}</td>
                                         <td>&#8377; {product.amount}</td>
@@ -92,7 +158,7 @@ class RequestedOrderPage extends Component {
                                 <tr className='total-row'>
                                     <td className='table-active' colSpan='4' />
                                     <td className='table-active'>Grand Total : </td>
-                                    <td className='table-active'>&#8377; {this.props.total}</td>
+                                    <td className='table-active'>&#8377; {this.state.order.totalAmount}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -115,7 +181,7 @@ class RequestedOrderPage extends Component {
                                 <textarea className='form-control' rows='3' />
                             </div>
                             <div className='form-group'>
-                                <button className='btn btn-dark form-control accept-order-btn'>ACCEPT</button>
+                                <button className='btn btn-dark form-control accept-order-btn' onClick={() => this.acceptReqOrder()}>ACCEPT</button>
                             </div>
                         </div>
                         <div className='col-md-2'></div>
@@ -130,7 +196,7 @@ class RequestedOrderPage extends Component {
                             </div>
                             <br /><br />
                             <div className='form-group'>
-                                <button className='btn btn-dark form-control reject-order-btn'>REJECT</button>
+                                <button className='btn btn-dark form-control reject-order-btn' onClick={() => this.rejectReqOrder()}>REJECT</button>
                             </div>
                         </div>
                     </div>
