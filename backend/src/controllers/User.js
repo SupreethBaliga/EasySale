@@ -3,34 +3,6 @@ import db from '../db';
 let auth = require('./Authentication');
 
 const User = {
-    async create(req, res) {
-        const text = `INSERT INTO
-            users(id, password, name, email, contactNumber, deliveryAddress, deliveryPostalCode, organisationName, GSTNumber, officeNumber, companyAddress, companyPostalCode)
-            VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
-            returning *`;
-        const values = [
-            uuidv4(),
-            req.body.password,
-            req.body.name,
-            req.body.email,
-            req.body.contactNumber,
-            req.body.deliveryAddress,
-            req.body.deliveryPostalCode,
-            req.body.organisationName,
-            req.body.GSTNumber,
-            req.body.officeNumber,
-            req.body.companyAddress,
-            req.body.companyPostalCode
-        ];
-
-        try {
-            const { rows } = await db.query(text, values);
-            return res.status(201).send(rows[0]);
-        } catch(error) {
-            return res.status(400).send(error);
-        }
-    },
-
     async getAll(req, res) {
         const findAllQuery = 'SELECT * FROM users';
         try {
@@ -43,29 +15,25 @@ const User = {
     
     async getOne(req, res) {
         let data = auth.authuser(req);
-        if(data !== null)
-        {
+        if(data != null && data.id === req.params.id) {
             const text = 'SELECT * FROM users WHERE id = $1';
             try {
                 const { rows } = await db.query(text, [req.params.id]);
                 if (!rows[0]) {
-                    return res.status(404).send({'message': 'user not found'});
+                    return res.status(404).send({'message': 'User not found'});
                 }
                 return res.status(200).send(rows[0]);
             } catch(error) {
                 return res.status(400).send(error)
             }
-        }
-        else
-        {
-            res.status(400).send({'message' : 'User not found.'});
+        } else {
+            res.status(400).send({'message' : 'Cannot access this user details.'});
         }
     },
     
     async update(req, res) {
         let data = auth.authuser(req);
-        if(data !== null)
-        {
+        if(data != null && data.id === req.params.id) {
             const findOneQuery = 'SELECT * FROM users WHERE id = $1';
             const updateOneQuery =`UPDATE users
                 SET name=$1,contactNumber=$2,deliveryAddress=$3,deliveryPostalCode=$4,officeNumber=$5,companyAddress=$6,companyPostalCode=$7
@@ -90,9 +58,7 @@ const User = {
             } catch(err) {
                 return res.status(400).send(err);
             }
-        }
-        else
-        {
+        } else {
             res.status(400).send({'message' : 'User cannot be updated.'});
         }
     },

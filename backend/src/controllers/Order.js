@@ -4,8 +4,7 @@ let auth = require('./Authentication');
 const Order = {
     async create(req, res) {
         let data = auth.authuser(req);
-        if(data !== null)
-        {
+        if(data != null && data.id === req.body.user_id) {
             const text = `INSERT INTO
             orders(expectedBy, status, id, name, rate, quantity, totalAmount, user_id)
             SELECT $1, $2, array_agg(id ORDER BY cartid), array_agg(name ORDER BY cartid), array_agg(rate ORDER BY cartid), array_agg(quantity ORDER BY cartid), $3, $4
@@ -24,72 +23,78 @@ const Order = {
             } catch(error) {
                 return res.status(400).send(error);
             }
-        }
-    },
-
-    async getAllPending(req, res) {
-        const findAllQuery = `SELECT * FROM orders WHERE status='pending' ORDER BY orderNumber DESC`;
-        try {
-            const { rows, rowCount } = await db.query(findAllQuery);
-            return res.status(200).send({ rows, rowCount });
-        } catch(error) {
-            return res.status(400).send(error);
+        } else {
+            res.status(400).send({'message' : 'Order cannot be created for this user.'});
         }
     },
 
     async getAll(req, res) {
         let data = auth.authuser(req);
-        if(data !== null && data.name === "admin")
-        {
-            const findAllQuery = 'SELECT * FROM orders ORDER BY orderNumber DESC';
+        if(data != null && data.email === "admin@gmail.com"){
+            const findAllQuery = `SELECT * FROM orders WHERE status!='pending' ORDER BY orderNumber DESC`;
             try {
                 const { rows, rowCount } = await db.query(findAllQuery);
                 return res.status(200).send({ rows, rowCount });
             } catch(error) {
                 return res.status(400).send(error);
             }
+        } else {
+            res.status(400).send({'message' : 'All orders cannot be seen.'});
         }
-        else
-        {
-            res.status(400).send({'message' : 'Product cannot be created.'});
+    },
+
+    async getAllPending(req, res) {
+        let data = auth.authuser(req);
+        if(data != null && data.email === "admin@gmail.com") {
+            const findAllQuery = `SELECT * FROM orders WHERE status='pending' ORDER BY orderNumber DESC`;
+            try {
+                const { rows, rowCount } = await db.query(findAllQuery);
+                return res.status(200).send({ rows, rowCount });
+            } catch(error) {
+                return res.status(400).send(error);
+            }
+        } else {
+            res.status(400).send({'message' : 'All orders cannot be seen.'});
         }
     },
 
     async getOneUser(req, res) {
-        const findAllQuery = 'SELECT * FROM orders WHERE user_id = $1 ORDER BY orderNumber DESC';
-        try {
-            const { rows, rowCount } = await db.query(findAllQuery, [req.params.user_id]);
-            return res.status(200).send({ rows, rowCount });
-        } catch(error) {
-            return res.status(400).send(error);
+        let data = auth.authuser(req);
+        if(data != null && data.id === req.params.user_id){
+            const findAllQuery = 'SELECT * FROM orders WHERE user_id = $1 ORDER BY orderNumber DESC';
+            try {
+                const { rows, rowCount } = await db.query(findAllQuery, [req.params.user_id]);
+                return res.status(200).send({ rows, rowCount });
+            } catch(error) {
+                return res.status(400).send(error);
+            }
+        } else {
+            res.status(400).send({'message': 'Orders for this user cannot be seen.'});
         }
     },
     
     async getOne(req, res) {
         let data = auth.authuser(req);
-        if(data !== null && data.name === "admin")
-        {
+        if(data != null){
             const text = 'SELECT * FROM orders WHERE orderNumber = $1';
             try {
                 const { rows } = await db.query(text, [req.params.orderNumber]);
                 if (!rows[0]) {
                     return res.status(404).send({'message': 'order not found'});
                 }
-                return res.status(200).send(rows[0]);
+                if(rows[0].user_id === data.id || data.email === "admin@gmail.com") return res.status(200).send(rows[0]);
+                else return res.status(400).send({'message' : 'Order details cannot be seen for this user.'});
             } catch(error) {
                 return res.status(400).send(error)
             }
-        }
-        else
-        {
-            res.status(400).send({'message' : 'Product cannot be created.'});
+        } else {
+            res.status(400).send({'message' : 'Order details cannot be seen.'});
         }
     },
     
     async update(req, res) {
         let data = auth.authuser(req);
-        if(data !== null && data.name === "admin")
-        {
+        if(data != null && data.email === "admin@gmail.com") {
             const findOneQuery = 'SELECT * FROM orders WHERE orderNumber = $1';
             const updateOneQuery =`UPDATE orders
                 SET status=$1
@@ -97,7 +102,7 @@ const Order = {
             try {
                 const { rows } = await db.query(findOneQuery, [req.params.orderNumber]);
                 if(!rows[0]) {
-                    return res.status(404).send({'message': 'order not found'});
+                    return res.status(404).send({'message': 'Order not found'});
                 }
                 const values = [
                     req.body.status || rows[0].status,
@@ -108,10 +113,8 @@ const Order = {
             } catch(err) {
                 return res.status(400).send(err);
             }
-        }
-        else
-        {
-            res.status(400).send({'message' : 'Product cannot be created.'});
+        } else {
+            res.status(400).send({'message' : 'Order status cannot be updated.'});
         }
     },
 }

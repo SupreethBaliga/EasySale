@@ -16,30 +16,49 @@ async function postjoin (req, res) {
         const client = await pool.connect()
         await client.query('BEGIN')
         var pwd = await bcrypt.hash(req.body.password, 5);
-        await JSON.stringify(client.query('SELECT id FROM "users" WHERE "email"=$1', [req.body.username], function(err, result) {
-        if(result.rows[0]){
-        // req.flash(‘warning’, “This email address is already registered. <a href=’/login’>Log in!</a>”);
-            console.log("This email address is already registered.");
-            res.redirect('/api/join');
-        }
-        else{
-            client.query('INSERT INTO "users" (id, name, email, password,contactnumber,deliveryaddress,deliverypostalcode,organisationname,gstnumber,officenumber,companyaddress,companypostalcode) VALUES ($1, $2, $3, $4,$5,$6,$7,$8,$9,$10,$11,$12)', [uuidv4(), req.body.name, req.body.username, pwd,req.body.contactnumber,req.body.deliveryaddress,req.body.deliverypostalcode,req.body.organisationname,req.body.gstnumber,req.body.officenumber,req.body.companyaddress,req.body.companypostalcode], function(err, result) {
-                if(err){console.log(err);}
-                else {
-                    client.query('COMMIT')
-                    console.log(result.command);
-                    // req.flash(‘success’,’User created.’)
-                    console.log("user created");
-                    res.redirect('/api/login');
-                    return;
-                }
-            });
-        } 
+        await JSON.stringify(client.query('SELECT id FROM users WHERE email=$1', [req.body.email], function(err, result) {
+            if(result.rows[0]){
+                // req.flash(‘warning’, “This email address is already registered. <a href=’/login’>Log in!</a>”);
+                console.log("This email address is already registered.");
+                res.redirect('/api/join');
+            }
+            else{
+                client.query(`INSERT INTO
+                    users(id, name, email, password, contactNumber, deliveryAddress, deliveryPostalCode, organisationName, GSTNumber, officeNumber, companyAddress, companyPostalCode)
+                    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`,
+                    [
+                        uuidv4(),
+                        req.body.name,
+                        req.body.email,
+                        pwd,
+                        req.body.contactNumber,
+                        req.body.deliveryAddress,
+                        req.body.deliveryPostalCode,
+                        req.body.organisationName,
+                        req.body.GSTNumber,
+                        req.body.officeNumber,
+                        req.body.companyAddress,
+                        req.body.companyPostalCode
+                    ], function(err, result) {
+                        if(err) {
+                            console.log(err);
+                        }
+                        else {
+                            client.query('COMMIT')
+                            console.log(result.command);
+                            // req.flash(‘success’,’User created.’)
+                            console.log("user created");
+                            res.redirect('/api/login');
+                            return;
+                        }
+                });
+            }
         }));
-    client.release();
+        client.release();
     }
-    catch(e)
-        {throw(e)}
+    catch(e) {
+        throw(e)
+    }
 }
 
 function getaccount(req, res) {
@@ -105,35 +124,43 @@ passport.use('local', new LocalStrategy({passReqToCallback : true}, (req, userna
     loginAttempt();
     async function loginAttempt() {
         const client = await pool.connect()
-    try{
-        await client.query('BEGIN')
-        var currentAccountsData = await JSON.stringify(client.query('SELECT id, name, email, password,contactnumber,deliveryaddress,deliverypostalcode,organisationname,gstnumber,officenumber,companyaddress,companypostalcode FROM "users" WHERE "email"=$1', [username], function(err, result) {
-            if(err) {
-                return done(err)
-            }
-            if(result.rows[0] == null){
-            // req.flash(‘danger’, “Oops. Incorrect login details.”);
-                return done(null, false);
-            }
-            else{
-                bcrypt.compare(password, result.rows[0].password, function(err, check) {
-                    if (err){
-                        console.log('Error while checking password');
-                        return done();
+        try{
+            await client.query('BEGIN')
+            var currentAccountsData = await JSON.stringify(client.query(
+                `SELECT
+                id, name, email, password, contactNumber, deliveryAddress, deliveryPostalCode, organisationName, GSTNumber, officeNumber, companyAddress, companyPostalCode
+                FROM users WHERE email=$1`,
+                [username], function(err, result) {
+                    if(err) {
+                        return done(err)
                     }
-                    else if (check){
-                        return done(null, [{email: result.rows[0].email, name: result.rows[0].name, id: result.rows[0].id}]);
-                    }
-                    else{
+                    if(result.rows[0] == null){
                     // req.flash(‘danger’, “Oops. Incorrect login details.”);
                         return done(null, false);
                     }
-                });
-            }
-        }))
-    }
-    catch(e){throw (e);}
-};}))
+                    else{
+                        bcrypt.compare(password, result.rows[0].password, function(err, check) {
+                            if (err){
+                                console.log('Error while checking password');
+                                return done();
+                            }
+                            else if (check){
+                                return done(null, [{email: result.rows[0].email, name: result.rows[0].name, id: result.rows[0].id}]);
+                            }
+                            else{
+                            // req.flash(‘danger’, “Oops. Incorrect login details.”);
+                                return done(null, false);
+                            }
+                        });
+                    }
+                }
+            ))
+        }
+        catch(e){
+            throw (e);
+        }
+    };
+}))
 
 passport.serializeUser(function(user, done) {
     done(null, user);

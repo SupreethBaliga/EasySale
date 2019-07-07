@@ -48,7 +48,7 @@ app.post('/api/orders/', Order.create);//done
 app.get('/api/orders/', Order.getAll); //without pending //done
 app.get('/api/orders/pending/', Order.getAllPending);   //done
 app.get('/api/orders/:user_id', Order.getOneUser);  //done
-app.get('/api/orders/:orderNumber', Order.getOne);  //done
+app.get('/api/orders/by/:orderNumber', Order.getOne);  //done
 app.put('/api/orders/:orderNumber', Order.update);  //done
 
 app.get('/api/join/', auth.getjoin);
