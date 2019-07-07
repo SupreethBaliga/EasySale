@@ -3,6 +3,8 @@ import 'babel-polyfill';
 import Product from './src/controllers/Product';
 import User from './src/controllers/User';
 import Order from './src/controllers/Order';
+import Favourites from './src/controllers/Favourites';
+import Cart from './src/controllers/Cart';
 
 const multer = require('multer');
 let auth = require('./src/controllers/Authentication');
@@ -56,6 +58,18 @@ app.get('/api/login/', auth.getlogin);
 app.post('/api/login/', auth.authFunction, auth.postlogin);
 app.get('/api/logout/', auth.getlogout);
 app.get('/api/getuser/', auth.auth);
+
+app.post('/api/favs/', Favourites.create);
+app.get('/api/favs/', Favourites.getAll);
+app.get('/api/favs/:user_id', Favourites.getOneUser);
+app.delete('/api/favs/:user_id/:product_id', Favourites.delete);
+
+app.post('/api/cart/', Cart.create);
+app.get('/api/cart/', Cart.getAll);
+app.get('/api/cart/:user_id', Cart.getOneUser);
+app.put('/api/cart/:user_id/:id', Cart.update);
+app.delete('/api/cart/:user_id/:id', Cart.deleteProduct);
+app.delete('/api/cart/:user_id', Cart.deleteCart);
 
 var storage = multer.diskStorage({
 	destination: function (req, file, cb) {

@@ -2,27 +2,18 @@ import db from '../db';
 let auth = require('./Authentication');
 const Order = {
     async create(req, res) {
-        let data = auth.auth(req);
-        if(data !== null)
-        {
-            const text = `INSERT INTO
-            orders(expectedBy, status, productId, productName, rate, quantity, totalAmount, user_id, name, email, contactNumber, deliveryAddress)
-            VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
+        const text = `INSERT INTO
+            orders(expectedBy, status, id, name, rate, quantity, totalAmount, user_id)
+            SELECT $1, $2, array_agg(id ORDER BY cartid), array_agg(name ORDER BY cartid), array_agg(rate ORDER BY cartid), array_agg(quantity ORDER BY cartid), $3, $4
+            FROM cart WHERE user_id=$4 GROUP BY user_id
             returning *`;
-            var values = [
-                req.body.expectedBy,
-                req.body.status,
-                req.body.productId,
-                req.body.productName,
-                req.body.rate,
-                req.body.quantity,
-                req.body.totalAmount,
-                data.id,
-                data.name,
-                data.email,
-                req.body.contactNumber,
-                req.body.deliveryAddress,
-            ];
+
+        const values = [
+            req.body.expectedBy,
+            req.body.status,
+            req.body.totalAmount,
+            req.body.user_id
+        ];
 
             try {
                 const { rows } = await db.query(text, values);
