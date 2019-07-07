@@ -8,7 +8,9 @@ class ProductPage extends Component {
         super(props);
         this.state = {
             product: {},
-            image: ""
+            image: "",
+            step:"",
+            rate: ""
         }
     }
 
@@ -21,7 +23,9 @@ class ProductPage extends Component {
             .then(res => {
                 var data = res.data;
                 this.setState((state, props) => ({
-                    product: data
+                    product: data,
+                    step: this.state.products.step,
+                    rate: this.state.products.rate
                 }));
             })
             .then(res => {
@@ -48,6 +52,39 @@ class ProductPage extends Component {
                 console.log(err);
             });
         window.location.pathname= '/seller/products';
+    }
+    handleClick(){
+        // var url = "/api/products/";
+        // axios.get("/api/getuser")
+        // .then(res=>{
+        //     user_id = res.data.id;
+        //     url = url + user_id;
+        // })
+        // .then(res=>{
+        //     axios.put(url+this.state.product.id,{
+        //         "user_id":user_id
+        //     })
+        // })
+        axios.put("/api/products/"+this.state.product.id,{
+            "rate":this.state.product.rate,
+            "step":this.state.product.step  
+        })
+        .then(res=>{
+            console.log(res);    
+        })
+        .catch(error=>{
+            console.log(error);
+        })
+    }
+    changeStep(){
+        this.setState({
+            step: document.getElementById("step_product_page").value
+        })
+    }
+    changeRate(){
+        this.setState({
+            rate: document.getElementById("rate_product_page").value
+        })
     }
 
     render() {
@@ -81,15 +118,19 @@ class ProductPage extends Component {
                             <hr />
                             <div className="ml-5">
                                 <div className="form-group">
-                                    <span className='product-page-label'>Sold In Packs Of:&nbsp;</span>
-                                    <span className='product-description'>{this.state.product.step}</span>
+                                    <label className='product-page-label'>Sold In Packs Of:&nbsp;</label>
+                                    <input id="step_product_page" onChange={()=>this.changeStep()} type='text' className='form-control' placeholder={this.state.step}/>
                                 </div>
                                 <br />
                                 <div className='form-group'>
-                                    <span className='product-page-label'>Rate:&nbsp;</span>
-                                    <span className='product-description'>{this.state.product.rate}</span>
+                                    <label className='product-page-label'>Rate:</label>
+                                    <input id="rate_product_page" onChange={()=>this.changeRate()} type='text' className='form-control' placeholder={this.state.rate}/>
                                 </div>
                             </div>
+                            <div className='form-group'>
+                                <button onClick={()=>this.handleClick()} className='btn btn-dark form-control'>Update Details</button>
+                            </div>
+
                             <br />
                             {/*<div className="ml-5 form-group">
                                 <label className='product-page-label'>Filters:</label>
