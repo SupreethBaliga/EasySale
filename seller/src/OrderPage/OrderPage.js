@@ -30,11 +30,39 @@ class OrderPage extends Component {
 
         var patharray = window.location.pathname.split('/');
         var orderNumber;
-        if (patharray[3] === "") {
+        if (patharray[3] == null) {
             axios.get('/api/orders/')
                 .then(res => {
-                    orderNumber = res.data.rows[0].orderNumber;
-                    console.log('orderNumberReceived');
+                    orderNumber = res.data.rows[0].ordernumber;
+                    console.log('orderNumberReceived' + orderNumber);
+                })
+                .then(res => {
+                    axios.get('/api/orders/by/' + orderNumber)
+                        .then(res => {
+                            this.setState((state, props) => ({
+                                order: res.data,
+                                status: res.data.status
+                            }));
+                            // console.log("Order Data Received");
+                        })
+                        .then(res => {
+                            axios.get('/api/users/' + this.state.order.user_id)
+                                .then(res => {
+                                    this.setState((state, props) => ({
+                                        user: res.data
+                                    }));
+                                    console.log("User Data Received");
+                                })
+                                .then(res => {
+                                    this.populateOrderTable();
+                                })
+                                .catch(err => {
+                                    console.log(err);
+                                })
+                        })
+                        .catch(err => {
+                            console.log(err);
+                        });
                 })
                 .catch(err => {
                     console.log(err);
@@ -42,38 +70,41 @@ class OrderPage extends Component {
         }
         else {
             orderNumber = parseInt(patharray[3], 10);
+            axios.get('/api/orders/by/' + orderNumber)
+                        .then(res => {
+                            this.setState((state, props) => ({
+                                order: res.data,
+                                status: res.data.status
+                            }));
+                            // console.log("Order Data Received");
+                        })
+                        .then(res => {
+                            axios.get('/api/users/' + this.state.order.user_id)
+                                .then(res => {
+                                    this.setState((state, props) => ({
+                                        user: res.data
+                                    }));
+                                    // console.log("User Data Received");
+                                })
+                                .then(res => {
+                                    this.populateOrderTable();
+                                })
+                                .catch(err => {
+                                    console.log(err);
+                                })
+                        })
+                        .catch(err => {
+                            console.log(err);
+                        });
         }
-        axios.get('/api/orders/' + orderNumber)
-            .then(res => {
-                this.setState((state, props) => ({
-                    order: res.data,
-                    status: res.data.status
-                }));
-                console.log("Order Data Received");
-            })
-            .then(res => {
-                axios.get('/api/users/' + this.state.order.user_id)
-                    .then(res => {
-                        this.setState((state, props) => ({
-                            user: res.data
-                        }));
-                        console.log("User Data Received");
-                    })
-                    .then(res => {
-                        this.populateOrderTable();
-                    })
-                    .catch(err => {
-                        console.log(err);
-                    })
-            })
-            .catch(err => {
-                console.log(err);
-            });
+        // console.log(orderNumber);
+        
     }
 
     productOrders = [];
 
     populateOrderTable = () => {
+        // console.log(this.state.order);
         for (var i = 0; i < this.state.order.name.length; i++) {
             this.productOrders.push({
                 srNo: i + 1,
@@ -84,14 +115,19 @@ class OrderPage extends Component {
                 amount: this.state.order.rate[i] * this.state.order.quantity[i]
             });
         }
+        this.setState((state,props)=> ({
+            order: state.order
+        }));
     }
 
     setStatusOfOrder = () => {
         var orderStatus = document.getElementById('select-status-of-order').value;
+        // console.log(orderStatus);
+        // console.log(this.state.order)
         var params = {
             "status": orderStatus
         }
-        axios.put('/api/orders/' + this.state.order.orderNumber, params)
+        axios.put('/api/orders/' + this.state.order.ordernumber, params)
             .then(res => {
                 console.log("Status Updated");
                 this.setState((state, props) => ({
@@ -124,15 +160,15 @@ class OrderPage extends Component {
                 <div className='row orderPageTopBar'>
                     <div className='col-md-3 m-2 orderNumberDiv'>
                         <span className='OPorderNumber'>
-                            {'#' + this.state.order.orderNumber}
+                            {'#' + this.state.order.ordernumber}
                         </span>
                     </div>
                     <div className='col-md-3 m-2 text text-muted deliveryDates'>
                         <div className='row'>
-                            Ordered On : {this.state.order.orderedOn}
+                            Ordered On : {this.state.order.orderedon}
                         </div>
                         <div className='row'>
-                            Expected By : {this.state.order.expectedBy}
+                            Expected By : {this.state.order.expectedby}
                         </div>
                     </div>
                     <div className='col-md-5 m-2'>
@@ -146,7 +182,7 @@ class OrderPage extends Component {
                                 Organisation:
                             </div>
                             <div className='col-md-8 order-page-client-detail-value'>
-                                {this.state.user.organisationName}
+                                {this.state.user.organisationname}
                             </div>
                         </div>
                         <div className='col-md-4'>
@@ -154,7 +190,7 @@ class OrderPage extends Component {
                                 Contact:
                         </div>
                             <div className='col-md-8 order-page-client-detail-value'>
-                                {this.state.user.contactNumber}
+                                {this.state.user.contactnumber}
                             </div>
                         </div>
                     </div>
@@ -164,7 +200,7 @@ class OrderPage extends Component {
                                 Delivery Address:
                             </div>
                             <div className='col-md-8 order-page-client-detail-value'>
-                                {this.state.user.deliveryAddress}
+                                {this.state.user.deliveryaddress}
                             </div>
                         </div>
                         <div className='col-md-4'>
@@ -208,7 +244,7 @@ class OrderPage extends Component {
                                 <tr className='total-row'>
                                     <td className='table-active' colSpan='4' />
                                     <td className='table-active'>Grand Total : </td>
-                                    <td className='table-active'>&#8377; {this.state.order.totalAmount}</td>
+                                    <td className='table-active'>&#8377; {this.state.order.totalamount}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -225,6 +261,9 @@ class OrderPage extends Component {
                         <div className='col-md-4'>
                             <select className='select' id='select-status-of-order'>
                                 <option>Payment</option>
+                                <option>Dispatched</option>
+                                <option>Delivered</option>
+                                <option>Pending</option>
                             </select>
                         </div>
                         <div className='col-md-2'>

@@ -33,6 +33,8 @@ class EditProfile extends Component {
             landline_code: "",
             landline_number: "",
             company_postal_code: ""
+            // landline_num_code: "",
+            // landline_num: ""
         }
     }
     
@@ -66,7 +68,7 @@ class EditProfile extends Component {
                         company_address: this.state.info.companyaddress,
                         company_postal_code: this.state.info.companypostalcode,
                         landline_code: this.state.info.officenumber.split('-')[0],
-                        landline_number: this.state.info.officenumber.split('-')[1]
+                        landline_number: this.state.info.officenumber.split('-')[1],
                     })
                 // console.log(this.state.info.deliverypostalcode);
                     // this.setState((state,props)=>({
@@ -168,25 +170,25 @@ class EditProfile extends Component {
                     <form action='' method='post'>
                         <div className='form-group'>
                             <label className='labelText'>Organisation Name:</label>
-                            <input type='text' disabled='disabled' value={this.props.orgName} className='form-control' />
+                            <input type='text' disabled='disabled' value={this.state.info.organisationname} className='form-control' />
                             <small className='text text-muted'>(This field cannot be changed)</small>
                         </div>
                         <div className='form-group'>
                             <label className='labelText'>Customer Name:</label>
-                            <input type='text' id="customer_name_edit_profile" onChange={()=>this.changeName()} className='form-control' placeholder={this.props.customerName} />
+                            <input type='text' id="customer_name_edit_profile" onChange={()=>this.changeName()} className='form-control' placeholder={this.state.info.name} />
                         </div>
                         <div className='row'>
                             <div className='col-md-6'>
                                 <div className='form-group'>
                                     <label className='labelText'>Email ID:</label>
-                                    <input type='text' className='form-control' disabled='disabled' value={this.props.email} />
+                                    <input type='text' className='form-control' disabled='disabled' value={this.state.info.email} />
                                     <small className='text text-muted'>(This field cannot be changed)</small>
                                 </div>
                             </div>
                             <div className='col-md-6'>
                                 <div className='form-group'>
                                     <label className='labelText'>Mobile No:</label>
-                                    <input type='text' id="mobile_number_edit_profile" onChange={() => this.changeMobile()} className='form-control' placeholder={this.props.mobileNumber} />
+                                    <input type='text' id="mobile_number_edit_profile" onChange={() => this.changeMobile()} className='form-control' placeholder={this.state.info.contactnumber} />
                                 </div>
                             </div>
                         </div>
@@ -194,13 +196,13 @@ class EditProfile extends Component {
                             <div className='col-md-8'>
                                 <div className='form-group'>
                                     <label className='labelText'>Delivery Address:</label>
-                                    <textarea onChange={()=>this.changeAddress()} id="address_edit_profile" rows='2' className='form-control' placeholder={this.props.deliveryAddr} />
+                                    <textarea onChange={()=>this.changeAddress()} id="address_edit_profile" rows='2' className='form-control' placeholder={this.state.info.deliveryaddress} />
                                 </div>
                             </div>
                             <div className='col-md-4'>
                                 <div className='form-group'>
                                     <label className='labelText'>Delivery Postal Code:</label>
-                                    <input id="delivery_postal_code_edit_profile" onChange={()=>this.changeDeliveryCode()} type="text" className='form-control' placeholder={this.props.deliveryPostalCode} />
+                                    <input id="delivery_postal_code_edit_profile" onChange={()=>this.changeDeliveryCode()} type="text" className='form-control' placeholder={this.state.info.deliverypostalcode} />
                                 </div>
                             </div>
                         </div>
@@ -224,14 +226,14 @@ class EditProfile extends Component {
                                                     <div className='col-md-6'>
                                                         <div className='form-group'>
                                                             <label className='labelText'>GST No:</label>
-                                                            <input className='form-control' value={this.props.gstNo} disabled='disabled' />
+                                                            <input className='form-control' value={this.state.info.gstnumber} disabled='disabled' />
                                                         </div>
                                                     </div>
                                                     <div className='col-md-6 form-group'>
                                                         <label className='labelText'>Landline No:</label>
                                                         <div className='row'>
-                                                            <input id="landline_code_edit_profile" onChange={()=> this.changeLandlineCode()} placeholder={this.props.landlineCode} size='4' type='text' /> &nbsp;-&nbsp;
-                                                            <input id="landline_number_edit_profile" onChange={()=> this.changeLandlineNumber()} placeholder={this.props.landlineNumber} size='20' type='text' />
+                                                            <input id="landline_code_edit_profile" onChange={()=> this.changeLandlineCode()} placeholder={this.state.landline_code} size='4' type='text' /> &nbsp;-&nbsp;
+                                                            <input id="landline_number_edit_profile" onChange={()=> this.changeLandlineNumber()} placeholder={this.state.landline_number} size='20' type='text' />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -240,13 +242,13 @@ class EditProfile extends Component {
                                                         <div className='col-md-8'>
                                                             <div className='form-group'>
                                                                 <label className='labelText'>Company Address:</label>
-                                                                <textarea id="company_address_edit_profile" onChange={()=> this.changeCompanyAddress()} rows='2' className='form-control' placeholder={this.props.companyAddr} />
+                                                                <textarea id="company_address_edit_profile" onChange={()=> this.changeCompanyAddress()} rows='2' className='form-control' placeholder={this.state.info.companyaddress} />
                                                             </div>
                                                         </div>
                                                         <div className='col-md-4'>
                                                             <div className='form-group'>
                                                                 <label className='labelText'>Company Postal Code:</label>
-                                                                <input id="company_postal_code_edit_profile" onChange={()=> this.changeCompanyPostalCode()} type="text" className='form-control' placeholder={this.props.companyPostalCode} />
+                                                                <input id="company_postal_code_edit_profile" onChange={()=> this.changeCompanyPostalCode()} type="text" className='form-control' placeholder={this.state.info.companypostalcode} />
                                                             </div>
                                                         </div>
                                                     </div>

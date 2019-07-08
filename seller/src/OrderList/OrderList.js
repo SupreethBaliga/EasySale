@@ -14,13 +14,14 @@ class OrderList extends Component {
     }
 
     componentDidMount() {
-        axios.get('/api/orders')
+        axios.get('/api/orders/')
             .then(res => {
+                // console.log(res.data);
                 var dborders = res.data;
                 this.setState((state, props) => ({
                     orders: dborders.rows
                 }));
-                console.log("Order Received");
+                // console.log("Order Received");
             })
             .then(res => {
                 this.populateOrders();
@@ -35,9 +36,12 @@ class OrderList extends Component {
     populateOrders = () => {
         this.orderListItems = this.state.orders.map((order) => {
             return (
-                <OrderListItem key={order.orderNumber} {...order} />
+                <OrderListItem key={order.ordernumber} {...order} />
             );
         })
+        this.setState((state,props) => ({
+            orders: state.orders
+        }));
     }
 
     // orderListItems = this.props.orders.map((order) => {

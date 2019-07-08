@@ -36,7 +36,7 @@ const Order = {
     async getAll(req, res) {
         let data = auth.authuser(req);
         if(data != null && data.email === "admin@gmail.com"){
-            const findAllQuery = `SELECT * FROM orders WHERE status!='Pending' ORDER BY orderNumber DESC`;
+            const findAllQuery = `SELECT * FROM orders WHERE status!='Pending' and status!='Rejected' ORDER BY orderNumber DESC`;
             try {
                 const { rows, rowCount } = await db.query(findAllQuery);
                 return res.status(200).send({ rows, rowCount });
@@ -98,7 +98,7 @@ const Order = {
         }
     },
     
-    async update(req, res) {
+    async updateStatus(req, res) {
         let data = auth.authuser(req);
         if(data != null && data.email === "admin@gmail.com") {
             const findOneQuery = 'SELECT * FROM orders WHERE orderNumber = $1';
@@ -121,6 +121,33 @@ const Order = {
             }
         } else {
             res.status(400).send({'message' : 'Order status cannot be updated.'});
+        }
+    },
+
+    async updateDate(req, res) {
+        let data = auth.authuser(req);
+        if(data != null && data.email === "admin@gmail.com") {
+            const findOneQuery = 'SELECT * FROM orders WHERE orderNumber = $1';
+            const updateOneQuery =`UPDATE orders
+                SET expectedBy=$1, status=$2
+                WHERE orderNumber=$3 returning *`;
+            try {
+                const { rows } = await db.query(findOneQuery, [req.params.orderNumber]);
+                if(!rows[0]) {
+                    return res.status(404).send({'message': 'Order not found'});
+                }
+                const values = [
+                    req.body.expectedBy || rows[0].expectedBy,
+                    req.body.status || rows[0].status,
+                    req.params.orderNumber
+                ];
+                const response = await db.query(updateOneQuery, values);
+                return res.status(200).send(response.rows[0]);
+            } catch(err) {
+                return res.status(400).send(err);
+            }
+        } else {
+            res.status(400).send({'message' : 'Order expected date cannot be updated.'});
         }
     },
 }

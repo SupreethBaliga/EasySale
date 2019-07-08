@@ -82,16 +82,18 @@ class RequestedOrderPage extends Component {
 
     acceptReqOrder = () => {
         // console.log("Put in for accept");
+        var expectedDate = document.getElementById("expected-by-date-input").value;
         var params = {
-            status: "Payment Pending"
+            status: "Payment Pending",
+            expectedBy : expectedDate
         }
-        axios.put('/api/orders/' + this.state.order.ordernumber, params)
+        axios.put('/api/orders/expdate/' + this.state.order.ordernumber, params)
             .then(res => {
                 console.log("Order Accepted");
             })
             .catch(err => {
                 console.log(err);
-            })
+            }) 
     }
 
     rejectReqOrder = () => {
@@ -180,7 +182,7 @@ class RequestedOrderPage extends Component {
                             <hr />
                             <div className='form-group'>
                                 <label className='accept-reject-field-label'>To Be Delivered By:</label>
-                                <input type='date' className='form-control' />
+                                <input type='date' className='form-control' id='expected-by-date-input'/>
                             </div>
                             <div className='form-group'>
                                 <label className='accept-reject-field-label'>Remarks:</label>

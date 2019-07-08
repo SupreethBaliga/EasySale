@@ -25,7 +25,7 @@
     /* text-decoration: none; */
 }
 
-.order-list-item-main a :hover {
+.order-list-item-main :hover {
     background: #b3b3b3;
     text-decoration: none;
 }

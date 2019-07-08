@@ -49,7 +49,8 @@ app.get('/api/orders/', Order.getAll); //without pending //done
 app.get('/api/orders/pending/', Order.getAllPending);   //done
 app.get('/api/orders/:user_id', Order.getOneUser);  //done
 app.get('/api/orders/by/:orderNumber', Order.getOne);  //done
-app.put('/api/orders/:orderNumber', Order.update);  //done
+app.put('/api/orders/:orderNumber', Order.updateStatus);  //done
+app.put('/api/orders/expdate/:orderNumber', Order.updateDate);
 
 app.get('/api/join/', auth.getjoin);
 app.post('/api/join/', auth.postjoin);

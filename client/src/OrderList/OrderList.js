@@ -18,7 +18,7 @@ class OrderList extends Component {
         axios.get('/api/getuser/')
             .then(res => {
                 user_id = res.data.id;
-                console.log('ID Received');
+                // console.log('ID Received');
             })
             .then(res => {
                 axios.get('/api/orders/' + user_id)
@@ -50,9 +50,12 @@ class OrderList extends Component {
     populateOrders = () => {
         this.orderListItems = this.state.orders.map((order) => {
             return (
-                <OrderListItem key={toString(order.orderNumber)} {...order} />
+                <OrderListItem key={order.ordernumber} {...order} />
             )
         });
+        this.setState((state,props) => ({
+            orders: state.orders
+        }))
     }
 
 

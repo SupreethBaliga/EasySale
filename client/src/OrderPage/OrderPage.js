@@ -30,17 +30,32 @@ class OrderPage extends Component {
 
     componentWillMount() {
         var patharray = window.location.pathname.split('/');
-        if (patharray[2] === "") {
+        if (patharray[2] == null) {
             axios.get('/api/getuser')
                 .then(res => {
                     user_id = res.data.id;
-                    console.log("ID Received");
+                    // console.log(user_id);
                 })
                 .then(res => {
                     axios.get('/api/orders/' + user_id)
                         .then(res => {
-                            this.orderNumber = res.data.rows[0].orderNumber;
-                            console.log("Order Number Received");
+                            this.orderNumber = res.data.rows[0].ordernumber;
+                            // console.log(this.orderNumber);
+                        })
+                        .then(res => {
+                            axios.get('/api/orders/by/' + this.orderNumber)
+                                .then(res => {
+                                    this.setState((state, props) => ({
+                                        order: res.data
+                                    }));
+                                    // console.log(this.state.order);
+                                })
+                                .then(res => {
+                                    this.populateTable();
+                                })
+                                .catch(err => {
+                                    console.log(err);
+                                })
                         })
                         .catch(err => {
                             console.log(err);
@@ -52,29 +67,36 @@ class OrderPage extends Component {
         }
         else {
             this.orderNumber = parseInt(patharray[2], 10);
+            axios.get('/api/orders/by/' + this.orderNumber)
+                .then(res => {
+                    this.setState((state, props) => ({
+                        order: res.data
+                    }));
+                    console.log("Data Received");
+                })
+                .then(res => {
+                    this.populateTable();
+                })
+                .catch(err => {
+                    console.log(err);
+                })
         }
-        axios.get('/api/orders/' + this.orderNumber)
-            .then(res => {
-                this.setState((state, props) => ({
-                    order: res.data
-                }));
-                console.log("Data Received");
-            })
-            .then(res => {
-                for (var i = 0; i < this.state.order.name.length; i++) {
-                    this.productOrders.push({
-                        srNo: i + 1,
-                        id: this.state.order.id[i],
-                        name: this.state.order.name[i],
-                        rate: this.state.order.rate[i],
-                        quantity: this.state.order.quantity[i],
-                        amount: this.state.order.quantity[i] * this.state.order.rate[i]
-                    });
-                }
-            })
-            .catch(err => {
-                console.log(err);
-            })
+    }
+
+    populateTable = () => {
+        for (var i = 0; i < this.state.order.name.length; i++) {
+            this.productOrders.push({
+                srNo: i + 1,
+                id: this.state.order.id[i],
+                name: this.state.order.name[i],
+                rate: this.state.order.rate[i],
+                quantity: this.state.order.quantity[i],
+                amount: this.state.order.quantity[i] * this.state.order.rate[i]
+            });
+        }
+        this.setState((state,props) => ({
+            order: state.order
+        }));
     }
 
     // componentWillMount() {
@@ -105,15 +127,15 @@ class OrderPage extends Component {
                 <div className='row orderPageTopBar'>
                     <div className='col-md-3 m-2 orderNumberDiv'>
                         <span className='OPorderNumber'>
-                            {'#' + this.state.order.orderNumber}
+                            {'#' + this.state.order.ordernumber}
                         </span>
                     </div>
                     <div className='col-md-3 m-2 text text-muted deliveryDates'>
                         <div className='row'>
-                            Ordered On : {this.state.order.orderedOn}
+                            Ordered On : {this.state.order.orderedon}
                         </div>
                         <div className='row'>
-                            Expected By : {this.state.order.expectedBy}
+                            Expected By : {this.state.order.expectedby}
                         </div>
                     </div>
                     <div className='col-md-5 m-2'>
@@ -150,7 +172,7 @@ class OrderPage extends Component {
                                 <tr className='total-row'>
                                     <td className='table-active' colSpan='4' />
                                     <td className='table-active'>Grand Total : </td>
-                                    <td className='table-active'>&#8377; {this.state.order.totalAmount}</td>
+                                    <td className='table-active'>&#8377; {this.state.order.totalamount}</td>
                                 </tr>
                             </tbody>
                         </table>
