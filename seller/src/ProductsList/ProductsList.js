@@ -11,7 +11,7 @@ class ProductsList extends Component {
     }
 
     componentDidMount(){
-        axios.get('http://localhost:8000/api/products')
+        axios.get('/api/products')
         .then(res => {
             const persons = res.data;
             console.log({persons});

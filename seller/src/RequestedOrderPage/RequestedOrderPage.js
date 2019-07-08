@@ -32,14 +32,16 @@ class RequestedOrderPage extends Component {
 
         var patharray = window.location.pathname.split('/');
         var orderNumber = parseInt(patharray[2], 10);
-        axios.get('/api/orders/' + orderNumber)
+        console.log(orderNumber);
+        axios.get('/api/orders/by/' + orderNumber)
             .then(res => {
                 this.setState((state, props) => ({
-                    order: res.data,
+                    order: res.data
                 }));
                 console.log("Order Data Received");
             })
             .then(res => {
+                console.log(this.state.order.user_id);
                 axios.get('/api/users/' + this.state.order.user_id)
                     .then(res => {
                         this.setState((state, props) => ({
@@ -72,6 +74,10 @@ class RequestedOrderPage extends Component {
                 amount: this.state.order.rate[i] * this.state.order.quantity[i]
             });
         }
+        this.setState((state,props) => ({
+            order: state.order,
+            user: state.user
+        }))
     }
 
     acceptReqOrder = () => {
@@ -79,7 +85,7 @@ class RequestedOrderPage extends Component {
         var params = {
             status: "Payment Pending"
         }
-        axios.put('/api/orders/' + this.state.order.orderNumber, params)
+        axios.put('/api/orders/' + this.state.order.ordernumber, params)
             .then(res => {
                 console.log("Order Accepted");
             })
@@ -92,7 +98,7 @@ class RequestedOrderPage extends Component {
         var params = {
             status: "Rejected"
         }
-        axios.put('/api/orders/' + this.state.order.orderNumber, params)
+        axios.put('/api/orders/' + this.state.order.ordernumber, params)
             .then(res => {
                 console.log("Order Rejected");
             })
@@ -107,15 +113,15 @@ class RequestedOrderPage extends Component {
                 <div className='row orderPageTopBar'>
                     <div className='col-md-4 m-3 orgName-div'>
                         <span className='orgName-border'>
-                            {this.state.user.organisationName}
+                            {this.state.user.organisationname}
                         </span>
                     </div>
                     <div className='col-md-4 mt-3 text text-muted deliveryDates'>
                         <div className='row'>
-                            <span className='top-bar-labels'>Ordered On :&nbsp;</span>{this.state.order.orderedOn}
+                            <span className='top-bar-labels'>Ordered On :&nbsp;</span>{this.state.order.orderedon}
                         </div>
                         <div className='row'>
-                            <span className='top-bar-labels'>Contact :&nbsp;</span>{this.state.user.contactNumber}
+                            <span className='top-bar-labels'>Contact :&nbsp;</span>{this.state.user.contactnumber}
                         </div>
                         <div className='row'>
                             <span className='top-bar-labels'>Email :&nbsp;</span>{this.state.user.email}
@@ -124,7 +130,7 @@ class RequestedOrderPage extends Component {
                     <div className='col-md-3 mt-3 text text-muted'>
                         <label className='top-bar-labels'>Delivery Address:</label>
                         <p className=''>
-                            {this.state.user.deliveryAddress}
+                            {this.state.user.deliveryaddress}
                         </p>
                     </div>
                 </div>
@@ -158,7 +164,7 @@ class RequestedOrderPage extends Component {
                                 <tr className='total-row'>
                                     <td className='table-active' colSpan='4' />
                                     <td className='table-active'>Grand Total : </td>
-                                    <td className='table-active'>&#8377; {this.state.order.totalAmount}</td>
+                                    <td className='table-active'>&#8377; {this.state.order.totalamount}</td>
                                 </tr>
                             </tbody>
                         </table>

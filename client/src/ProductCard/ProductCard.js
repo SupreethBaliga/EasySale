@@ -10,7 +10,7 @@ import Fab from '@material-ui/core/Fab';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
 
-// let user_id = ""
+var user_id = "";
 class ProductCard extends Component {listItems = [];
 
     constructor(props) {
@@ -31,7 +31,6 @@ class ProductCard extends Component {listItems = [];
     // }
     addFavorite(){
         // var url = "/api/favs";
-        var user_id = "";
         axios.get("/api/getuser")
         .then(res => {
             user_id = res.data.id;

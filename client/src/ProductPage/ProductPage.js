@@ -20,7 +20,7 @@ class ProductPage extends Component {
         var patharray = window.location.pathname.split("/");
         // console.log(patharray[2]);
         var id = patharray[2];
-        axios.get("http://localhost:8000/api/products/" + id)
+        axios.get("/api/products/" + id)
             .then(res => {
                 var data = res.data;
                 // console.log({ data });
@@ -64,7 +64,7 @@ class ProductPage extends Component {
         axios.get('/api/getuser')
         .then(res => {
             user_id = res.data.id;
-            console.log("ID Received");
+            // console.log("ID Received");
         })
         .then(res => {
             var params = {
@@ -73,7 +73,8 @@ class ProductPage extends Component {
                 "step": this.state.product.step,
                 "image": this.state.product.image,
                 "name": this.state.product.name,
-                "quantity": this.state.quantity
+                "quantity": this.state.quantity,
+                "id": this.state.product.id
             }
             axios.post('/api/cart',params)
             .then(res => {
@@ -90,6 +91,20 @@ class ProductPage extends Component {
 
     addToFavProdPage = () => {
         //code for adding to favourites
+        axios.get("/api/getuser")
+        .then(res => {
+            user_id = res.data.id;
+            console.log(user_id);
+        })
+        .then(res => {
+            axios.post("/api/favs",{
+                "user_id": user_id,
+                "product_id": this.state.product.id
+            })
+        })
+        .catch(err=>{
+            console.log(err);
+        })
     }
 
     render() {

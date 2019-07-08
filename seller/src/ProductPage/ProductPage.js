@@ -19,13 +19,13 @@ class ProductPage extends Component {
         var patharray = window.location.pathname.split("/");
         // console.log(patharray[2]);
         var id = patharray[3];
-        axios.get("http://localhost:8000/api/products/" + id)
+        axios.get("/api/products/" + id)
             .then(res => {
                 var data = res.data;
                 this.setState((state, props) => ({
                     product: data,
-                    step: this.state.products.step,
-                    rate: this.state.products.rate
+                    step: this.state.product.step,
+                    rate: this.state.product.rate
                 }));
             })
             .then(res => {
@@ -44,7 +44,7 @@ class ProductPage extends Component {
     }
 
     removeProduct = () => {
-        axios.delete("http://localhost:8000/api/products/" + this.state.product.id)
+        axios.delete("/api/products/" + this.state.product.id)
             .then(res => {
                 console.log("Product Deleted");
             })
@@ -66,8 +66,8 @@ class ProductPage extends Component {
         //     })
         // })
         axios.put("/api/products/"+this.state.product.id,{
-            "rate":this.state.product.rate,
-            "step":this.state.product.step  
+            "rate":this.state.rate,
+            "step":this.state.step  
         })
         .then(res=>{
             console.log(res);    
@@ -119,12 +119,12 @@ class ProductPage extends Component {
                             <div className="ml-5">
                                 <div className="form-group">
                                     <label className='product-page-label'>Sold In Packs Of:&nbsp;</label>
-                                    <input id="step_product_page" onChange={()=>this.changeStep()} type='text' className='form-control' placeholder={this.state.step}/>
+                                    <input id="step_product_page" onChange={()=>this.changeStep()} type='text' className='form-control' placeholder={this.state.product.step}/>
                                 </div>
                                 <br />
                                 <div className='form-group'>
                                     <label className='product-page-label'>Rate:</label>
-                                    <input id="rate_product_page" onChange={()=>this.changeRate()} type='text' className='form-control' placeholder={this.state.rate}/>
+                                    <input id="rate_product_page" onChange={()=>this.changeRate()} type='text' className='form-control' placeholder={this.state.product.rate}/>
                                 </div>
                             </div>
                             <div className='form-group'>

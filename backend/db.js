@@ -38,6 +38,7 @@ const createOrderTable = () => {
                 quantity INTEGER [],
                 totalAmount INTEGER NOT NULL,
                 user_id UUID NOT NULL,
+                user_name VARCHAR NOT NUll,
                 FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
             )`;
 

@@ -15,14 +15,15 @@ const User = {
     
     async getOne(req, res) {
         let data = auth.authuser(req);
-        if(data != null && data.id === req.params.id) {
+        if(data != null) {
             const text = 'SELECT * FROM users WHERE id = $1';
             try {
                 const { rows } = await db.query(text, [req.params.id]);
                 if (!rows[0]) {
                     return res.status(404).send({'message': 'User not found'});
                 }
-                return res.status(200).send(rows[0]);
+                if(data.id === req.params.id || data.email === "admin@gmail.com") return res.status(200).send(rows[0]);
+                else return res.status(400).send({'message' : 'Cannot access this user details.'})
             } catch(error) {
                 return res.status(400).send(error)
             }

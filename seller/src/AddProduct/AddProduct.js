@@ -32,7 +32,7 @@ class AddProduct extends Component {
             "rate": this.state.rate,
             "step": this.state.step
         }
-        const imageurl = "http://localhost:8000/api/imageupload";
+        const imageurl = "/api/imageupload";
         const formdata = new FormData();
         formdata.append('imagefile', this.state.file);
         const config = {
@@ -45,7 +45,7 @@ class AddProduct extends Component {
             .catch(err => console.log(err));
 
 
-        axios.post("http://localhost:8000/api/products/", params)
+        axios.post("/api/products/", params)
             .then(res => console.log("Form Uploaded"))
             .catch(err => console.log(err));
     }
@@ -92,6 +92,7 @@ class AddProduct extends Component {
             image: res[2],
             file: document.getElementById("image_file_add_product").files[0]
         }));
+        // console.log("Image Uploaded");
     }
     render() {
         return (

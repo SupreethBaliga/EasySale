@@ -6,16 +6,21 @@ const Order = {
         let data = auth.authuser(req);
         if(data != null && data.id === req.body.user_id) {
             const text = `INSERT INTO
-            orders(expectedBy, status, id, name, rate, quantity, totalAmount, user_id)
-            SELECT $1, $2, array_agg(id ORDER BY cartid), array_agg(name ORDER BY cartid), array_agg(rate ORDER BY cartid), array_agg(quantity ORDER BY cartid), $3, $4
+            orders(expectedBy, status, id, name, rate, quantity, totalAmount, user_id, user_name)
+            SELECT $1, $2, array_agg(id ORDER BY cartid), array_agg(name ORDER BY cartid), array_agg(rate ORDER BY cartid), array_agg(quantity ORDER BY cartid), $3, $4, $5
             FROM cart WHERE user_id=$4 GROUP BY user_id
             returning *`;
+
+            var username;
+            if(data.org !== null) username = data.org;
+            else username = data.name;
 
             const values = [
                 req.body.expectedBy,
                 req.body.status,
                 req.body.totalAmount,
-                req.body.user_id
+                req.body.user_id,
+                username
             ];
             try {
                 const { rows } = await db.query(text, values);
@@ -31,7 +36,7 @@ const Order = {
     async getAll(req, res) {
         let data = auth.authuser(req);
         if(data != null && data.email === "admin@gmail.com"){
-            const findAllQuery = `SELECT * FROM orders WHERE status!='pending' ORDER BY orderNumber DESC`;
+            const findAllQuery = `SELECT * FROM orders WHERE status!='Pending' ORDER BY orderNumber DESC`;
             try {
                 const { rows, rowCount } = await db.query(findAllQuery);
                 return res.status(200).send({ rows, rowCount });
@@ -46,7 +51,7 @@ const Order = {
     async getAllPending(req, res) {
         let data = auth.authuser(req);
         if(data != null && data.email === "admin@gmail.com") {
-            const findAllQuery = `SELECT * FROM orders WHERE status='pending' ORDER BY orderNumber DESC`;
+            const findAllQuery = `SELECT * FROM orders WHERE status='Pending' ORDER BY orderNumber DESC`;
             try {
                 const { rows, rowCount } = await db.query(findAllQuery);
                 return res.status(200).send({ rows, rowCount });
@@ -79,6 +84,7 @@ const Order = {
             const text = 'SELECT * FROM orders WHERE orderNumber = $1';
             try {
                 const { rows } = await db.query(text, [req.params.orderNumber]);
+                console.log(rows);
                 if (!rows[0]) {
                     return res.status(404).send({'message': 'order not found'});
                 }

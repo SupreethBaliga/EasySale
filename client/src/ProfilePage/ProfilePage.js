@@ -16,6 +16,7 @@ import axios from 'axios';
 //   deliveryPostalCode: '400072'
 // }
 
+var user_id = ""
 class ProfilePage extends Component {
     constructor(props){
         super(props);
@@ -24,16 +25,28 @@ class ProfilePage extends Component {
         }
     }
     componentDidMount(){
-        var user_id = "f0ef6937-b529-4fe2-bef0-85d38b2ee468";
+        // var user_id = "f0ef6937-b529-4fe2-bef0-85d38b2ee468";
         // get user_id from session here
-        axios.get("http://localhost:8000/api/users/"+user_id)
+        axios.get('/api/getuser')
         .then(res => {
-            const data1 = res.data;
-            this.setState({
-                info: data1
+            user_id = res.data.id;
+        })
+        .then(res => {
+            axios.get("/api/users/"+user_id)
+            .then(res => {
+                const data1 = res.data;
+                this.setState({
+                    info: data1
+                })
+                console.log(this.state.info);
+                this.populate();
             })
-            console.log(this.state.info);
-            this.populate();
+            .catch(err => {
+                console.log(err);
+            });
+        })
+        .catch(err => {
+            console.log(err);
         })
     }
     populate(){

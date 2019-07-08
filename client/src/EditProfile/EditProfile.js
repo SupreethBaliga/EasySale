@@ -130,7 +130,7 @@ class EditProfile extends Component {
         //find user_id from session here
         console.log(this.state.info);
         console.log(this.state.info.email);
-        var u = "http://localhost:8000/api/users/"+user_id;
+        var u = "/api/users/"+user_id;
 
         Axios.put(u,
             {

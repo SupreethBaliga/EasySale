@@ -23,12 +23,15 @@ class FavouritesList extends Component {
             Axios.get("/api/favs/"+user_id)
             .then(res=>{
                 const fav = res.data;
+                console.log(fav);
                 this.setState({
-                    favs: fav.rows
+                    favs: fav.product_id
                 });
-
-                this.state.favs.map((product)=>{
-                    Axios.get("/api/products/"+product.id)
+                var listItems = []
+                console.log(this.state.favs);
+                for(var i=0;i<this.state.favs.length;i++){
+                    console.log(this.state.favs[i]);
+                    Axios.get("/api/products/"+this.state.favs[i])
                     .then(res=>{
                         var data = res.data;
                         this.listItems2.push(data);
@@ -37,8 +40,11 @@ class FavouritesList extends Component {
                     .catch(error=>{
                         console.log(error);
                     })
-                    return null;
-                })
+                }
+                // listItems = this.state.favs.map((product)=>{
+                    
+                //     return null;
+                // })
             })
             .catch(error=>{
                 console.log(error);
@@ -51,7 +57,7 @@ class FavouritesList extends Component {
     }
     listItems3 = [];
     populate = () =>{
-        this.listItems3 = this.state.listItems2.map((product) => {
+        this.listItems3 = this.listItems2.map((product) => {
             
             return (<FavouritesListCard key={product.id} {...product} />)
             

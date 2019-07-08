@@ -116,6 +116,7 @@ function getlogout(req, res){
     console.log(req.isAuthenticated());
     req.logout();
     console.log(req.isAuthenticated());
+    // console.log('')
     // req.flash(‘success’, “Logged out. See you soon!”);
     res.redirect('/api/login');
 }
@@ -145,7 +146,7 @@ passport.use('local', new LocalStrategy({passReqToCallback : true}, (req, userna
                                 return done();
                             }
                             else if (check){
-                                return done(null, [{email: result.rows[0].email, name: result.rows[0].name, id: result.rows[0].id}]);
+                                return done(null, [{email: result.rows[0].email, name: result.rows[0].name, id: result.rows[0].id, org: result.rows[0].organisationname}]);
                             }
                             else{
                             // req.flash(‘danger’, “Oops. Incorrect login details.”);

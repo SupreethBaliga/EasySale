@@ -15,7 +15,9 @@ class SignupPage extends Component {
             company_postal_code: "",
             gst_number: "",
             organisation_name: "",
-            email: ""
+            email: "",
+            password: "",
+            password_confirm: ""
         }
     }
 
@@ -74,9 +76,24 @@ class SignupPage extends Component {
             organisation_name: document.getElementById("organisation_name_signup").value  
         })
     }
+    changePassword(){
+        this.setState({
+            password: document.getElementById("password_signup").value
+        })
+    }
+    changePasswordConfirm(){
+        this.setState({
+            password_confirm: document.getElementById("password_confirm_signup").value
+        })
+    }
 
     handleClick = (event) =>{
-        axios.post("http://localhost:8000/api/users",
+        if(this.state.password !== this.state.password_confirm){
+            console.log("Does not match");
+            return;
+        }
+        console.log("Going into auth");
+        axios.post("/api/join",
         {
             "name": this.state.customer_name,
             "email": this.state.email,
@@ -87,7 +104,8 @@ class SignupPage extends Component {
             "GSTNumber": this.state.gst_number,
             "officeNumber": this.state.landline_number,
             "companyAddress": this.state.company_address,
-            "companyPostalCode": this.state.company_postal_code
+            "companyPostalCode": this.state.company_postal_code,
+            "password": this.state.password
         })
         .then(res => {
             console.log(res);
@@ -101,7 +119,7 @@ class SignupPage extends Component {
         return (
             <div className='signup-page'>
                 <br />
-                <form action='' method='post'>
+                <form>
                     <div className='bordered-section ml-2 mr-2 mb-2'>
                         <span className='section-header'><u>Personal Details</u>:<span className='asterisk'>*</span></span>
                         <div className='col-sm-12'>
@@ -122,6 +140,18 @@ class SignupPage extends Component {
                                             <label className='signupLabelText'>Mobile No: </label>
                                             <input type='text' id="mobile_number_signup" onChange={() => this.changeMobile()} className='form-control' />
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='form-group'>
+                                <div className='row'>
+                                    <div className='col-md-6'>
+                                        <label className='signupLabelText'>Password:</label>
+                                        <input onChange={()=> this.changePassword()} id="password_signup" type='password' className='form-control'/>
+                                    </div>
+                                    <div className='col-md-6'>
+                                        <label className='signupLabelText'>Confirm Password:</label>
+                                        <input type='password' onChange={()=> this.changePasswordConfirm()} id="password_confirm_signup" className='form-control'/>
                                     </div>
                                 </div>
                             </div>

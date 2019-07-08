@@ -107,7 +107,7 @@ class FavouritesListCard extends Component {
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button variant='contained' color='primary' className='m-1'>VIEW PRODUCT</Button>
+                    <a href={'/product/' + this.props.id}><Button variant='contained' color='primary' className='m-1'>VIEW PRODUCT</Button></a>
                     <Button onClick={()=> this.removeFavourite()} variant='contained' color='secondary'>REMOVE FROM FAVOURITES</Button>
                 </CardActions>
             </Card>
