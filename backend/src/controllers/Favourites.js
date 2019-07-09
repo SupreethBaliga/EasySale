@@ -9,6 +9,7 @@ const Favourite = {
             const text = `INSERT INTO
             favourites(favid, user_id, product_id)
             VALUES($1, $2, $3)
+            ON CONFLICT ( user_id, product_id) DO NOTHING
             returning *`;
             const values = [
                 uuidv4(),

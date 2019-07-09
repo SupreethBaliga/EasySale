@@ -54,7 +54,7 @@ class EditProfile extends Component {
                 .then(res => {
                     console.log(url);
                     const data1 = res.data;
-                    //console.log({data1});
+                    console.log(data1);
                     this.setState({
                         info: data1
                     })
@@ -150,11 +150,10 @@ class EditProfile extends Component {
         }
         ).then(res => {
             console.log(res);
+            window.location.pathname = '/profile';
         }).catch(error => {
             console.log(error);
-        })
-        
-    }
+        })    }
     render() {
         return (
             <div className='col-md-12'>

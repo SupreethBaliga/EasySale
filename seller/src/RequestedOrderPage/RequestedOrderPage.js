@@ -33,6 +33,8 @@ class RequestedOrderPage extends Component {
         var patharray = window.location.pathname.split('/');
         var orderNumber = parseInt(patharray[2], 10);
         console.log(orderNumber);
+
+
         axios.get('/api/orders/by/' + orderNumber)
             .then(res => {
                 this.setState((state, props) => ({
@@ -90,6 +92,7 @@ class RequestedOrderPage extends Component {
         axios.put('/api/orders/expdate/' + this.state.order.ordernumber, params)
             .then(res => {
                 console.log("Order Accepted");
+                window.location.pathname='/seller/orders';
             })
             .catch(err => {
                 console.log(err);
@@ -103,6 +106,7 @@ class RequestedOrderPage extends Component {
         axios.put('/api/orders/' + this.state.order.ordernumber, params)
             .then(res => {
                 console.log("Order Rejected");
+                window.location.pathname='/seller/orders';
             })
             .catch(err => {
                 console.log(err);

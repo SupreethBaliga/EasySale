@@ -11,8 +11,6 @@ class NavBar extends Component {
                 console.log("Before Logout");
                 console.log(res);
                 console.log("Logged Out");
-            })
-            .then(res => {
                 window.location.pathname = "/login";
             })
             .catch(err => {

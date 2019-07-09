@@ -70,6 +70,15 @@ class RequestedOrdersList extends Component {
     }
 
     componentDidMount() {
+
+        axios.get('/api/getuser')
+        .then(res => {
+            console.log(res);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+
         axios.get('/api/orders/pending/')
             .then(res => {
                 this.setState((state, props) => ({

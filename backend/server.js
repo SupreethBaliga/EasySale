@@ -22,7 +22,13 @@ app.use(cors());
 app.use(express.json())
 app.use(require('cookie-parser')());
 app.use(require('body-parser').urlencoded({ extended: true }));
-app.use(expressSession({ secret: 'mySecretKey' }));
+app.use(expressSession({ secret: 'mySecretKey',
+    cookie: {
+        path: '/',
+        domain: 'easysale.live',
+        httpOnly: true
+    }
+ }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use('/public', express.static(__dirname + '/public'));
@@ -59,6 +65,12 @@ app.get('/api/login/', auth.getlogin);
 app.post('/api/login/', auth.authFunction, auth.postlogin);
 app.get('/api/logout/', auth.getlogout);
 app.get('/api/getuser/', auth.auth);
+app.get('/api/successJson',(req,res) => {
+    res.send('Login Successful');
+})
+app.get('/api/failureJson',(req,res) => {
+    res.send('Login Failed');
+})
 
 app.post('/api/favs/', Favourites.create);//done
 app.get('/api/favs/', Favourites.getAll);//not needed

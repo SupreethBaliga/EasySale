@@ -81,12 +81,14 @@ class FavouritesListCard extends Component {
             url = "/api/favs/"+user_id+"/"+this.props.id;
         })
         .then(res=>{
-            axios.delete(url);
+            axios.delete(url)
+            .then(res => {
+                window.location.pathname='/favourites';
+           })
         })
         .catch(error=>{
             console.log(error);
         })
-        
     }
 
     render() {

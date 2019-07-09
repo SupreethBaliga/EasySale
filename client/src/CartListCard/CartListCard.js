@@ -56,6 +56,7 @@ class CartListCard extends Component {
                 axios.delete("/api/cart/" + user_id + '/' + this.props.id)
                     .then(res => {
                         console.log("Product Deleted");
+                        window.location.href = '/cart';
                     })
                     .catch(err => {
                         console.log(err);
@@ -64,6 +65,7 @@ class CartListCard extends Component {
             .catch(err => {
                 console.log(err);
             });
+        // window.location.href='/cart';
     }
 
     render() {
@@ -79,7 +81,7 @@ class CartListCard extends Component {
                     <div>
                         <span className='text text-muted'>Rate: &#8377;{this.props.rate} for a pack of {this.props.step} </span><br />
                         <span className='text text-muted'>Quantity:
-                            <NumericInput step={this.props.step} value={this.state.newQuantity} min={0} id={'quantity' + this.props.id} onChange={() => this.calculateTotal()} />
+                            <NumericInput step={this.props.step} value={this.state.newQuantity} min={this.props.step} id={'quantity' + this.props.id} onChange={() => this.calculateTotal()} />
                         </span>
                     </div>
                     <div>

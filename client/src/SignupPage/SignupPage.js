@@ -110,6 +110,7 @@ class SignupPage extends Component {
         .then(res => {
             console.log(res);
             console.log(this.state.name+ "  " + this.state.gst_number);
+            window.location.pathname = '/login';
         })
         .catch(error => {
             console.log(error);

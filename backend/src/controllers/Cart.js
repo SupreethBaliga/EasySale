@@ -9,6 +9,7 @@ const Cart = {
             const text = `INSERT INTO
             cart(cartid, user_id, name, id, image, rate, step, quantity)
             VALUES($1, $2, $3, $4, $5, $6, $7, $8)
+            ON CONFLICT ( user_id, id ) DO NOTHING
             returning *`;
             const values = [
                 uuidv4(),

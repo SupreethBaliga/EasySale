@@ -6,14 +6,14 @@ class NavBar extends Component {
 
     handleLogout = () => {
         console.log("For Logout");
-        axios.get('http://localhost:8000/api/logout')
+        axios.get('/api/logout')
             .then(res => {
                 console.log("Before Logout");
                 console.log(res);
                 console.log("Logged Out");
             })
             .then(res => {
-                window.location.pathname = "/login";
+                window.location.assign("//easysale.live/login");
             })
             .catch(err => {
                 console.log(err);

@@ -46,7 +46,10 @@ class AddProduct extends Component {
 
 
         axios.post("/api/products/", params)
-            .then(res => console.log("Form Uploaded"))
+            .then(res => { 
+                console.log("Product Created");
+                window.location.href = '/seller/products'
+            })
             .catch(err => console.log(err));
     }
 

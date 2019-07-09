@@ -70,7 +70,8 @@ class ProductPage extends Component {
             "step":this.state.step  
         })
         .then(res=>{
-            console.log(res);    
+            console.log(res);
+            window.location.pathname = '/seller/products';
         })
         .catch(error=>{
             console.log(error);

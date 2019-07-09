@@ -54,6 +54,7 @@ class CartList extends Component {
     }
 
     handleProceedToCheckout = () => {
+
         var params = {
             "status" : "Pending",
             "id": [],
@@ -74,10 +75,10 @@ class CartList extends Component {
 
         axios.post("/api/orders",params)
         .then(res => {
-            console.log("Order Placed");
             axios.delete("/api/cart/"+user_id)
             .then(res => {
                 console.log("Cart Deleted");
+                window.location.href='/myOrders';
             })
             .catch(err => {
                 console.log(err);

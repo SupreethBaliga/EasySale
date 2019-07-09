@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './LoginPage.css';
 import axios from 'axios';
-
 class LoginPage extends Component {
 
     constructor(props) {
@@ -24,6 +23,18 @@ class LoginPage extends Component {
             // withCredentials: true
         }).then(res=>{
             console.log(res);
+            // console.log(res.config.data);
+            if(res.data="Login Successful"){
+                if(this.state.email === "admin@gmail.com") {
+                    window.location.assign('//seller.easysale.live');
+                }
+                else {
+                    window.location.pathname = '/';
+                }
+            }
+            else {
+                window.location.pathname = '/login';
+            }
         }).catch(error=>{
             console.log(error);
         });

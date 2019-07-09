@@ -112,6 +112,7 @@ const createFavouritesTable = () => {
                 favid UUID PRIMARY KEY,
                 user_id UUID NOT NULL,
                 product_id VARCHAR NOT NULL,
+                UNIQUE ( user_id, product_id ),
                 FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
                 FOREIGN KEY (product_id) REFERENCES products (id) ON DELETE CASCADE
             )`;
@@ -139,6 +140,7 @@ const createCartTable = () => {
                 rate INTEGER NOT NULL,
                 step INTEGER NOT NULL,
                 quantity INTEGER NOT NULL,
+                UNIQUE ( user_id, id ),
                 FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
             )`;
 

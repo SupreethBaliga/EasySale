@@ -16,12 +16,12 @@ class OrderList extends Component {
     componentDidMount() {
         axios.get('/api/orders/')
             .then(res => {
-                // console.log(res.data);
+                console.log(res.data);
                 var dborders = res.data;
                 this.setState((state, props) => ({
                     orders: dborders.rows
                 }));
-                // console.log("Order Received");
+                console.log("Order Received");
             })
             .then(res => {
                 this.populateOrders();

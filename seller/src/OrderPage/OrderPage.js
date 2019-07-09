@@ -133,6 +133,7 @@ class OrderPage extends Component {
                 this.setState((state, props) => ({
                     status: orderStatus
                 }));
+                window.location.href='/seller/orders';
             })
             .catch(err => {
                 console.log(err);

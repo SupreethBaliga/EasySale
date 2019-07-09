@@ -19,10 +19,6 @@ class ProductCard extends Component {
         }
     }
 
-    goToProdPage = () => {
-        console.log('Hello');
-        return;
-    }
 
     render() {
         return (

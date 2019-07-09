@@ -11,7 +11,6 @@ class FavouritesList extends Component {
             
         }
     }
-    listItems = [];
     listItems2 = [];
     componentDidMount(){
         var user_id = "";
@@ -27,7 +26,6 @@ class FavouritesList extends Component {
                 this.setState({
                     favs: fav.product_id
                 });
-                var listItems = []
                 console.log(this.state.favs);
                 for(var i=0;i<this.state.favs.length;i++){
                     console.log(this.state.favs[i]);
@@ -41,10 +39,6 @@ class FavouritesList extends Component {
                         console.log(error);
                     })
                 }
-                // listItems = this.state.favs.map((product)=>{
-                    
-                //     return null;
-                // })
             })
             .catch(error=>{
                 console.log(error);

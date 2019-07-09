@@ -98,8 +98,8 @@ function getlogin(req, res) {
 }
 
 var authFunction = passport.authenticate('local', {
-    successRedirect: '/api/account',
-    failureRedirect: '/api/login',
+    successRedirect: '/api/successJson',
+    failureRedirect: '/api/failureJson',
     failureFlash: true
 })
 

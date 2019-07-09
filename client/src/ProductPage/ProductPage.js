@@ -146,7 +146,7 @@ class ProductPage extends Component {
                                     </div>
                                     <div className="form-group">
                                         <span className='product-page-label'>Quantity:</span>
-                                        <NumericInput className="form-control" step={this.state.product.step} value={this.state.quantity} min={0} id="quantity" onChange={() => this.calculateTotal()} />
+                                        <NumericInput className="form-control" step={this.state.product.step} value={this.state.quantity} min={this.state.product.step} id="quantity" onChange={() => this.calculateTotal()} />
                                         <small className='text text-muted'>Sold in quantities of {this.state.product.step}</small>
                                     </div>
                                 </form>
