@@ -4,17 +4,6 @@ import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import axios from 'axios';
 
-// let props = {
-//     orderNumber: '2341231',
-//     orderedOnDate: '12/3/2019',
-//     expectedByDate: '20/3/2019',
-//     statusOfOrder: 'Payment Pending',
-//     productId: ['12321421', '12332145', '16453', '2356', '2543'],
-//     productName: ['Product1', 'Product2', 'Product3', 'Product4', 'Product5'],
-//     rate: [10, 20, 30, 35, 5],
-//     quantity: [150, 200, 100, 50, 250]
-//   }
-
 var user_id = "";
 class OrderPage extends Component {
 
@@ -24,23 +13,24 @@ class OrderPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            order: {}
+            order: {},
+            expectedBy : ""
         }
     }
 
     componentWillMount() {
         var patharray = window.location.pathname.split('/');
+        
         if (patharray[2] == null) {
             axios.get('/api/getuser')
                 .then(res => {
-                    user_id = res.data.id;
-                    // console.log(user_id);
+                    if(res.data == null) window.location.href = '/';
+                    else user_id = res.data.id;
                 })
                 .then(res => {
                     axios.get('/api/orders/' + user_id)
                         .then(res => {
                             this.orderNumber = res.data.rows[0].ordernumber;
-                            // console.log(this.orderNumber);
                         })
                         .then(res => {
                             axios.get('/api/orders/by/' + this.orderNumber)
@@ -48,7 +38,6 @@ class OrderPage extends Component {
                                     this.setState((state, props) => ({
                                         order: res.data
                                     }));
-                                    // console.log(this.state.order);
                                 })
                                 .then(res => {
                                     this.populateTable();
@@ -72,7 +61,6 @@ class OrderPage extends Component {
                     this.setState((state, props) => ({
                         order: res.data
                     }));
-                    console.log("Data Received");
                 })
                 .then(res => {
                     this.populateTable();
@@ -81,6 +69,9 @@ class OrderPage extends Component {
                     console.log(err);
                 })
         }
+        this.setState({
+            expectedBy : this.state.order.orderedon
+        })
     }
 
     populateTable = () => {
@@ -98,28 +89,6 @@ class OrderPage extends Component {
             order: state.order
         }));
     }
-
-    // componentWillMount() {
-    //     for (var i = 0; i < this.props.productName.length; i++) {
-    //         this.productOrders.push({
-    //             srNo: i + 1,
-    //             productId: this.props.productId[i],
-    //             productName: this.props.productName[i],
-    //             rate: this.props.rate[i],
-    //             quantity: this.props.quantity[i],
-    //             amount: this.props.quantity[i] * this.props.rate[i]
-    //         });
-    //     }
-    // }
-
-    // componentDidMount() {
-    //     //eslint-disable-next-line
-    //     this.productOrders.map((product) => {
-    //         this.setState((state, props) => ({
-    //             grandTotal: state.grandTotal + product.amount
-    //         }))
-    //     });
-    // }
 
     render() {
         return (
@@ -180,7 +149,7 @@ class OrderPage extends Component {
                 </div>
                 <div class='bottom-bar mt-4'>
                     {(() => {
-                        switch (this.props.statusOfOrder) {
+                        switch (this.state.order.status) {
                             case 'Payment Pending': return <Button variant='contained' color='primary'>MAKE PAYMENT</Button>;
                             case 'Advance Payment Pending': return (<Button variant='contained' color='primary'>MAKE PAYMENT</Button>);
                             default: return null;

@@ -14,11 +14,9 @@ class ProductListPage extends Component {
         axios.get('/api/products')
             .then(res => {
                 const persons = res.data;
-                console.log({ persons });
                 this.setState({
                     products: persons.rows
                 });
-                console.log(this.state.products);
                 this.populate();
             });
     }

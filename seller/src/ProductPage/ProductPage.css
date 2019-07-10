@@ -20,8 +20,9 @@
     padding: 15px;
 }
 
-h1 {
+.product-page-name-seller {
     font-weight: bold;
+    font-size: 60px;
 }
 
 .product-page-label {
@@ -36,4 +37,8 @@ h1 {
 .remove-prod-btn {
     font-weight: bold;
     font-size:15px;
+}
+
+.product-id-seller {
+    font-size: 20px;
 }

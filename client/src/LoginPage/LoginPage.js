@@ -20,16 +20,13 @@ class LoginPage extends Component {
             method: "post",
             url: "/api/login",
             data: params
-            // withCredentials: true
         }).then(res=>{
-            console.log(res);
-            // console.log(res.config.data);
-            if(res.data="Login Successful"){
+            if(res.data === "Login Successful"){
                 if(this.state.email === "admin@gmail.com") {
                     window.location.assign('//seller.easysale.live');
                 }
                 else {
-                    window.location.pathname = '/';
+                    window.location.pathname = '/home';
                 }
             }
             else {
@@ -43,19 +40,17 @@ class LoginPage extends Component {
         this.setState((state,props) => ({
             email: document.getElementById("email-login-page").value
         }));
-        // console.log(this.state.email);
     }
 
     passwordLogin = () => {
         this.setState((state,props) => ({
             password: document.getElementById("password-login-page").value
         }));
-        // console.log(this.state.password);
     }
                 
     render() {
         return (
-            <div>
+            <div className='login-page'>
                 <form>
                     <br /><br /><br />
                     <div className='col-sm-10 offset-sm-1'>

@@ -5,13 +5,9 @@ import axios from 'axios';
 class NavBar extends Component {
 
     handleLogout = () => {
-        console.log("For Logout");
         axios.get('/api/logout')
             .then(res => {
-                console.log("Before Logout");
-                console.log(res);
-                console.log("Logged Out");
-                window.location.pathname = "/login";
+                window.location.pathname = "/";
             })
             .catch(err => {
                 console.log(err);
@@ -22,7 +18,7 @@ class NavBar extends Component {
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark col-md-12">
                 <center>
-                    <a className="navbar-brand" href="/">EasySale</a>
+                    <a className="navbar-brand" href="/home">EasySale</a>
                 </center>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>

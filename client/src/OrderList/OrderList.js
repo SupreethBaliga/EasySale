@@ -17,8 +17,8 @@ class OrderList extends Component {
     componentDidMount() {
         axios.get('/api/getuser/')
             .then(res => {
-                user_id = res.data.id;
-                // console.log('ID Received');
+                if(res.data == null) window.location.href = '/';
+                else user_id = res.data.id;
             })
             .then(res => {
                 axios.get('/api/orders/' + user_id)
@@ -57,13 +57,6 @@ class OrderList extends Component {
             orders: state.orders
         }))
     }
-
-
-    // orderListItems = this.props.orders.map((order) => {
-    //     return (
-    //         <OrderListItem key={toString(order.orderNumber)} {...order} />
-    //     )
-    // });
 
     render() {
         return (

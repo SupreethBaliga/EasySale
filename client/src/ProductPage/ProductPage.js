@@ -18,12 +18,10 @@ class ProductPage extends Component {
 
     componentDidMount() {
         var patharray = window.location.pathname.split("/");
-        // console.log(patharray[2]);
         var id = patharray[2];
         axios.get("/api/products/" + id)
             .then(res => {
                 var data = res.data;
-                // console.log({ data });
                 this.setState((state, props) => ({
                     product: data
                 }));
@@ -34,11 +32,9 @@ class ProductPage extends Component {
             .catch(err => {
                 console.log(err);
             });
-        // console.log(this.state.product);
     }
 
     updatePage = () => {
-        // console.log(this.state.product);
         let images = require.context('../assets/images/');
         this.setState((state, props) => ({
             totalAmt: state.product.step * state.product.rate,
@@ -63,8 +59,8 @@ class ProductPage extends Component {
     addToCartProdPage = () => {
         axios.get('/api/getuser')
         .then(res => {
-            user_id = res.data.id;
-            // console.log("ID Received");
+            if(res.data == null) window.location.href = '/';
+            else user_id = res.data.id;
         })
         .then(res => {
             var params = {
@@ -90,11 +86,10 @@ class ProductPage extends Component {
     }
 
     addToFavProdPage = () => {
-        //code for adding to favourites
         axios.get("/api/getuser")
         .then(res => {
-            user_id = res.data.id;
-            console.log(user_id);
+            if(res.data == null) window.location.href = '/';
+            else user_id = res.data.id;
         })
         .then(res => {
             axios.post("/api/favs",{
@@ -112,30 +107,32 @@ class ProductPage extends Component {
             <div className="col-md-12 background">
                 <div className="container">
                     <div className="row">
-                        <div className="col-md-4">
+                        <div className="col-md-6">
                             <div className='row'>
-                                <img src={this.state.image} alt={this.state.product.name} height="400px" width="350px" className="productImage" />
+                                <img src={this.state.image} alt={this.state.product.name} height="550px" width="650px" className="productImage" />
                             </div>
                             <br />
-                            <div className='row'>
-                                <div className='col-md-5'>
-                                    <button className="btn btn-dark addToCart" onClick={() => this.addToCartProdPage()}><i className='material-icons'>add_shopping_cart</i>ADD TO CART</button>
-                                </div>
-                                <div className='col-md-7'>
-                                    <button className="btn btn-dark addToFav" onClick={() => this.addToFavProdPage()} ><i className='material-icons'>favorite</i>ADD TO FAVOURITES</button>
+                            <div className='form-group'>
+                                <div className='row'>
+                                    <div className='col-md-5'>
+                                        <button className="btn btn-dark addToCart form-control" onClick={() => this.addToCartProdPage()}><i className='material-icons'>add_shopping_cart</i>ADD TO CART</button>
+                                    </div>
+                                    <div className='col-md-7'>
+                                        <button className="btn btn-dark addToFav form-control" onClick={() => this.addToFavProdPage()} ><i className='material-icons'>favorite</i>ADD TO FAVOURITES</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-6 offset-md-1">
+                        <div className="col-md-5 ml-5">
                             <div className="row">
                                 <div className="ml-5">
-                                    <h1>{this.state.product.name}</h1>
+                                    <h1 className='prod-page-prod-name'>{this.state.product.name}</h1>
                                 </div>
                             </div>
                             <hr />
-                            <div className="row ml-5">
-                                <div className="form-group">
-                                    <span className='product-page-label'>Product Code :</span> {this.state.product.id}
+                            <div className="row">
+                                <div className='ml-5 product-page-label-val'>
+                                        <span className='product-page-label'>Product Code :</span> {this.state.product.id}
                                 </div>
                             </div>
                             <hr />

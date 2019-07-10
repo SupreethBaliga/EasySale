@@ -6,7 +6,7 @@ const Order = {
         let data = auth.authuser(req);
         if(data != null && data.id === req.body.user_id) {
             const text = `INSERT INTO
-            orders(expectedBy, status, id, name, rate, quantity, totalAmount, user_id, user_name)
+            orders(orderedOn, status, id, name, rate, quantity, totalAmount, user_id, user_name)
             SELECT $1, $2, $3, $4, $5, $6, $7, $8, $9
             FROM cart WHERE user_id=$8 GROUP BY user_id
             returning *`;
@@ -16,7 +16,7 @@ const Order = {
             else username = data.name;
 
             const values = [
-                req.body.expectedBy,
+                req.body.orderedOn,
                 req.body.status,
                 req.body.id,
                 req.body.name,
@@ -63,6 +63,7 @@ const Order = {
                 return res.status(400).send(error);
             }
         } else {
+            window.location.assign('//easysale.live/')
             res.status(400).send({'message' : 'All orders cannot be seen.'});
         }
     },
@@ -88,7 +89,6 @@ const Order = {
             const text = 'SELECT * FROM orders WHERE orderNumber = $1';
             try {
                 const { rows } = await db.query(text, [req.params.orderNumber]);
-                console.log(rows);
                 if (!rows[0]) {
                     return res.status(404).send({'message': 'order not found'});
                 }

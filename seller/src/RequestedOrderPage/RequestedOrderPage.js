@@ -3,21 +3,6 @@ import './RequestedOrderPage.css';
 import Paper from '@material-ui/core/Paper';
 import axios from 'axios';
 
-// let props = {
-//     orgName: 'Supreeth Baliga Paper Products And Materials',
-//     orderedOn: '12/4/12',
-//     contactNo: '9879765123',
-//     orgEmail: 'supreethbaliga@gmail.com',
-//     deliveryAddress: 'C204, Manavsthal Heights, Off Military Road, Andheri',
-//     orderDetails: {
-//       productId: ['12321421', '12332145', '16453', '2356', '2543'],
-//       productName: ['Product1', 'Product2', 'Product3', 'Product4', 'Product5'],
-//       rate: [10, 20, 30, 35, 5],
-//       quantity: [150, 200, 100, 50, 250]
-//     },
-//     total: 12323
-//   }
-
 class RequestedOrderPage extends Component {
 
     constructor(props) {
@@ -32,24 +17,19 @@ class RequestedOrderPage extends Component {
 
         var patharray = window.location.pathname.split('/');
         var orderNumber = parseInt(patharray[2], 10);
-        console.log(orderNumber);
-
 
         axios.get('/api/orders/by/' + orderNumber)
             .then(res => {
                 this.setState((state, props) => ({
                     order: res.data
                 }));
-                console.log("Order Data Received");
             })
             .then(res => {
-                console.log(this.state.order.user_id);
                 axios.get('/api/users/' + this.state.order.user_id)
                     .then(res => {
                         this.setState((state, props) => ({
                             user: res.data
                         }));
-                        console.log("User Data Received");
                     })
                     .then(res => {
                         this.populateOrderTable();
@@ -83,15 +63,14 @@ class RequestedOrderPage extends Component {
     }
 
     acceptReqOrder = () => {
-        // console.log("Put in for accept");
         var expectedDate = document.getElementById("expected-by-date-input").value;
+        var datearr = expectedDate.split('-');
         var params = {
             status: "Payment Pending",
-            expectedBy : expectedDate
+            expectedBy : datearr[2]+'-'+datearr[1]+'-'+datearr[0]
         }
         axios.put('/api/orders/expdate/' + this.state.order.ordernumber, params)
             .then(res => {
-                console.log("Order Accepted");
                 window.location.pathname='/seller/orders';
             })
             .catch(err => {
@@ -105,7 +84,6 @@ class RequestedOrderPage extends Component {
         }
         axios.put('/api/orders/' + this.state.order.ordernumber, params)
             .then(res => {
-                console.log("Order Rejected");
                 window.location.pathname='/seller/orders';
             })
             .catch(err => {
@@ -189,10 +167,6 @@ class RequestedOrderPage extends Component {
                                 <input type='date' className='form-control' id='expected-by-date-input'/>
                             </div>
                             <div className='form-group'>
-                                <label className='accept-reject-field-label'>Remarks:</label>
-                                <textarea className='form-control' rows='3' />
-                            </div>
-                            <div className='form-group'>
                                 <button className='btn btn-dark form-control accept-order-btn' onClick={() => this.acceptReqOrder()}>ACCEPT</button>
                             </div>
                         </div>
@@ -202,11 +176,7 @@ class RequestedOrderPage extends Component {
                                 <label>Reject Order</label>
                             </div>
                             <hr />
-                            <div className='form-group'>
-                                <label className='accept-reject-field-label'>Reason For Rejection:</label>
-                                <textarea className='form-control' rows='5' />
-                            </div>
-                            <br /><br />
+                            <br /><br /><br/>
                             <div className='form-group'>
                                 <button className='btn btn-dark form-control reject-order-btn' onClick={() => this.rejectReqOrder()}>REJECT</button>
                             </div>

@@ -1,19 +1,7 @@
 import React, { Component } from 'react';
 import './OrderPage.css';
-// import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import axios from 'axios';
-
-// let props = {
-//     orderNumber: '2341231',
-//     orderedOnDate: '12/3/2019',
-//     expectedByDate: '20/3/2019',
-//     statusOfOrder: 'Payment Pending',
-//     productId: ['12321421', '12332145', '16453', '2356', '2543'],
-//     productName: ['Product1', 'Product2', 'Product3', 'Product4', 'Product5'],
-//     rate: [10, 20, 30, 35, 5],
-//     quantity: [150, 200, 100, 50, 250]
-//   }
 
 class OrderPage extends Component {
 
@@ -34,7 +22,6 @@ class OrderPage extends Component {
             axios.get('/api/orders/')
                 .then(res => {
                     orderNumber = res.data.rows[0].ordernumber;
-                    console.log('orderNumberReceived' + orderNumber);
                 })
                 .then(res => {
                     axios.get('/api/orders/by/' + orderNumber)
@@ -43,7 +30,6 @@ class OrderPage extends Component {
                                 order: res.data,
                                 status: res.data.status
                             }));
-                            // console.log("Order Data Received");
                         })
                         .then(res => {
                             axios.get('/api/users/' + this.state.order.user_id)
@@ -51,7 +37,6 @@ class OrderPage extends Component {
                                     this.setState((state, props) => ({
                                         user: res.data
                                     }));
-                                    console.log("User Data Received");
                                 })
                                 .then(res => {
                                     this.populateOrderTable();
@@ -76,7 +61,6 @@ class OrderPage extends Component {
                                 order: res.data,
                                 status: res.data.status
                             }));
-                            // console.log("Order Data Received");
                         })
                         .then(res => {
                             axios.get('/api/users/' + this.state.order.user_id)
@@ -84,7 +68,6 @@ class OrderPage extends Component {
                                     this.setState((state, props) => ({
                                         user: res.data
                                     }));
-                                    // console.log("User Data Received");
                                 })
                                 .then(res => {
                                     this.populateOrderTable();
@@ -96,15 +79,12 @@ class OrderPage extends Component {
                         .catch(err => {
                             console.log(err);
                         });
-        }
-        // console.log(orderNumber);
-        
+        }        
     }
 
     productOrders = [];
 
     populateOrderTable = () => {
-        // console.log(this.state.order);
         for (var i = 0; i < this.state.order.name.length; i++) {
             this.productOrders.push({
                 srNo: i + 1,
@@ -122,14 +102,11 @@ class OrderPage extends Component {
 
     setStatusOfOrder = () => {
         var orderStatus = document.getElementById('select-status-of-order').value;
-        // console.log(orderStatus);
-        // console.log(this.state.order)
         var params = {
             "status": orderStatus
         }
         axios.put('/api/orders/' + this.state.order.ordernumber, params)
             .then(res => {
-                console.log("Status Updated");
                 this.setState((state, props) => ({
                     status: orderStatus
                 }));
@@ -139,21 +116,6 @@ class OrderPage extends Component {
                 console.log(err);
             });
     }
-
-
-    // componentWillMount() {
-    //     for (var i = 0; i < this.props.productName.length; i++) {
-    //         this.productOrders.push({
-    //             srNo: i + 1,
-    //             productId: this.props.productId[i],
-    //             productName: this.props.productName[i],
-    //             rate: this.props.rate[i],
-    //             quantity: this.props.quantity[i],
-    //             amount: this.props.quantity[i] * this.props.rate[i]
-    //         });
-    //     }
-    // }
-
 
     render() {
         return (

@@ -21,20 +21,12 @@ class ProductCard extends Component {listItems = [];
             image: images('./' + this.props.image)
         }
     }
-    // componentDidMount(){
-    //     var url = "/api/favs";
-    //     axios.get("/api/getuser")
-    //     .then(res=> {
-    //         user_id = res.data.id;
-    //         url = url + user_id;
-    //     })
-    // }
+
     addFavorite(){
-        // var url = "/api/favs";
         axios.get("/api/getuser")
         .then(res => {
-            user_id = res.data.id;
-            // url = url + user_id;
+            if(res.data == null) window.location.href = '/';
+            else user_id = res.data.id;
         })
         .then(res => {
             axios.post("/api/favs",{
@@ -43,16 +35,16 @@ class ProductCard extends Component {listItems = [];
             })
                 
         })
-        .catch(res => {
-            console.log(res);
+        .catch(err => {
+            console.log(err);
         })
     }
 
     handleAddToCart = () => {
         axios.get('/api/getuser')
             .then(res => {
-                console.log("ID Received");
-                user_id = res.data.id;
+                if(res.data == null) window.location.href = '/';
+                else user_id = res.data.id;
             })
             .then(res => {
                 var params = {

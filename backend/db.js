@@ -11,6 +11,19 @@ pool.on('connect', () => {
     console.log('connected to the db');
 })
 
+const exportUser = () => {
+    const queryText = `COPY users to '/tmp/userdata.csv' DELIMITER ',' CSV HEADER`;
+    pool.query(queryText)
+        .then((res) => {
+            console.log(res.command);
+            pool.end();
+        })
+        .catch((err) => {
+            console.log(err);
+            pool.end();
+        });
+}
+
 const createSequence = () => {
     const queryText = 'CREATE SEQUENCE IF NOT EXISTS orderSequence INCREMENT BY 1 START WITH 1';
     pool.query(queryText)
@@ -29,8 +42,8 @@ const createOrderTable = () => {
         `CREATE TABLE IF NOT EXISTS
             orders(
                 orderNumber INTEGER DEFAULT NEXTVAL('orderSequence') PRIMARY KEY,
-                orderedOn DATE DEFAULT CURRENT_DATE,
-                expectedBy DATE,
+                orderedOn VARCHAR NOT NULL,
+                expectedBy VARCHAR,
                 status TEXT NOT NULL,
                 id VARCHAR [],
                 name VARCHAR [],
@@ -240,6 +253,7 @@ const dropCartTable = () => {
 }
 
 module.exports = {
+    exportUser,
     createSequence,
     createOrderTable,
     createUserTable,

@@ -2,64 +2,6 @@ import React, { Component } from 'react';
 import './RequestedOrdersList.css';
 import axios from 'axios';
 
-// let reqProps = {
-//     orders: [
-//       {
-//         uniqueId: '12340901',
-//         orgName: 'Supreeth Baliga',
-//         orderedOn: '12/4/12',
-//         deliveryAddress: 'C204, Manavsthal Heights, Off Military Road, Andheri',
-//         orderDetails: {
-//           productId: ['12321421', '12332145', '16453', '2356', '2543'],
-//           productName: ['Product1', 'Product2', 'Product3', 'Product4', 'Product5'],
-//           rate: [10, 20, 30, 35, 5],
-//           quantity: [150, 200, 100, 50, 250]
-//         },
-//         total: 12323
-//       },
-//       {
-//         uniqueId: '12340901',
-//         orgName: 'Supreeth Baliga',
-//         orderedOn: '12/4/12',
-//         deliveryAddress: 'C204, Manavsthal Heights, Off Military Road, Andheri',
-//         orderDetails: {
-//           productId: ['12321421', '12332145', '16453', '2356', '2543'],
-//           productName: ['Product1', 'Product2', 'Product3', 'Product4', 'Product5'],
-//           rate: [10, 20, 30, 35, 5],
-//           quantity: [150, 200, 100, 50, 250]
-//         },
-//         total: 12323
-//       },
-//       {
-//         uniqueId: '12340901',
-//         orgName: 'Supreeth Baliga',
-//         orderedOn: '12/4/12',
-//         deliveryAddress: 'C204, Manavsthal Heights, Off Military Road, Andheri',
-//         orderDetails: {
-//           productId: ['12321421', '12332145', '16453', '2356', '2543'],
-//           productName: ['Product1', 'Product2', 'Product3', 'Product4', 'Product5'],
-//           rate: [10, 20, 30, 35, 5],
-//           quantity: [150, 200, 100, 50, 250]
-//         },
-//         total: 12323
-//       },
-//       {
-//         uniqueId: '12340901',
-//         orgName: 'Supreeth Baliga',
-//         orderedOn: '12/4/12',
-//         deliveryAddress: 'C204, Manavsthal Heights, Off Military Road, Andheri',
-//         orderDetails: {
-//           productId: ['12321421', '12332145', '16453', '2356', '2543'],
-//           productName: ['Product1', 'Product2', 'Product3', 'Product4', 'Product5'],
-//           rate: [10, 20, 30, 35, 5],
-//           quantity: [150, 200, 100, 50, 250]
-//         },
-//         total: 12323
-//       }
-//     ]
-//   }
-// var user;
-
 class RequestedOrdersList extends Component {
 
     constructor(props) {
@@ -84,7 +26,6 @@ class RequestedOrdersList extends Component {
                 this.setState((state, props) => ({
                     reqorders: res.data.rows
                 }))
-                // console.log(this.state.reqorders);
             })
             .then(res => {
                 this.populateReqOrders()
@@ -98,7 +39,6 @@ class RequestedOrdersList extends Component {
 
     populateReqOrders = () => {
         this.orderList = this.state.reqorders.map((order) => {
-            console.log(order);
             return (
                 <div key={order.ordernumber} className='col-md-6 offset-md-3 mt-3 order-list-item-full'>
                     <div className='row'>
@@ -125,7 +65,6 @@ class RequestedOrdersList extends Component {
         }))
     }
 
-
     render() {
         return (
             <div className='orders-list-full-page'>
@@ -133,7 +72,6 @@ class RequestedOrdersList extends Component {
             </div>
         )
     }
-
 }
 
 export default RequestedOrdersList;

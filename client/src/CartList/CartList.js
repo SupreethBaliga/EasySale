@@ -18,14 +18,14 @@ class CartList extends Component {
     componentDidMount() {
         axios.get("/api/getuser")
             .then(res => {
-                user_id = res.data.id;
-                console.log(user_id);
+                if(res.data==null) window.location.pathname = '/';
+                else if(res.data.email==="admin@gmail.com") window.location.assign("//seller.easysale.live/");
+                else user_id = res.data.id;
             })
             .then(res => {
                 axios.get("/api/cart/" + user_id)
                     .then(res => {
                         const dbproducts = res.data;
-                        console.log(dbproducts);
                         this.setState((state, props) => ({
                             products: dbproducts.rows
                         }));
@@ -55,7 +55,14 @@ class CartList extends Component {
 
     handleProceedToCheckout = () => {
 
+        var date = new Date();
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+        var datestr = day + '-' + month + '-' + year;
+
         var params = {
+            "orderedOn": datestr,
             "status" : "Pending",
             "id": [],
             "name" : [],
@@ -77,7 +84,6 @@ class CartList extends Component {
         .then(res => {
             axios.delete("/api/cart/"+user_id)
             .then(res => {
-                console.log("Cart Deleted");
                 window.location.href='/myOrders';
             })
             .catch(err => {
@@ -95,15 +101,10 @@ class CartList extends Component {
         }));
     }
 
-    // cartListItems = this.props.cartListItems.map((cartItem) => {
-    //     return (
-    //         <CardListCard key={cartItem.productId} {...cartItem} updateGrandTotal={this.updateGrandTotal} />
-    //     )
-    // });
     render() {
         return (
             <div className='col-md-12'>
-                <div className='row top-bar'>
+                <div className='row cart-top-bar'>
                     <div className='col-md-9'>
                         <span className='amountPayable mt-2'>Amount Payable:</span>&nbsp;&nbsp;<span className='totalAmount ml-3'>&#8377;{this.state.grandTotal}</span>
                     </div>

@@ -8,51 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
-// let favs = {
-//     products: [
-//       {
-//         id: 1,
-//         name: "Prod1",
-//         description: "This is product 1. Enter some more description about it so that it looks as big as 4 to 5 lines. This is what I am trying to do right now but it doesn't seem to work. Keep on seeing. Still seeing. And still see.",
-//         image: require('./assets/images/prod1.jpeg'),
-//         rate: 4,
-//         defaultQuantity: 100
-//       },
-//       {
-//         id: 2,
-//         name: "Prod2",
-//         description: "This is product 2. Enter some more description about it so that it looks as big as 4 to 5 lines. This is what I am trying to do right now but it doesn't seem to work. Keep on seeing. Still seeing. And still see.",
-//         image: require('./assets/images/prod2.jpeg'),
-//         rate: 6,
-//         defaultQuantity: 120
-//       },
-//       {
-//         id: 3,
-//         name: "Prod3",
-//         description: "This is product 3. Enter some more description about it so that it looks as big as 4 to 5 lines. This is what I am trying to do right now but it doesn't seem to work. Keep on seeing. Still seeing. And still see.",
-//         image: require('./assets/images/prod3.jpeg'),
-//         rate: 5,
-//         defaultQuantity: 100
-//       },
-//       {
-//         id: 4,
-//         name: "Prod4",
-//         description: "This is product 4. Enter some more description about it so that it looks as big as 4 to 5 lines. This is what I am trying to do right now but it doesn't seem to work. Keep on seeing. Still seeing. And still see.",
-//         image: require('./assets/images/prod4.jpeg'),
-//         rate: 9,
-//         defaultQuantity: 50
-//       },
-//       {
-//         id: 5,
-//         name: "Prod5",
-//         description: "This is product 5. Enter some more description about it so that it looks as big as 4 to 5 lines. This is what I am trying to do right now but it doesn't seem to work. Keep on seeing. Still seeing. And still see.",
-//         image: require('./assets/images/prod5.jpeg'),
-//         rate: 7,
-//         defaultQuantity: 130
-//       }
-//     ]
-//   }
-// let user_id = "";
+
 class FavouritesListCard extends Component {
     constructor(props){
         let images = require.context('../assets/images');
@@ -61,17 +17,7 @@ class FavouritesListCard extends Component {
             image: images('./' + this.props.image)
         }
     }
-    // componentDidMount(){
-    //     var url = "/api/favs"
-    //     axios.get("/api/getuser")
-    //     .then(res => {
-    //         user_id = res.data.id;
-    //         url = url + user_id;
-    //     })
-    //     .then(res => {
-            
-    //     })
-    // }
+
     removeFavourite(){
         var user_id = "";
         var url = ""

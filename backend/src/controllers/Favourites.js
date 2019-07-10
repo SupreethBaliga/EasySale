@@ -28,15 +28,15 @@ const Favourite = {
         }
     },
 
-    async getAll(req, res) {
-        const findAllQuery = 'SELECT * FROM favourites';
-        try {
-            const { rows, rowCount } = await db.query(findAllQuery);
-            return res.status(200).send({ rows, rowCount });
-        } catch(error) {
-            return res.status(400).send(error);
-        }
-    },
+    // async getAll(req, res) {
+    //     const findAllQuery = 'SELECT * FROM favourites';
+    //     try {
+    //         const { rows, rowCount } = await db.query(findAllQuery);
+    //         return res.status(200).send({ rows, rowCount });
+    //     } catch(error) {
+    //         return res.status(400).send(error);
+    //     }
+    // },
     
     async getOneUser(req, res) {
         let data = auth.authuser(req);

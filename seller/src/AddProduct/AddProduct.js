@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import './AddProduct.css';
 import axios from 'axios';
@@ -46,8 +45,7 @@ class AddProduct extends Component {
 
 
         axios.post("/api/products/", params)
-            .then(res => { 
-                console.log("Product Created");
+            .then(res => {
                 window.location.href = '/seller/products'
             })
             .catch(err => console.log(err));
@@ -57,35 +55,30 @@ class AddProduct extends Component {
         this.setState((state, props) => ({
             name: document.getElementById('product_name_add_product').value
         }));
-        // console.log(this.state.name);
     }
 
     onChangeProductId = (event) => {
         this.setState((state, props) => ({
             id: document.getElementById("product_id_add_product").value
         }));
-        // console.log(this.state.id);
     }
 
     onChangeRate = (event) => {
         this.setState((state, props) => ({
             rate: parseInt(document.getElementById("rate_add_product").value)
         }));
-        // console.log(this.state.rate+2);
     }
 
     onChangeStep = (event) => {
         this.setState((state, props) => ({
             step: parseInt(document.getElementById("step_add_product").value)
         }));
-        // console.log(this.state.step + 2);
     }
 
     onChangeDescription = (event) => {
         this.setState((state, props) => ({
             description: document.getElementById("description_add_product").value
         }));
-        // console.log(this.state.description);
     }
 
     onImageUpload = (event) => {
@@ -95,7 +88,6 @@ class AddProduct extends Component {
             image: res[2],
             file: document.getElementById("image_file_add_product").files[0]
         }));
-        // console.log("Image Uploaded");
     }
     render() {
         return (
@@ -108,20 +100,12 @@ class AddProduct extends Component {
                         </div>
                     </div>
                     <div className='row'>
-                        <div className='col-md-4 offset-md-1'>
+                        <div className='col-md-4 offset-md-1 add-image-div'>
                             <Card className='add-product-img-card'>
                                 <CardHeader subheader="Upload Product Image" className='add-product-cardheader' />
-                                <CardMedia className='add-product-cardmedia'>
-                                    {(() => {
-                                        switch (this.state.imageSelected) {
-                                            case true: return <img className='text text-muted' alt='Failed to Load' />;
-                                            default: return <span className='text text-muted img-not'>Image Not Provided</span>
-                                        }
-                                    })()}
-                                </CardMedia>
                                 <CardContent>
                                     <div className='row'>
-                                        <div className='col-md-8'>
+                                        <div className='col-md-12'>
                                             <input type='file' className='form-control' id='image_file_add_product' onChange={() => this.onImageUpload()}></input>
                                         </div>
                                     </div>

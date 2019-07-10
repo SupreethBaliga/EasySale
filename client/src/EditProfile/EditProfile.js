@@ -3,27 +3,12 @@ import './EditProfile.css';
 import Paper from '@material-ui/core/Paper';
 import Axios from 'axios';
 
-
-// let props = {
-//   customerName: 'Dipesh Khandelwal',
-//   orgName: 'Khandelwal Paper Products',
-//   gstNo: '12345678f0b23a5',
-//   landlineCode: '0141',
-//   landlineNumber: '24102729',
-//   mobileNumber: '9879649801',
-//   email: 'abcd@efgh.com',
-//   companyAddr: '1-D-93, Lalita Shastri Nagar, Jaipur',
-//   deliveryAddr: 'C204, Manavsthal Heights, Off Military Road, Andheri-(E), Mumbai',
-//   companyPostalCode: '789162',
-//   deliveryPostalCode: '400072'
-// }
 let user_id = "";
 
 class EditProfile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            //customerName: this.props.customerName,
             info:[],
             customer_name: "",
             mobile_number: "",
@@ -33,32 +18,28 @@ class EditProfile extends Component {
             landline_code: "",
             landline_number: "",
             company_postal_code: ""
-            // landline_num_code: "",
-            // landline_num: ""
         }
     }
     
     componentDidMount(){
-        
-        //get user_id here from session
-        // console.log("adiaiudh");
+
         var url = "/api/users/"
         Axios.get("/api/getuser/")
         .then( res => {
-            user_id = res.data.id;
-            url = url + user_id;
-            console.log(url);
+            if(res.data==null) window.location.pathname = '/';
+            else if(res.data.email==="admin@gmail.com") window.location.assign("//seller.easysale.live/");
+            else {
+                user_id = res.data.id;
+                url = url + user_id;
+            }
         })
         .then(res => {
             Axios.get(url)
                 .then(res => {
-                    console.log(url);
                     const data1 = res.data;
-                    console.log(data1);
                     this.setState({
                         info: data1
                     })
-                    console.log(this.state.info);
                     this.populate();
                     this.setState({
                         customer_name : this.state.info.name,
@@ -70,12 +51,6 @@ class EditProfile extends Component {
                         landline_code: this.state.info.officenumber.split('-')[0],
                         landline_number: this.state.info.officenumber.split('-')[1],
                     })
-                // console.log(this.state.info.deliverypostalcode);
-                    // this.setState((state,props)=>({
-                    //     customerName: this.state.info.name
-                    // }));
-                    
-
                 })
         })
         
@@ -127,11 +102,6 @@ class EditProfile extends Component {
     }
 
     handleClick = (event) => {
-        // event.preventDefault();
-        // var user_id = "f0ef6937-b529-4fe2-bef0-85d38b2ee468";
-        //find user_id from session here
-        console.log(this.state.info);
-        console.log(this.state.info.email);
         var u = "/api/users/"+user_id;
 
         Axios.put(u,
@@ -149,7 +119,6 @@ class EditProfile extends Component {
             
         }
         ).then(res => {
-            console.log(res);
             window.location.pathname = '/profile';
         }).catch(error => {
             console.log(error);
@@ -230,7 +199,7 @@ class EditProfile extends Component {
                                                     </div>
                                                     <div className='col-md-6 form-group'>
                                                         <label className='labelText'>Landline No:</label>
-                                                        <div className='row'>
+                                                        <div className='row form-group ml-1'>
                                                             <input id="landline_code_edit_profile" onChange={()=> this.changeLandlineCode()} placeholder={this.state.landline_code} size='4' type='text' /> &nbsp;-&nbsp;
                                                             <input id="landline_number_edit_profile" onChange={()=> this.changeLandlineNumber()} placeholder={this.state.landline_number} size='20' type='text' />
                                                         </div>

@@ -23,7 +23,8 @@ class SignupPage extends Component {
 
     changeName(){
         this.setState({
-            customer_name: document.getElementById("customer_name_signup").value
+            customer_name: document.getElementById("customer_name_signup").value,
+            organisation_name: document.getElementById("customer_name_signup").value  
         })
     }
     changeMobile(){
@@ -51,11 +52,6 @@ class SignupPage extends Component {
             company_postal_code: document.getElementById("company_postal_code_signup").value
         })
     }
-    // changeLandlineCode(){
-    //     this.setState({
-    //         landline_code: document.getElementById("landline_code_signup").value
-    //     })
-    // }
     changeLandlineNumber(){
         this.setState({
             landline_number: document.getElementById("landline_number_signup").value
@@ -89,10 +85,8 @@ class SignupPage extends Component {
 
     handleClick = (event) =>{
         if(this.state.password !== this.state.password_confirm){
-            console.log("Does not match");
             return;
         }
-        console.log("Going into auth");
         axios.post("/api/join",
         {
             "name": this.state.customer_name,
@@ -108,8 +102,7 @@ class SignupPage extends Component {
             "password": this.state.password
         })
         .then(res => {
-            console.log(res);
-            console.log(this.state.name+ "  " + this.state.gst_number);
+            // console.log(this.state.landline_number);
             window.location.pathname = '/login';
         })
         .catch(error => {

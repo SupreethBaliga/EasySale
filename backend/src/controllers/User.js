@@ -1,17 +1,16 @@
-import uuidv4 from 'uuid/v4';
 import db from '../db';
 let auth = require('./Authentication');
 
 const User = {
-    async getAll(req, res) {
-        const findAllQuery = 'SELECT * FROM users';
-        try {
-            const { rows, rowCount } = await db.query(findAllQuery);
-            return res.status(200).send({ rows, rowCount });
-        } catch(error) {
-            return res.status(400).send(error);
-        }
-    },
+    // async getAll(req, res) {
+    //     const findAllQuery = 'SELECT * FROM users';
+    //     try {
+    //         const { rows, rowCount } = await db.query(findAllQuery);
+    //         return res.status(200).send({ rows, rowCount });
+    //     } catch(error) {
+    //         return res.status(400).send(error);
+    //     }
+    // },
     
     async getOne(req, res) {
         let data = auth.authuser(req);

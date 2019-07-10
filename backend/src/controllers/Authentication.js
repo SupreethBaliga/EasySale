@@ -2,7 +2,8 @@ const passport = require("passport");
 const bcrypt = require('bcrypt');
 const uuidv4 = require('uuid/v4');
 const LocalStrategy = require('passport-local').Strategy;
-const {Pool} = require('pg');
+const { Pool } = require('pg');
+
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL
 });
@@ -19,7 +20,6 @@ async function postjoin (req, res) {
         await JSON.stringify(client.query('SELECT id FROM users WHERE email=$1', [req.body.email], function(err, result) {
             if(result.rows[0]){
                 // req.flash(‘warning’, “This email address is already registered. <a href=’/login’>Log in!</a>”);
-                console.log("This email address is already registered.");
                 res.redirect('/api/join');
             }
             else{
@@ -45,9 +45,7 @@ async function postjoin (req, res) {
                         }
                         else {
                             client.query('COMMIT')
-                            console.log(result.command);
                             // req.flash(‘success’,’User created.’)
-                            console.log("user created");
                             res.redirect('/api/login');
                             return;
                         }
@@ -70,29 +68,26 @@ function getaccount(req, res) {
     }
 }
 
-function auth(req,res)
-{
-    if(req.isAuthenticated())
-    {
+function auth(req,res) {
+    if(req.isAuthenticated()) {
         res.send(req.session.passport.user[0]) ;
+    } else {
+        res.send("null");
     }
-    else res.send("null");
 }
 
-function authuser(req)
-{
-    if(req.isAuthenticated())
-    {
+function authuser(req) {
+    if(req.isAuthenticated()) {
         return(req.session.passport.user[0]) ;
+    } else {
+        return null;
     }
-    else return null;
 }
 
 function getlogin(req, res) {
     if (req.isAuthenticated()) {
         res.redirect('/api/account');
-    }
-    else{
+    }else {
         res.render('./login.html', {title: "Log in", userData: req.user});
     }
 }
@@ -109,15 +104,11 @@ function postlogin(req, res) {
     } else {
         req.session.cookie.expires = false;
     }
-res.redirect('/api/login');
+    res.redirect('/api/login');
 }
 
 function getlogout(req, res){
-    console.log(req.isAuthenticated());
     req.logout();
-    console.log(req.isAuthenticated());
-    // console.log('')
-    // req.flash(‘success’, “Logged out. See you soon!”);
     res.redirect('/api/login');
 }
 
@@ -142,14 +133,13 @@ passport.use('local', new LocalStrategy({passReqToCallback : true}, (req, userna
                     else{
                         bcrypt.compare(password, result.rows[0].password, function(err, check) {
                             if (err){
-                                console.log('Error while checking password');
                                 return done();
                             }
                             else if (check){
                                 return done(null, [{email: result.rows[0].email, name: result.rows[0].name, id: result.rows[0].id, org: result.rows[0].organisationname}]);
                             }
                             else{
-                            // req.flash(‘danger’, “Oops. Incorrect login details.”);
+                                // req.flash(‘danger’, “Oops. Incorrect login details.”);
                                 return done(null, false);
                             }
                         });

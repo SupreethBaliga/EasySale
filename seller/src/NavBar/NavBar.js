@@ -5,15 +5,9 @@ import axios from 'axios';
 class NavBar extends Component {
 
     handleLogout = () => {
-        console.log("For Logout");
         axios.get('/api/logout')
             .then(res => {
-                console.log("Before Logout");
-                console.log(res);
-                console.log("Logged Out");
-            })
-            .then(res => {
-                window.location.assign("//easysale.live/login");
+                window.location.assign("//easysale.live/");
             })
             .catch(err => {
                 console.log(err);

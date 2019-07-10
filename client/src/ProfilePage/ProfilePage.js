@@ -2,20 +2,6 @@ import React, { Component } from 'react';
 import './ProfilePage.css';
 import axios from 'axios';
 
-// let profile = {
-//   customerName: 'Dipesh Khandelwal',
-//   orgName: 'Khandelwal Paper Products',
-//   gstNo: '12345678f0b23a5',
-//   landlineCode: '0141',
-//   landlineNumber: '24102729',
-//   mobileNumber: '9879649801',
-//   email: 'abcd@efgh.com',
-//   companyAddr: '1-D-93, Lalita Shastri Nagar, Jaipur',
-//   deliveryAddr: 'C204, Manavsthal Heights, Off Military Road, Andheri-(E), Mumbai',
-//   companyPostalCode: '789162',
-//   deliveryPostalCode: '400072'
-// }
-
 var user_id = ""
 class ProfilePage extends Component {
     constructor(props){
@@ -25,11 +11,10 @@ class ProfilePage extends Component {
         }
     }
     componentDidMount(){
-        // var user_id = "f0ef6937-b529-4fe2-bef0-85d38b2ee468";
-        // get user_id from session here
         axios.get('/api/getuser')
         .then(res => {
-            user_id = res.data.id;
+            if(res.data == null) window.location.href = '/';
+            else user_id = res.data.id;
         })
         .then(res => {
             axios.get("/api/users/"+user_id)
@@ -38,7 +23,6 @@ class ProfilePage extends Component {
                 this.setState({
                     info: data1
                 })
-                console.log(this.state.info);
                 this.populate();
             })
             .catch(err => {
@@ -110,7 +94,7 @@ class ProfilePage extends Component {
                     <div className='col-md-4'>
                         {(() => {
                             switch (this.state.info.companyaddress) {
-                                case '': return <span className='text text-muted'>Not Provided</span>;
+                                case "": return <span className='text text-muted'>Not Provided</span>;
                                 default: return this.state.info.companyaddress + '.';
                             }
                         })()}
@@ -121,7 +105,7 @@ class ProfilePage extends Component {
                         <span className='field-label-value'>
                             {(() => {
                                 switch (this.state.info.companyaddress) {
-                                    case '': return <span className='text text-muted'>Not Provided</span>;
+                                    case "": return <span className='text text-muted'>Not Provided</span>;
                                     default: return <span className='field-label-value'>{this.state.info.companypostalcode}</span>
                                 }
                             })()}
@@ -134,7 +118,7 @@ class ProfilePage extends Component {
                         <span className='field-label-value'>
                             {(() => {
                                 switch (this.state.info.officenumber) {
-                                    case '': return <span className='text text-muted'>Not Provided</span>;
+                                    case "": return <span className='text text-muted'>Not Provided</span>;
                                     default: return this.state.info.officenumber
                                 }
                             })()}

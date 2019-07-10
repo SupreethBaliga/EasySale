@@ -50,12 +50,10 @@ class CartListCard extends Component {
         axios.get('/api/getuser/')
             .then(res => {
                 user_id = res.data.id;
-                console.log("Id Received");
             })
             .then(res => {
                 axios.delete("/api/cart/" + user_id + '/' + this.props.id)
                     .then(res => {
-                        console.log("Product Deleted");
                         window.location.href = '/cart';
                     })
                     .catch(err => {
@@ -65,7 +63,6 @@ class CartListCard extends Component {
             .catch(err => {
                 console.log(err);
             });
-        // window.location.href='/cart';
     }
 
     render() {

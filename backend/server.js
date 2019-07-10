@@ -40,22 +40,22 @@ app.get('/', (req, res) => {
     return res.status(200).send({ 'message': 'Testing for Server' });
 })
 
-app.post('/api/products/', Product.create); //done
-app.get('/api/products/', Product.getAll);//done in both seller and client
-app.get('/api/products/:id', Product.getOne);//done
-app.put('/api/products/:id', Product.update);//done
-app.delete('/api/products/:id', Product.delete);//done
+app.post('/api/products/', Product.create);
+app.get('/api/products/', Product.getAll);
+app.get('/api/products/:id', Product.getOne);
+app.put('/api/products/:id', Product.update);
+app.delete('/api/products/:id', Product.delete);
 
-app.get('/api/users/', User.getAll);
+// app.get('/api/users/', User.getAll);
 app.get('/api/users/:id', User.getOne);
 app.put('/api/users/:id', User.update);
 
-app.post('/api/orders/', Order.create);//done
-app.get('/api/orders/', Order.getAll); //without pending //done
-app.get('/api/orders/pending/', Order.getAllPending);   //done
-app.get('/api/orders/:user_id', Order.getOneUser);  //done
-app.get('/api/orders/by/:orderNumber', Order.getOne);  //done
-app.put('/api/orders/:orderNumber', Order.updateStatus);  //done
+app.post('/api/orders/', Order.create);
+app.get('/api/orders/', Order.getAll);
+app.get('/api/orders/pending/', Order.getAllPending);
+app.get('/api/orders/:user_id', Order.getOneUser);
+app.get('/api/orders/by/:orderNumber', Order.getOne);
+app.put('/api/orders/:orderNumber', Order.updateStatus);
 app.put('/api/orders/expdate/:orderNumber', Order.updateDate);
 
 app.get('/api/join/', auth.getjoin);
@@ -72,17 +72,17 @@ app.get('/api/failureJson',(req,res) => {
     res.send('Login Failed');
 })
 
-app.post('/api/favs/', Favourites.create);//done
-app.get('/api/favs/', Favourites.getAll);//not needed
-app.get('/api/favs/:user_id', Favourites.getOneUser);//done
-app.delete('/api/favs/:user_id/:product_id', Favourites.delete);//done
+app.post('/api/favs/', Favourites.create);
+// app.get('/api/favs/', Favourites.getAll);
+app.get('/api/favs/:user_id', Favourites.getOneUser);
+app.delete('/api/favs/:user_id/:product_id', Favourites.delete);
 
-app.post('/api/cart/', Cart.create); //done for both product Card and page
-app.get('/api/cart/', Cart.getAll); //not there
-app.get('/api/cart/:user_id', Cart.getOneUser);//done
-app.put('/api/cart/:user_id/:id', Cart.update);// not used
-app.delete('/api/cart/:user_id/:id', Cart.deleteProduct);//done
-app.delete('/api/cart/:user_id', Cart.deleteCart);//done
+app.post('/api/cart/', Cart.create);
+// app.get('/api/cart/', Cart.getAll);
+app.get('/api/cart/:user_id', Cart.getOneUser);
+// app.put('/api/cart/:user_id/:id', Cart.update);
+app.delete('/api/cart/:user_id/:id', Cart.deleteProduct);
+app.delete('/api/cart/:user_id', Cart.deleteCart);
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -101,7 +101,6 @@ app.post('/api/imageupload', upload.single('imagefile'), function (req, res) {
         fs.copyFile('../seller/src/assets/images/' + req.file.originalname, '../client/src/assets/images/' + req.file.originalname,
             (err) => {
                 if (err) console.log(err);
-                else console.log('image copied');
             });
         return res.status(200);
     }

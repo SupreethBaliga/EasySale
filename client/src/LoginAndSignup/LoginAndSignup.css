@@ -1,5 +1,4 @@
 .background-div {
-    height: 160vh;
     width: 100vw;
     background: #999999;
     padding-top: 5vh !important;
@@ -16,8 +15,8 @@
 
 .swipe-tabs {
     width: 62vw;
-    margin-left:18.3vw;
-    margin-right: 19.7vw !important;
+    margin-left:18.7vw;
+    margin-right: 19.3vw !important;
     padding:0 !important;
     padding-left: 0 !important;
     padding-right: 0 !important;

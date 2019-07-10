@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './OrderList.css';
 import List from '@material-ui/core/List';
-// import ListSubheader from '@material-ui/core/ListSubheader';
 import OrderListItem from '../OrderListItem/OrderListItem';
 import axios from 'axios';
 
@@ -16,12 +15,10 @@ class OrderList extends Component {
     componentDidMount() {
         axios.get('/api/orders/')
             .then(res => {
-                console.log(res.data);
                 var dborders = res.data;
                 this.setState((state, props) => ({
                     orders: dborders.rows
                 }));
-                console.log("Order Received");
             })
             .then(res => {
                 this.populateOrders();
@@ -43,12 +40,6 @@ class OrderList extends Component {
             orders: state.orders
         }));
     }
-
-    // orderListItems = this.props.orders.map((order) => {
-    //     return (
-    //         <OrderListItem key={toString(order.orderNumber)} {...order} />
-    //     )
-    // });
 
     render() {
         return (

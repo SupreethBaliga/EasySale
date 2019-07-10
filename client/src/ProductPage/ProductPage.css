@@ -1,14 +1,13 @@
 .background {
     background: #d9d9d9;
-    padding-top: 15px;
+    padding-top: 10vh;
     height: 87vh;
 }
 
 .productImage {
     box-shadow: 10px 10px 5px rgb(136, 133, 133);   
     border: 2px solid rgb(37, 36, 36);
-    object-fit: fill;
-    margin-left: 15px;
+
 }
 
 .detail {
@@ -48,10 +47,16 @@
     width: 100%;
 }
 
-h1 {
+.prod-page-prod-name {
     font-weight: bold;
+    font-size: 60px;
 }
 
 .product-page-label {
     font-weight: bold;
+    font-size: 20px;
+}
+
+.product-page-label-val {
+    font-size: 20px;
 }
