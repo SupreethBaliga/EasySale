@@ -72,13 +72,13 @@ class ProductCard extends Component {listItems = [];
     render() {
         return (
             <Card className='card m-3 ml-2'>
-                <CardHeader title={this.props.name} subheader={"Product ID: " + this.props.id} />
+                <CardHeader title={this.props.name} subheader={"Product ID: " + this.props.id} className='card-header-prod' />
                 <CardMedia className='media'>
                     <div className="container">
                         <img src={this.state.image} alt={this.props.name} className='prodImage'></img>
                     </div>
                 </CardMedia>
-                <CardContent>
+                <CardContent className='card-content'>
                     <div>
                         <span className='totalAmt'> &#8377; {this.state.totalAmount}</span>&nbsp;&nbsp;
                         <span className='minQuantity'>for pack of {this.props.step}</span>
@@ -87,7 +87,7 @@ class ProductCard extends Component {listItems = [];
                         {this.props.description}
                     </Typography>
                 </CardContent>
-                <CardActions>
+                <CardActions className='card-actions'>
                     <Fab color="primary" aria-label="AddToCart" className='ml-2 mr-2' onClick={() => this.handleAddToCart()}>
                         <i className="material-icons">add_shopping_cart</i>
                     </Fab>

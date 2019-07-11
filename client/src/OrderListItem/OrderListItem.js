@@ -14,7 +14,7 @@ class OrderListItem extends Component {
 
     render() {
         return (
-            <a className='list-item btn' href={"/myOrders/" + this.props.ordernumber}>
+            <a className='order-list-cli-list-item btn' href={"/myOrders/" + this.props.ordernumber}>
                 <ListItem alignItems='flex-start'>
                     <ListItemAvatar>
                         <span className="orderNumber">&#35;{this.props.ordernumber}</span>

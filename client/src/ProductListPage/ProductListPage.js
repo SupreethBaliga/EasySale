@@ -35,7 +35,7 @@ class ProductListPage extends Component {
 
     render() {
         return (
-            <div className="row m-3">
+            <div className="row product-list-page">
                 {this.listItems}
             </div>
         )

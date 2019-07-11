@@ -39,7 +39,7 @@ li {
 }
 
 li a:hover {
-    background: #848484;
+    /* background: #848484; */
     color: #212121;
     outline: 0;
     border-radius: 20px;
@@ -60,8 +60,11 @@ li a:hover {
 .nav-link:hover{
     text-decoration: none;
     color: #f1f1f1;
+    transform: scale(1.2,1.2);
+    transition-duration: 0.01s;
 }
 
 .navbar {
-    background: #0d0d0d !important;
+    background: #001a33 !important;
+    border-bottom: 4px double #cce6ff;
 }

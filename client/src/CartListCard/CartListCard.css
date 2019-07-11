@@ -3,9 +3,26 @@
 }
 
 .media {
-    padding-top: '56.25%';
+    padding-top: 15px;
     text-align: center;
+    background-color: #ccd9ff;
 }
+
+.cart-card-content {
+    background-color: #ccd9ff;
+}
+
+.card-header-cart {
+    background-color: #ccd9ff;
+    /* color: #b3d9ff !important;  */
+    font-weight: bold !important;
+    font-size: 40px;
+}
+
+.cart-cart-actions {
+    background-color: #ffffff;
+}
+
 .prodImage {
     width:100%;
     height: 37vh;
@@ -20,4 +37,8 @@
 hr {
     margin-top:0;
     margin-bottom: 0;
+}
+
+.cart-text {
+    font-size: 20px;
 }

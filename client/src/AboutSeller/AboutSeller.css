@@ -1,11 +1,52 @@
 .seller-title {
     font-size: 80px;
     font-weight: bold;
+    position: absolute;
+    top:120px;
+    z-index: 1;
+    left:30vw;
+    font-size: 140px;
+    font-style: italic;
+    color: #ffffff;
+    border: 8px solid #ffffff;
+    padding: 30px;
+    border-radius: 30px;
+    padding-right: 45px;
 }
 
-.text {
+.about-seller-text {
     font-size:25px;
     text-align: justify;
     object-fit: contain;
     word-spacing: 10px;
 }
+
+.about-seller-page {
+    background: #99b3ff;
+    height: 91vh;
+    overflow-y: scroll;
+    padding:0;
+    padding-bottom: 30px;
+}
+
+
+
+.about-seller-details {
+    background: #f6ef98;
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.about-seller-details-title {
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.image-div-about-seller {
+    padding: 0 !important;
+    margin-left: 0 !important;
+}
+
+/* .image-about-seller {
+    image-rendering: pixelated;
+} */

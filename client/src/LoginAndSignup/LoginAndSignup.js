@@ -46,8 +46,8 @@ export default function FullWidthTabs() {
                     textColor="primary"
                     variant="fullWidth"
                 >
-                    <Tab label="SIGNUP" />
-                    <Tab label="LOGIN" />
+                    <Tab label="SIGNUP" className='tab-label' />
+                    <Tab label="LOGIN"  className='tab-label' />
                 </Tabs>
             </AppBar>
             <SwipeableViews

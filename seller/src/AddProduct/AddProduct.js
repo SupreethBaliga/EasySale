@@ -39,16 +39,34 @@ class AddProduct extends Component {
                 'content-type': 'multipart/form-data'
             }
         };
-        axios.post(imageurl, formdata, config)
-            .then(res => console.log("Image Uploaded"))
-            .catch(err => console.log(err));
 
-
-        axios.post("/api/products/", params)
+        if(params.image === "") {
+            console.log(params.image);
+            params.image = "defaultProductImage.jpg";
+            axios.post("/api/products/", params)
             .then(res => {
                 window.location.href = '/seller/products'
             })
             .catch(err => console.log(err));
+        }
+
+        else {
+
+            axios.post(imageurl, formdata, config)
+            .then(res => {
+                console.log("Added Product");
+            })
+            .catch(err => console.log(err));
+
+            axios.post("/api/products/", params)
+                    .then(res => {
+                        window.location.href = '/seller/products'
+                    })
+                    .catch(err => console.log(err));
+
+        }
+
+
     }
 
     onChangeProductName = (event) => {

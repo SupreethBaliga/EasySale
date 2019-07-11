@@ -40,13 +40,13 @@ class FavouritesListCard extends Component {
     render() {
         return (
             <Card className='card m-3 ml-2'>
-                <CardHeader title={this.props.name} subheader={"Product ID: " + this.props.id} />
-                <CardMedia className='media'>
+                <CardHeader title={this.props.name} subheader={"Product ID: " + this.props.id} className='fav-card-header' />
+                <CardMedia className='fav-card-media'>
                     <div className="container">
                         <img src={this.state.image} alt={this.props.name} className='prodImage'></img>
                     </div>
                 </CardMedia>
-                <CardContent>
+                <CardContent className='fav-card-content'>
                     <div>
                         <span class="description text text-muted">Rate: &#8377; {this.props.rate} for pack of {this.props.step}</span>
                     </div>
@@ -54,7 +54,7 @@ class FavouritesListCard extends Component {
                         {this.props.description}
                     </Typography>
                 </CardContent>
-                <CardActions>
+                <CardActions className='fav-card-actions'>
                     <a href={'/product/' + this.props.id}><Button variant='contained' color='primary' className='m-1'>VIEW PRODUCT</Button></a>
                     <Button onClick={()=> this.removeFavourite()} variant='contained' color='secondary'>REMOVE FROM FAVOURITES</Button>
                 </CardActions>

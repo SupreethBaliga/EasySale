@@ -1,12 +1,11 @@
 .cart-top-bar {
-    background: #dadad5;
+    background: #f6ef98;
     padding-bottom: 7px;
     /* height: 11vh; */
 }
 
 .checkoutButton {
     font-weight: bold;
-    background-color: #000000;
     /* vertical-align: top; */
 }
 
@@ -18,4 +17,12 @@
 .totalAmount {
     font-size: 40px;
     font-weight: bold;
+}
+
+.cart-list-page {
+    background:#99b3ff;
+    height: 91vh;
+    overflow-y: scroll;
+    padding: 30px;
+    padding-left: 60px;
 }

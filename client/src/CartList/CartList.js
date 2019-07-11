@@ -103,7 +103,7 @@ class CartList extends Component {
 
     render() {
         return (
-            <div className='col-md-12'>
+            <div className='col-md-12 cart-list-page'>
                 <div className='row cart-top-bar'>
                     <div className='col-md-9'>
                         <span className='amountPayable mt-2'>Amount Payable:</span>&nbsp;&nbsp;<span className='totalAmount ml-3'>&#8377;{this.state.grandTotal}</span>

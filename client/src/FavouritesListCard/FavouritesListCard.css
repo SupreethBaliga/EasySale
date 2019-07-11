@@ -2,9 +2,10 @@
     width: 30.5%;
 }
 
-.media {
-    padding-top: '56.25%';
+.fav-card-media {
+    padding-top: 15px;
     text-align: center;
+    background-color: #ccd9ff;
 }
 .prodImage {
     width:100%;
@@ -20,3 +21,19 @@
 /* .favBtn {
     padding-bottom: 15px;
 } */
+
+.fav-card-header {
+    background-color: #ccd9ff;
+    /* color: #b3d9ff !important;  */
+    font-weight: bold !important;
+    font-size: 40px;
+}
+
+.fav-card-content {
+    background-color: #ccd9ff;
+}
+
+.fav-card-actions {
+    background: #ffffff;
+    height: 50px;
+}

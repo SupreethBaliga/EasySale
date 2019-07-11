@@ -21,8 +21,8 @@
     font-size: 20px;
 }
 
-.orderPageTopBar {
-    background: #e6e6e6;
+.orderPageTopBarSeller {
+    background: #ccd9ff;
 }
 
 .order-status {
@@ -67,27 +67,29 @@
     width: 90%;
 }  
 
-.label-text {
-    font-size: 20px;
+.label-text-seller-orders {
+    font-size: 25px;
     font-weight: bold;
 }
 
 .select {
     width: 100%;
+    font-size: 20px;
 }
 
 .set-status-btn {
-    height: 35px;
+    /* height: 35px; */
     font-weight: bold;
+    font-size: 18px;
 }
 
 .order-page-client-detail-label {
-    font-size: 17px;
+    font-size: 20px;
     font-weight: bold;
 }
 
 .order-page-client-detail-value {
-    font-size: 17px;
+    font-size: 20px;
 
 }
 
@@ -96,6 +98,5 @@
 } */
 
 .order-page-scroll-mech {
-    height: 88vh;
-    overflow-y: scroll;
+    height: 91vh;
 }

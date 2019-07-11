@@ -1,7 +1,7 @@
-.background {
-    background: #d9d9d9;
+.prod-page-background {
+    background: #99b3ff;
     padding-top: 10vh;
-    height: 87vh;
+    height: 91vh;
 }
 
 .productImage {
@@ -30,12 +30,12 @@
 }
 
 .addToCart {
-    font-size: 15px;
+    font-size: 25px;
     font-weight: bold;
 }
 
 .addToFav {
-    font-size: 15px;
+    font-size: 25px;
     font-weight: bold;
 }
 
@@ -44,7 +44,7 @@
     background: #f2f2f2;
     border-radius: 10px;
     padding: 15px;
-    width: 100%;
+    width: 95% !important;
 }
 
 .prod-page-prod-name {
@@ -59,4 +59,14 @@
 
 .product-page-label-val {
     font-size: 20px;
+}
+
+.prod-details-div {
+    background: #ccd9ff;
+    padding:50px;
+    border-radius: 30px;
+}
+
+.product-page-muted {
+    font-size: 15px;
 }

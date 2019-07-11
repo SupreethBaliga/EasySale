@@ -68,16 +68,16 @@ class CartListCard extends Component {
     render() {
         return (
             <Card className='card ml-3 m-2'>
-                <CardHeader title={this.props.name} subheader={'Product ID: ' + this.props.id} />
+                <CardHeader title={this.props.name} subheader={'Product ID: ' + this.props.id} className='card-header-cart'/>
                 <CardMedia className='media'>
                     <div className='container'>
                         <img src={this.state.image} alt={this.props.name} className='prodImage' />
                     </div>
                 </CardMedia>
-                <CardContent>
+                <CardContent className='cart-card-content'>
                     <div>
-                        <span className='text text-muted'>Rate: &#8377;{this.props.rate} for a pack of {this.props.step} </span><br />
-                        <span className='text text-muted'>Quantity:
+                        <span className='text cart-text'>Rate: &#8377;{this.props.rate} </span><br />
+                        <span className='text cart-text'>Quantity:
                             <NumericInput step={this.props.step} value={this.state.newQuantity} min={this.props.step} id={'quantity' + this.props.id} onChange={() => this.calculateTotal()} />
                         </span>
                     </div>
@@ -87,7 +87,7 @@ class CartListCard extends Component {
                     {/* Add Filters*/}
                 </CardContent>
                 <hr />
-                <CardActions>
+                <CardActions className='cart-cart-actions'>
                     <Button variant='contained' color='primary' className='ml-2 mb-2' onClick={() => this.handleRemoveFromCart()}>REMOVE FROM CART</Button>
                 </CardActions>
             </Card>

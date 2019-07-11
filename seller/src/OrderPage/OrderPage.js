@@ -120,7 +120,7 @@ class OrderPage extends Component {
     render() {
         return (
             <div className='col-md-12 order-page-scroll-mech'>
-                <div className='row orderPageTopBar'>
+                <div className='row orderPageTopBarSeller'>
                     <div className='col-md-3 m-2 orderNumberDiv'>
                         <span className='OPorderNumber'>
                             {'#' + this.state.order.ordernumber}
@@ -219,10 +219,10 @@ class OrderPage extends Component {
                     <div className='row add-padding'>
                         <div className='col-md-2'></div>
                         <div className='col-md-2'>
-                            <label className='label-text'>Order Status:</label>
+                            <label className='label-text-seller-orders'>Order Status:</label>
                         </div>
                         <div className='col-md-4'>
-                            <select className='select' id='select-status-of-order'>
+                            <select className='select form-control' id='select-status-of-order'>
                                 <option>Payment</option>
                                 <option>Dispatched</option>
                                 <option>Delivered</option>

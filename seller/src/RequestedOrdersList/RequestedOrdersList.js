@@ -40,24 +40,24 @@ class RequestedOrdersList extends Component {
     populateReqOrders = () => {
         this.orderList = this.state.reqorders.map((order) => {
             return (
-                <div key={order.ordernumber} className='col-md-6 offset-md-3 mt-3 order-list-item-full'>
-                    <div className='row'>
-                        <div className='col-md-5'>
-                            <div className='orgName-div'>
-                                {order.user_name}
+                <a href={'/reqorders/' + order.ordernumber} className='req-order-list-item'>
+                    <div key={order.ordernumber} className='col-md-6 offset-md-3 mt-3 order-list-item-full'>
+                        <div className='row'>
+                            <div className='col-md-5'>
+                                <div className='orgName-div-req'>
+                                    {order.user_name}
+                                </div>
+                                <small className='text text-muted ordered-on-text'>Ordered On : {order.orderedon}</small>
                             </div>
-                            <small className='text text-muted ordered-on-text'>Ordered On : {order.orderedon}</small>
-                        </div>
-                        <div className='col-md-5 order-total'>
-                            &#8377; {order.totalamount}
-                        </div>
-                        <div className='col-md-2 arrow-div'>
-                            <a href={'/reqorders/' + order.ordernumber}>
-                                <i className='material-icons arrow' style={{ color: '#bfbfbf' }}>arrow_forward_ios</i>
-                            </a>
+                            <div className='col-md-5 order-total'>
+                                &#8377; {order.totalamount}
+                            </div>
+                            <div className='col-md-2 arrow-div'>
+                                    <i className='material-icons arrow-req' style={{ color: '#000000' }}>arrow_forward_ios</i>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             )
         })
         this.setState((state,props) => ({

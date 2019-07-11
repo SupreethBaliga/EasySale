@@ -9,7 +9,7 @@ class OrderCombinedView extends Component {
     render() {
 
         return (
-            <div className='col-md-12'>
+            <div className='col-md-12 order-combined-view'>
                 <div className='row'>
                     <div className='col-md-3 order-list-main'>
                         <OrderList />

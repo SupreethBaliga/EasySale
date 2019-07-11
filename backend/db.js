@@ -101,9 +101,9 @@ const createProductTable = () => {
             products(
                 name VARCHAR NOT NULL,
                 id VARCHAR PRIMARY KEY,
-                image VARCHAR NOT NULL,
+                image VARCHAR,
                 description VARCHAR NOT NULL,
-                rate INTEGER NOT NULL,
+                rate REAL NOT NULL,
                 step INTEGER NOT NULL
             )`;
     

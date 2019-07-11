@@ -60,8 +60,10 @@ class FavouritesList extends Component {
 
     render() {
         return (
-            <div className='row m-3'>
-                {this.listItems3}
+            <div className='col-md-12'>
+                <div className='row favourites-list-page'>
+                    {this.listItems3}
+                </div>
             </div>
         );
     }

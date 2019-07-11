@@ -104,10 +104,9 @@ class ProductPage extends Component {
 
     render() {
         return (
-            <div className="col-md-12 background">
-                <div className="container">
+            <div className="col-md-12 prod-page-background">
                     <div className="row">
-                        <div className="col-md-6">
+                        <div className="col-md-4 offset-md-1">
                             <div className='row'>
                                 <img src={this.state.image} alt={this.state.product.name} height="550px" width="650px" className="productImage" />
                             </div>
@@ -115,15 +114,16 @@ class ProductPage extends Component {
                             <div className='form-group'>
                                 <div className='row'>
                                     <div className='col-md-5'>
-                                        <button className="btn btn-dark addToCart form-control" onClick={() => this.addToCartProdPage()}><i className='material-icons'>add_shopping_cart</i>ADD TO CART</button>
+                                        <button className="btn btn-primary addToCart form-control" onClick={() => this.addToCartProdPage()}>ADD TO CART</button>
                                     </div>
                                     <div className='col-md-7'>
-                                        <button className="btn btn-dark addToFav form-control" onClick={() => this.addToFavProdPage()} ><i className='material-icons'>favorite</i>ADD TO FAVOURITES</button>
+                                        <button className="btn btn-danger addToFav form-control" onClick={() => this.addToFavProdPage()} >ADD TO FAVOURITES</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-5 ml-5">
+                        <div className='col-md-1'></div>
+                        <div className="col-md-5 prod-details-div">
                             <div className="row">
                                 <div className="ml-5">
                                     <h1 className='prod-page-prod-name'>{this.state.product.name}</h1>
@@ -144,7 +144,7 @@ class ProductPage extends Component {
                                     <div className="form-group">
                                         <span className='product-page-label'>Quantity:</span>
                                         <NumericInput className="form-control" step={this.state.product.step} value={this.state.quantity} min={this.state.product.step} id="quantity" onChange={() => this.calculateTotal()} />
-                                        <small className='text text-muted'>Sold in quantities of {this.state.product.step}</small>
+                                        <small className='text text-muted product-page-muted'>Sold in quantities of {this.state.product.step}</small>
                                     </div>
                                 </form>
                             </div>
@@ -158,12 +158,11 @@ class ProductPage extends Component {
                                 <p className='product-description'>
                                     {this.state.product.description}
                                 </p>
+                                </div>
                             </div>
-                        </div>
                     </div>
                 </div>
-            </div>
-        );
+         );
     }
 }
 

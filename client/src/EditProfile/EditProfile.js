@@ -125,7 +125,7 @@ class EditProfile extends Component {
         })    }
     render() {
         return (
-            <div className='col-md-12'>
+            <div className='col-md-12 edit-profile-full-page'>
                 <div className='row edit-profile-top-bar'>
                     <div className='col-md-11'>
                         EDIT PROFILE

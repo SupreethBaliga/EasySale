@@ -1,14 +1,13 @@
-.background {
-    background: #d9d9d9;
-    padding-top:55px;
-    height: 87vh;
+.prod-page-background {
+    background: #99b3ff;
+    padding-top: 10vh;
+    height: 91vh;
 }
 
 .productImage {
     box-shadow: 10px 10px 5px rgb(136, 133, 133);   
     border: 2px solid rgb(37, 36, 36);
-    object-fit: fill;
-    margin-left: 15px;
+
 }
 
 
@@ -20,7 +19,7 @@
     padding: 15px;
 }
 
-.product-page-name-seller {
+.prod-page-prod-name {
     font-weight: bold;
     font-size: 60px;
 }
@@ -36,9 +35,20 @@
 
 .remove-prod-btn {
     font-weight: bold;
-    font-size:15px;
+    font-size:25px;
 }
 
 .product-id-seller {
     font-size: 20px;
+}
+
+.prod-details-div {
+    background: #ccd9ff;
+    padding:50px;
+    border-radius: 30px;
+}
+
+.update-details-btn {
+    font-size: 20px;
+    font-weight: bold;
 }

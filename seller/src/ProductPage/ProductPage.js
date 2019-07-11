@@ -77,24 +77,23 @@ class ProductPage extends Component {
 
     render() {
         return (
-            <div className="col-md-12 background">
-                <div className="container">
+            <div className="col-md-12 prod-page-background">
                     <div className="row">
-                        <div className="col-md-6">
+                        <div className="col-md-4 offset-md-1">
                             <div className='row'>
-                                <img src={this.state.image} alt={this.state.product.name} height="550px" width="525px" className="productImage" />
-                            </div>
+                            <img src={this.state.image} alt={this.state.product.name} height="550px" width="650px" className="productImage" />                            </div>
                             <br />
                             <div className='row form-group'>
                                 <div className='col-md-6 offset-md-3'>
-                                    <button className='btn btn-dark remove-prod-btn form-control' type='button' onClick={() => this.removeProduct()}><i className='material-icons'>remove_circle_outline</i>&nbsp;REMOVE PRODUCT</button>
+                                    <button className='btn btn-primary remove-prod-btn form-control' type='button' onClick={() => this.removeProduct()}><i className='material-icons'>remove_circle_outline</i>&nbsp;REMOVE PRODUCT</button>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-5 ml-4">
+                        <div className='col-md-1'></div>
+                        <div className="col-md-5 prod-details-div">
                             <div className="row">
                                 <div className="ml-5">
-                                    <h1 className='product-page-name-seller'>{this.state.product.name}</h1>
+                                    <h1 className='product-page-prod-name'>{this.state.product.name}</h1>
                                 </div>
                             </div>
                             <hr />
@@ -107,13 +106,12 @@ class ProductPage extends Component {
                                     <label className='product-page-label'>Sold In Packs Of:&nbsp;</label>
                                     <input id="step_product_page" onChange={()=>this.changeStep()} type='text' className='form-control' placeholder={this.state.product.step}/>
                                 </div>
-                                <br />
                                 <div className='form-group'>
                                     <label className='product-page-label'>Rate:</label>
                                     <input id="rate_product_page" onChange={()=>this.changeRate()} type='text' className='form-control' placeholder={this.state.product.rate}/>
                                 </div>
-                                <div className='form-group'>
-                                    <button onClick={()=>this.handleClick()} className='btn btn-dark form-control'>Update Details</button>
+                                <div className='form-group col-md-8 offset-md-2'>
+                                    <button onClick={()=>this.handleClick()} className='btn btn-dark form-control update-details-btn'>Update Details</button>
                                 </div>
                             </div>
 
@@ -130,7 +128,6 @@ class ProductPage extends Component {
                                 </p>
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
         );

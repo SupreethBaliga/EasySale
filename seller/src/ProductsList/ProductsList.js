@@ -34,7 +34,7 @@ class ProductsList extends Component {
 
     render() {
         return (
-            <div className='col-md-12'>
+            <div className='col-md-12 product-list-page-seller'>
                 <div className='row'>
                     <div className='col-md-10'></div>
                     <div className='col-md-2'>
