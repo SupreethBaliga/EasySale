@@ -2,12 +2,17 @@
     background: #99b3ff;
     padding-top: 10vh;
     height: 91vh;
+    padding-bottom: 20px;
 }
 
 .productImage {
     box-shadow: 10px 10px 5px rgb(136, 133, 133);   
     border: 2px solid rgb(37, 36, 36);
 
+}
+
+.prod-page-padding {
+    padding-bottom: 50px;
 }
 
 .detail {

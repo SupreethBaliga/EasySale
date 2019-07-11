@@ -223,10 +223,11 @@ class OrderPage extends Component {
                         </div>
                         <div className='col-md-4'>
                             <select className='select form-control' id='select-status-of-order'>
-                                <option>Payment</option>
+                                <option>Payment Pending</option>
+                                <option>Payment Completed</option>
+                                <option>Processing</option>
                                 <option>Dispatched</option>
                                 <option>Delivered</option>
-                                <option>Pending</option>
                             </select>
                         </div>
                         <div className='col-md-2'>

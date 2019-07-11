@@ -78,7 +78,7 @@ class ProductPage extends Component {
     render() {
         return (
             <div className="col-md-12 prod-page-background">
-                    <div className="row">
+                    <div className="row prod-page-padding">
                         <div className="col-md-4 offset-md-1">
                             <div className='row'>
                             <img src={this.state.image} alt={this.state.product.name} height="550px" width="650px" className="productImage" />                            </div>

@@ -31,6 +31,8 @@
 
 .fav-card-content {
     background-color: #ccd9ff;
+    height:200px;
+    overflow-y: scroll;
 }
 
 .fav-card-actions {
