@@ -11,7 +11,14 @@ class LoginPage extends Component {
         }
     }
 
-    handleLogin = (event) => {
+    keyPressed = (event) => {
+        if(event.charCode==13) {
+            this.handleLogin();
+        }
+        return;
+    }
+
+    handleLogin = () => {
         var params = {
             "username" : this.state.email,
             "password" : this.state.password
@@ -56,11 +63,11 @@ class LoginPage extends Component {
                     <div className='col-sm-10 offset-sm-1'>
                         <div className='form-group ml-2 mr-2 mb-2'>
                             <label className='loginLabelText'>Email:</label>
-                            <input type='email' className='form-control' placeholder='abc@example.com' id="email-login-page" onChange={() => this.emailLogin()} />
+                            <input type='email' className='form-control' placeholder='abc@example.com' id="email-login-page" onChange={() => this.emailLogin()} onKeyPress={this.keyPressed}/>
                         </div>
                         <div className='form-group ml-2 mr-2 mb-2'>
                             <label className='loginLabelText'>Password:</label>
-                            <input type='password' className='form-control' id="password-login-page" onChange={() => this.passwordLogin()} />
+                            <input type='password' className='form-control' id="password-login-page" onChange={() => this.passwordLogin()}  onKeyPress={this.keyPressed}/>
                         </div>
                         <br />
                         <div className='form-group'>

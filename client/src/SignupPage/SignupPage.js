@@ -21,6 +21,13 @@ class SignupPage extends Component {
         }
     }
 
+    keyPressed = (event) => {
+        if(event.charCode==13) {
+            this.handleClick();
+        }
+        return;
+    }
+
     changeName(){
         this.setState({
             customer_name: document.getElementById("customer_name_signup").value,
@@ -157,7 +164,7 @@ class SignupPage extends Component {
                                     </div>
                                     <div className='col-sm-4'>
                                         <label className='signupLabelText'>Delivery Postal Code:</label>
-                                        <input type='text' id="delivery_postal_code_signup" onChange={()=>this.changeDeliveryCode()} className='form-control' />
+                                        <input type='text' id="delivery_postal_code_signup" onChange={()=>this.changeDeliveryCode()} className='form-control' onKeyPress={this.keyPressed} />
                                     </div>
                                 </div>
                             </div>
@@ -168,20 +175,20 @@ class SignupPage extends Component {
                         <div className='col-sm-12'>
                             <div className='form-group'>
                                 <label className='signupLabelText'>Organisation Name: </label>
-                                <input id="organisation_name_signup" onChange={()=> this.changeOrganisationName()} type='text' className='form-control' />
+                                <input id="organisation_name_signup" onChange={()=> this.changeOrganisationName()} type='text' className='form-control' onKeyPress={this.keyPressed}/>
                             </div>
                             <div className='form-group'>
                                 <div className='row'>
                                     <div className='col-sm-7'>
                                         <div className='form-group'>
                                             <label className='signupLabelText'>GST No: </label>
-                                            <input id="gst_number_signup" onChange={()=> this.changeGSTNumber()} type='text' className='form-control' />
+                                            <input id="gst_number_signup" onChange={()=> this.changeGSTNumber()} type='text' className='form-control' onKeyPress={this.keyPressed}/>
                                         </div>
                                     </div>
                                     <div className='col-sm-5'>
                                         <div className='form-group'>
                                             <label className='signupLabelText'>Landline No: </label>
-                                            <input type='text' id="landline_number_signup" onChange={()=> this.changeLandlineNumber()} className='form-control' placeholder='Example: 022-29207477' />
+                                            <input type='text' id="landline_number_signup" onChange={()=> this.changeLandlineNumber()} className='form-control' placeholder='Example: 022-29207477' onKeyPress={this.keyPressed}/>
                                         </div>
                                     </div>
                                 </div>
@@ -190,11 +197,11 @@ class SignupPage extends Component {
                                 <div className='row'>
                                     <div className='col-sm-8'>
                                         <label className='signupLabelText'>Company Address:</label>
-                                        <textarea id="company_address_signup" onChange={()=> this.changeCompanyAddress()} className='form-control'></textarea>
+                                        <textarea id="company_address_signup" onChange={()=> this.changeCompanyAddress()} className='form-control' onKeyPress={this.keyPressed}></textarea>
                                     </div>
                                     <div className='col-sm-4'>
                                         <label className='signupLabelText'>Company Postal Code:</label>
-                                        <input type='text' id="company_postal_code_signup" onChange={()=> this.changeCompanyPostalCode()} className='form-control' />
+                                        <input type='text' id="company_postal_code_signup" onChange={()=> this.changeCompanyPostalCode()} className='form-control' onKeyPress={this.keyPressed}/>
                                     </div>
                                 </div>
                             </div>
