@@ -149,8 +149,9 @@ class OrderPage extends Component {
                 </div>
                 <div class='bottom-bar mt-4'>
                     {(() => {
+                        var payment = 0.3*this.state.order.totalamount;
                         switch (this.state.order.status) {
-                            case 'Payment Pending': return <Button variant='contained' color='primary'>MAKE PAYMENT</Button>;
+                            case 'Payment Pending': return <a href = {"/api/paywithpaytm?amount=" + payment}><Button variant='contained' color='primary'>MAKE PAYMENT</Button></a>;
                             case 'Advance Payment Pending': return (<Button variant='contained' color='primary'>MAKE PAYMENT</Button>);
                             default: return null;
                         }

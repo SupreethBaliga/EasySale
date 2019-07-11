@@ -40,7 +40,7 @@ crypt.gen_salt(4, function (err, salt) {
     var check_sum = sha256 + salt;
     var encrypted = crypt.encrypt(check_sum, key);
       params.CHECKSUMHASH = encrypted;
-      console.log(encrypted);
+      // console.log(encrypted);
     cb(undefined, params);
   });
 }
@@ -50,7 +50,7 @@ function genchecksumbystring(params, key, cb) {
     var sha256 = crypto.createHash('sha256').update(params + '|' + salt).digest('hex');
     var check_sum = sha256 + salt;
     var encrypted = crypt.encrypt(check_sum, key);
-    console.log(encrypted);
+    // console.log(encrypted);
      var CHECKSUMHASH = encodeURIComponent(encrypted);
      CHECKSUMHASH = encrypted;
     cb(undefined, CHECKSUMHASH);
