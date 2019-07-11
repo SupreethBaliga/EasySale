@@ -3,8 +3,9 @@
 }
 
 .media {
-    padding-top: '56.25%';
+    padding-top: 15px;
     text-align: center;
+    background-color: #ccd9ff;
 }
 .prodImage {
     width:100%;
@@ -18,4 +19,19 @@
 
 .totalAmt {
     font-size: 40px;
+}
+
+.card-header-prod {
+    background-color: #ccd9ff;
+    /* color: #b3d9ff !important;  */
+    font-weight: bold !important;
+    font-size: 40px;
+}
+
+.card-content {
+    background-color: #ccd9ff;
+}
+
+.card-actions {
+    background-color: #ffffff;
 }

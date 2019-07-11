@@ -1,12 +1,17 @@
 .add-product-page {
-    background: #d9d9d9;
-    height: 100%;
+    background: #99b3ff;
+    height:88vh;
+    padding-top: 15vh;
     padding-bottom: 8vh;
 }
 
 .add-product-form-class {
     /* margin-top: 10px; */
-    padding-top: 20px;
+    padding: 20px;
+    background: #ccd9ff;
+    width: 80vw;
+    margin: auto;
+    border-radius: 30px;
 }
 
 .prodLabelText {
@@ -14,8 +19,12 @@
     font-weight: bold;
 }
 
+.add-image-div {
+    padding-top:10vh;
+}
+
 .add-product-img-card {
-    height:70vh;
+    height:15vh;
 }
 
 .add-product-cardheader {

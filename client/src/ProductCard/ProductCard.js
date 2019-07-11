@@ -8,8 +8,10 @@ import Typography from '@material-ui/core/Typography';
 import CardActions from '@material-ui/core/CardActions';
 import Fab from '@material-ui/core/Fab';
 import Button from '@material-ui/core/Button';
+import axios from 'axios';
 
-class ProductCard extends Component {
+var user_id = "";
+class ProductCard extends Component {listItems = [];
 
     constructor(props) {
         super(props);
@@ -20,16 +22,63 @@ class ProductCard extends Component {
         }
     }
 
+    addFavorite(){
+        axios.get("/api/getuser")
+        .then(res => {
+            if(res.data == null) window.location.href = '/';
+            else user_id = res.data.id;
+        })
+        .then(res => {
+            axios.post("/api/favs",{
+                "user_id": user_id,
+                "product_id": this.props.id
+            })
+                
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }
+
+    handleAddToCart = () => {
+        axios.get('/api/getuser')
+            .then(res => {
+                if(res.data == null) window.location.href = '/';
+                else user_id = res.data.id;
+            })
+            .then(res => {
+                var params = {
+                    "user_id": user_id,
+                    "name": this.props.name,
+                    "id": this.props.id,
+                    "image": this.props.image,
+                    "rate": this.props.rate,
+                    "step": this.props.step,
+                    "quantity": this.props.step
+                }
+                axios.post('/api/cart', params)
+                    .then(res => {
+                        console.log("Added to Cart");
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
+
     render() {
         return (
             <Card className='card m-3 ml-2'>
-                <CardHeader title={this.props.name} subheader={"Product ID: " + this.props.id} />
+                <CardHeader title={this.props.name} subheader={"Product ID: " + this.props.id} className='card-header-prod' />
                 <CardMedia className='media'>
                     <div className="container">
                         <img src={this.state.image} alt={this.props.name} className='prodImage'></img>
                     </div>
                 </CardMedia>
-                <CardContent>
+                <CardContent className='card-content'>
                     <div>
                         <span className='totalAmt'> &#8377; {this.state.totalAmount}</span>&nbsp;&nbsp;
                         <span className='minQuantity'>for pack of {this.props.step}</span>
@@ -38,11 +87,11 @@ class ProductCard extends Component {
                         {this.props.description}
                     </Typography>
                 </CardContent>
-                <CardActions>
-                    <Fab color="primary" aria-label="AddToCart" className='ml-2 mr-2'>
+                <CardActions className='card-actions'>
+                    <Fab color="primary" aria-label="AddToCart" className='ml-2 mr-2' onClick={() => this.handleAddToCart()}>
                         <i className="material-icons">add_shopping_cart</i>
                     </Fab>
-                    <Fab color="secondary" aria-label="AddToFavourites" className='ml-2 mr-2'>
+                    <Fab onClick={()=>this.addFavorite()} color="secondary" aria-label="AddToFavourites" className='ml-2 mr-2'>
                         <i className="material-icons">favorite</i>
                     </Fab>
                     <a href={"/product/" + this.props.id}>

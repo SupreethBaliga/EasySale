@@ -11,14 +11,12 @@ class ProductsList extends Component {
     }
 
     componentDidMount(){
-        axios.get('http://localhost:8000/api/products')
+        axios.get('/api/products')
         .then(res => {
             const persons = res.data;
-            console.log({persons});
             this.setState({
                 products: persons.rows
             });
-            console.log(this.state.products);
             this.populate();
         });
     }
@@ -36,7 +34,7 @@ class ProductsList extends Component {
 
     render() {
         return (
-            <div className='col-md-12'>
+            <div className='col-md-12 product-list-page-seller'>
                 <div className='row'>
                     <div className='col-md-10'></div>
                     <div className='col-md-2'>

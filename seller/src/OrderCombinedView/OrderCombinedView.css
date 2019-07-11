@@ -12,3 +12,7 @@
     padding-right: 0 !important;
     padding-left: 0 !important;
 }
+
+.order-combined-view {
+    height: 91vh;
+}

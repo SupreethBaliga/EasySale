@@ -7,13 +7,13 @@ import './OrderListItem.css';
 class OrderListItem extends Component {
     render() {
         return (
-            <a className='btn list-item' href={"/seller/orders/" + this.props.orderId}>
+            <a className='btn order-list-cli-list-item' href={"/seller/orders/" + this.props.ordernumber}>
                 <ListItem alignItems='flex-start'>
                     <ListItemAvatar>
-                        <span className="orderNumber">&#35;{this.props.orderId}</span>
+                        <span className="orderNumber">&#35;{this.props.ordernumber}</span>
                     </ListItemAvatar>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <ListItemText primary={this.props.status} secondary={'Expected By: ' + this.props.expectedDate} className='order-info' />
+                    <ListItemText primary={this.props.status} secondary={'Expected By: ' + this.props.expectedby} className='order-info' />
                     <ListItemAvatar>
                         <i className='material-icons arrow'>arrow_forward_ios</i>
                     </ListItemAvatar>

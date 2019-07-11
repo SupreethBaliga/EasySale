@@ -3,6 +3,8 @@ import "./ProductPage.css";
 import NumericInput from 'react-numeric-input';
 import axios from 'axios';
 
+var user_id="";
+
 class ProductPage extends Component {
     constructor(props) {
         super(props);
@@ -16,12 +18,10 @@ class ProductPage extends Component {
 
     componentDidMount() {
         var patharray = window.location.pathname.split("/");
-        // console.log(patharray[2]);
         var id = patharray[2];
-        axios.get("http://localhost:8000/api/products/" + id)
+        axios.get("/api/products/" + id)
             .then(res => {
                 var data = res.data;
-                // console.log({ data });
                 this.setState((state, props) => ({
                     product: data
                 }));
@@ -32,11 +32,9 @@ class ProductPage extends Component {
             .catch(err => {
                 console.log(err);
             });
-        // console.log(this.state.product);
     }
 
     updatePage = () => {
-        // console.log(this.state.product);
         let images = require.context('../assets/images/');
         this.setState((state, props) => ({
             totalAmt: state.product.step * state.product.rate,
@@ -59,42 +57,82 @@ class ProductPage extends Component {
     }
 
     addToCartProdPage = () => {
-        //code for adding to cart
+        axios.get('/api/getuser')
+        .then(res => {
+            if(res.data == null) window.location.href = '/';
+            else user_id = res.data.id;
+        })
+        .then(res => {
+            var params = {
+                "user_id": user_id,
+                "rate": this.state.product.rate,
+                "step": this.state.product.step,
+                "image": this.state.product.image,
+                "name": this.state.product.name,
+                "quantity": this.state.quantity,
+                "id": this.state.product.id
+            }
+            axios.post('/api/cart',params)
+            .then(res => {
+                console.log("Added to Cart");
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        })
+        .catch(err => {
+            console.log(err);
+        })
     }
 
     addToFavProdPage = () => {
-        //code for adding to favourites
+        axios.get("/api/getuser")
+        .then(res => {
+            if(res.data == null) window.location.href = '/';
+            else user_id = res.data.id;
+        })
+        .then(res => {
+            axios.post("/api/favs",{
+                "user_id": user_id,
+                "product_id": this.state.product.id
+            })
+        })
+        .catch(err=>{
+            console.log(err);
+        })
     }
 
     render() {
         return (
-            <div className="col-md-12 background">
-                <div className="container">
+            <div className="col-md-12 prod-page-background">
                     <div className="row">
-                        <div className="col-md-4">
+                        <div className="col-md-4 offset-md-1">
                             <div className='row'>
-                                <img src={this.state.image} alt={this.state.product.name} height="400px" width="350px" className="productImage" />
+                                <img src={this.state.image} alt={this.state.product.name} height="550px" width="650px" className="productImage" />
                             </div>
                             <br />
-                            <div className='row'>
-                                <div className='col-md-5'>
-                                    <button className="btn btn-dark addToCart" onClick={() => this.addToCartProdPage()}><i className='material-icons'>add_shopping_cart</i>ADD TO CART</button>
-                                </div>
-                                <div className='col-md-7'>
-                                    <button className="btn btn-dark addToFav" onClick={() => this.addToFavProdPage()} ><i className='material-icons'>favorite</i>ADD TO FAVOURITES</button>
+                            <div className='form-group'>
+                                <div className='row'>
+                                    <div className='col-md-5'>
+                                        <button className="btn btn-primary addToCart form-control" onClick={() => this.addToCartProdPage()}>ADD TO CART</button>
+                                    </div>
+                                    <div className='col-md-7'>
+                                        <button className="btn btn-danger addToFav form-control" onClick={() => this.addToFavProdPage()} >ADD TO FAVOURITES</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-6 offset-md-1">
+                        <div className='col-md-1'></div>
+                        <div className="col-md-5 prod-details-div">
                             <div className="row">
                                 <div className="ml-5">
-                                    <h1>{this.state.product.name}</h1>
+                                    <h1 className='prod-page-prod-name'>{this.state.product.name}</h1>
                                 </div>
                             </div>
                             <hr />
-                            <div className="row ml-5">
-                                <div className="form-group">
-                                    <span className='product-page-label'>Product Code :</span> {this.state.product.id}
+                            <div className="row">
+                                <div className='ml-5 product-page-label-val'>
+                                        <span className='product-page-label'>Product Code :</span> {this.state.product.id}
                                 </div>
                             </div>
                             <hr />
@@ -105,8 +143,8 @@ class ProductPage extends Component {
                                     </div>
                                     <div className="form-group">
                                         <span className='product-page-label'>Quantity:</span>
-                                        <NumericInput className="form-control" step={this.state.product.step} value={this.state.quantity} min={0} id="quantity" onChange={() => this.calculateTotal()} />
-                                        <small className='text text-muted'>Sold in quantities of {this.state.product.step}</small>
+                                        <NumericInput className="form-control" step={this.state.product.step} value={this.state.quantity} min={this.state.product.step} id="quantity" onChange={() => this.calculateTotal()} />
+                                        <small className='text text-muted product-page-muted'>Sold in quantities of {this.state.product.step}</small>
                                     </div>
                                 </form>
                             </div>
@@ -120,12 +158,11 @@ class ProductPage extends Component {
                                 <p className='product-description'>
                                     {this.state.product.description}
                                 </p>
+                                </div>
                             </div>
-                        </div>
                     </div>
                 </div>
-            </div>
-        );
+         );
     }
 }
 

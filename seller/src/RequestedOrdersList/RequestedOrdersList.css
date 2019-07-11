@@ -1,31 +1,37 @@
-.orgName-div {
+.orgName-div-req {
     font-size: 25px;
     font-weight: bold;
+    border-radius: 20px;
+    padding:20px;
+    background: #66b3ff;
+    text-align: center;
 }
 
 .order-total {
-    font-size: 30px;
+    font-size: 50px;
     font-weight: bold;
 }
 
-.arrow {
+.arrow-req {
     vertical-align: bottom;
     font-size: 40px;
     font-weight: bold;
+    color: #000000;
 }
+
 
 .arrow-div {
     padding-top: 10px;
 }
 
 .orders-list-full-page {
-    height: 100vh;
-    overflow-y: scroll;
-    background: #a6a6a6;
+    padding-top:20px;
+    height: 91vh;
+    background: #99b3ff;
 }
 
 .order-list-item-full {
-    background: #e6e6e6;
+    background: #ccd9ff;
     padding: 20px;
     border-radius: 20px;
 }
@@ -43,4 +49,19 @@
 
 .ordered-on-text {
     font-size: 15px;
+}
+
+.req-order-list-item:link {
+    text-decoration: none;
+}
+
+.req-order-list-item:hover {
+    text-decoration: none;
+    transform: scale(1.2,1.2);
+    color: #000000;
+}
+
+.order-list-item-full:hover {
+    transform: scale(1.1,1.05);
+    color: #000000;
 }

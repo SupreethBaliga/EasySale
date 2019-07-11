@@ -1,6 +1,6 @@
 .edit-profile-top-bar {
     font-size: 40px;
-    background: #bfbfbf;
+    background: #ccd9ff;
     color: #262626;
     font-weight: bold;
 }
@@ -40,4 +40,12 @@ i {
 
 .card-main {
     width: 100%;
+}
+
+.edit-profile-full-page {
+    background: #99b3ff;
+}
+
+#accordianExample {
+    background: #ccd9ff;
 }

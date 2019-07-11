@@ -1,14 +1,13 @@
-.background {
-    background: #d9d9d9;
-    padding-top: 15px;
-    height: 87vh;
+.prod-page-background {
+    background: #99b3ff;
+    padding-top: 10vh;
+    height: 91vh;
 }
 
 .productImage {
     box-shadow: 10px 10px 5px rgb(136, 133, 133);   
     border: 2px solid rgb(37, 36, 36);
-    object-fit: fill;
-    margin-left: 15px;
+
 }
 
 .detail {
@@ -31,12 +30,12 @@
 }
 
 .addToCart {
-    font-size: 15px;
+    font-size: 25px;
     font-weight: bold;
 }
 
 .addToFav {
-    font-size: 15px;
+    font-size: 25px;
     font-weight: bold;
 }
 
@@ -45,13 +44,29 @@
     background: #f2f2f2;
     border-radius: 10px;
     padding: 15px;
-    width: 100%;
+    width: 95% !important;
 }
 
-h1 {
+.prod-page-prod-name {
     font-weight: bold;
+    font-size: 60px;
 }
 
 .product-page-label {
     font-weight: bold;
+    font-size: 20px;
+}
+
+.product-page-label-val {
+    font-size: 20px;
+}
+
+.prod-details-div {
+    background: #ccd9ff;
+    padding:50px;
+    border-radius: 30px;
+}
+
+.product-page-muted {
+    font-size: 15px;
 }

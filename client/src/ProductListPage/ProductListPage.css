@@ -1,0 +1,8 @@
+.product-list-page {
+    background: #99b3ff;
+    padding: 30px;
+    padding-left: 60px;
+    height: 100%;
+    overflow-y: scroll;
+    width: 100vw;
+}

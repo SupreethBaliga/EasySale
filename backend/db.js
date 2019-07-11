@@ -11,11 +11,24 @@ pool.on('connect', () => {
     console.log('connected to the db');
 })
 
+const exportUser = () => {
+    const queryText = `COPY users to '/tmp/userdata.csv' DELIMITER ',' CSV HEADER`;
+    pool.query(queryText)
+        .then((res) => {
+            console.log(res.command);
+            pool.end();
+        })
+        .catch((err) => {
+            console.log(err);
+            pool.end();
+        });
+}
+
 const createSequence = () => {
     const queryText = 'CREATE SEQUENCE IF NOT EXISTS orderSequence INCREMENT BY 1 START WITH 1';
     pool.query(queryText)
         .then((res) => {
-            console.log(res);
+            console.log(res.command);
             pool.end();
         })
         .catch((err) => {
@@ -29,25 +42,22 @@ const createOrderTable = () => {
         `CREATE TABLE IF NOT EXISTS
             orders(
                 orderNumber INTEGER DEFAULT NEXTVAL('orderSequence') PRIMARY KEY,
-                orderedOn DATE DEFAULT CURRENT_DATE,
-                expectedBy DATE,
+                orderedOn VARCHAR NOT NULL,
+                expectedBy VARCHAR,
                 status TEXT NOT NULL,
-                productId VARCHAR [],
-                productName VARCHAR [],
+                id VARCHAR [],
+                name VARCHAR [],
                 rate INTEGER [],
                 quantity INTEGER [],
                 totalAmount INTEGER NOT NULL,
                 user_id UUID NOT NULL,
-                name VARCHAR,
-                email VARCHAR,
-                contactNumber VARCHAR,
-                deliveryAddress VARCHAR,
+                user_name VARCHAR NOT NUll,
                 FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
             )`;
 
     pool.query(queryText)
         .then((res) => {
-            console.log(res);
+            console.log(res.command);
             pool.end();
         })
         .catch((err) => {
@@ -76,7 +86,7 @@ const createUserTable = () => {
     
     pool.query(queryText)
         .then((res) => {
-            console.log(res);
+            console.log(res.command);
             pool.end();
         })
         .catch((err) => {
@@ -91,15 +101,65 @@ const createProductTable = () => {
             products(
                 name VARCHAR NOT NULL,
                 id VARCHAR PRIMARY KEY,
-                image VARCHAR NOT NULL,
+                image VARCHAR,
                 description VARCHAR NOT NULL,
-                rate INTEGER NOT NULL,
+                rate REAL NOT NULL,
                 step INTEGER NOT NULL
             )`;
     
     pool.query(queryText)
         .then((res) => {
-            console.log(res);
+            console.log(res.command);
+            pool.end();
+        })
+        .catch((err) => {
+            console.log(err);
+            pool.end();
+        });
+}
+
+const createFavouritesTable = () => {
+    const queryText = 
+        `CREATE TABLE IF NOT EXISTS
+            favourites(
+                favid UUID PRIMARY KEY,
+                user_id UUID NOT NULL,
+                product_id VARCHAR NOT NULL,
+                UNIQUE ( user_id, product_id ),
+                FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
+                FOREIGN KEY (product_id) REFERENCES products (id) ON DELETE CASCADE
+            )`;
+
+    pool.query(queryText)
+        .then((res) => {
+            console.log(res.command);
+            pool.end();
+        })
+        .catch((err) => {
+            console.log(err);
+            pool.end();
+        });
+}
+
+const createCartTable = () => {
+    const queryText = 
+        `CREATE TABLE IF NOT EXISTS
+            cart(
+                cartid UUID PRIMARY KEY,
+                user_id UUID NOT NULL,
+                name VARCHAR NOT NULL,
+                id VARCHAR NOT NULL,
+                image VARCHAR NOT NULL,
+                rate INTEGER NOT NULL,
+                step INTEGER NOT NULL,
+                quantity INTEGER NOT NULL,
+                UNIQUE ( user_id, id ),
+                FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
+            )`;
+
+    pool.query(queryText)
+        .then((res) => {
+            console.log(res.command);
             pool.end();
         })
         .catch((err) => {
@@ -113,7 +173,7 @@ const dropSequence = () => {
 
     pool.query(queryText)
         .then((res) => {
-            console.log(res);
+            console.log(res.command);
             pool.end();
         })
         .catch((err) => {
@@ -127,7 +187,7 @@ const dropOrderTable = () => {
 
     pool.query(queryText)
         .then((res) => {
-            console.log(res);
+            console.log(res.command);
             pool.end();
         })
         .catch((err) => {
@@ -141,7 +201,7 @@ const dropUserTable = () => {
 
     pool.query(queryText)
         .then((res) => {
-            console.log(res);
+            console.log(res.command);
             pool.end();
         })
         .catch((err) => {
@@ -155,7 +215,35 @@ const dropProductTable = () => {
 
     pool.query(queryText)
         .then((res) => {
-            console.log(res);
+            console.log(res.command);
+            pool.end();
+        })
+        .catch((err) => {
+            console.log(err);
+            pool.end();
+        });
+}
+
+const dropFavouritesTable = () => {
+    const queryText = `DROP TABLE IF EXISTS favourites`;
+
+    pool.query(queryText)
+        .then((res) => {
+            console.log(res.command);
+            pool.end();
+        })
+        .catch((err) => {
+            console.log(err);
+            pool.end();
+        });
+}
+
+const dropCartTable = () => {
+    const queryText = `DROP TABLE IF EXISTS cart`;
+
+    pool.query(queryText)
+        .then((res) => {
+            console.log(res.command);
             pool.end();
         })
         .catch((err) => {
@@ -165,14 +253,19 @@ const dropProductTable = () => {
 }
 
 module.exports = {
+    exportUser,
     createSequence,
     createOrderTable,
     createUserTable,
     createProductTable,
+    createFavouritesTable,
+    createCartTable,
     dropSequence,
     dropUserTable,
     dropOrderTable,
-    dropProductTable
+    dropProductTable,
+    dropFavouritesTable,
+    dropCartTable
 };
 
 require('make-runnable');

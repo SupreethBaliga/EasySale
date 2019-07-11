@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-// import logo from './logo.svg';
 import './App.css';
 import Main from './Main/Main';
 import LoginAndSignup from './LoginAndSignup/LoginAndSignup';
-// import ProductPage from './ProductPage/ProductPage';
-// import OrderCombinedView from './OrderCombinedView/OrderCombinedView';
+
 class App extends Component {
 
   render() {
@@ -15,8 +13,8 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <Switch>
-              <Route exact path='/login' render={(props) => <LoginAndSignup />} />
-              <Route render={(props) => <Main />} />
+              <Route exact path='/' render={(props) => <LoginAndSignup {...props} />} />
+              <Route render={(props) => <Main {...props}/>} />
             </Switch>
           </div>
         </BrowserRouter>

@@ -1,7 +1,6 @@
 .background-div {
-    height: 160vh;
     width: 100vw;
-    background: #999999;
+    background: #99b3ff;
     padding-top: 5vh !important;
 }
 
@@ -12,18 +11,27 @@
     margin-top: 2vh;
     background: #ffffff;
     padding: 0px !important;
+    border-radius: 20px;
+    outline: 0 !important;
+    /* font-size: 30px; */
 }
 
 .swipe-tabs {
     width: 62vw;
-    margin-left:18.3vw;
-    margin-right: 19.7vw !important;
+    margin-left:18.7vw;
+    margin-right: 19.3vw !important;
     padding:0 !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
     text-align: left;
+    border-radius: 30px;
 }
 
 .tab-container-swipe {
     padding: 0px !important;
+}
+
+.tab-label {
+    font-size: 30px;
+    font-weight: bold;
 }

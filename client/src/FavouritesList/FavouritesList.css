@@ -1,0 +1,6 @@
+.favourites-list-page {
+    background: #99b3ff;
+    overflow-y: scroll;
+    padding: 30px;
+    padding-left: 70px;
+}

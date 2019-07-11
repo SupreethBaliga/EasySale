@@ -3,8 +3,9 @@
     text-decoration: none;
     font-weight: bold;
     text-align: center;
-    font-size: 35px;
+    font-size: 45px;
     outline: 0;
+    font-style: italic;
 }
 
 .navbar-brand:hover {
@@ -37,10 +38,12 @@ li {
     border-radius: 20px;
 }
 
-li:hover {
-    background: #848484;
+li a:hover {
+    /* background: #848484; */
     color: #212121;
     outline: 0;
+    border-radius: 20px;
+    font-size: 22px;
 }
 
 .material-icons {
@@ -48,17 +51,20 @@ li:hover {
     vertical-align: middle;
 }
 
-.nav-link:link{
+.nav-link:active{
     text-decoration: none;
     color: white;
-}
-
-.nav-link:visited{
-    text-decoration: none;
-    color: lightseagreen;
+    /* background-color: #848484; */
 }
 
 .nav-link:hover{
     text-decoration: none;
-    color: red;
+    color: #f1f1f1;
+    transform: scale(1.2,1.2);
+    transition-duration: 0.01s;
+}
+
+.navbar {
+    background: #001a33 !important;
+    border-bottom: 4px double #cce6ff;
 }
