@@ -61,7 +61,7 @@ class ProfilePage extends Component {
                         <span className='field-label-value'>
                             {(() => {
                                 switch (this.state.info.gstnumber) {
-                                    case '': return <span className='text text-muted'>Not Provided</span>;
+                                    case "Not Provided": return <span className='text text-muted'>Not Provided</span>;
                                     default: return this.state.info.gstnumber
                                 }
                             })()}
@@ -94,7 +94,7 @@ class ProfilePage extends Component {
                     <div className='col-md-4'>
                         {(() => {
                             switch (this.state.info.companyaddress) {
-                                case "": return <span className='text text-muted'>Not Provided</span>;
+                                case "Not Provided": return <span className='text text-muted'>Not Provided</span>;
                                 default: return this.state.info.companyaddress + '.';
                             }
                         })()}
@@ -105,7 +105,7 @@ class ProfilePage extends Component {
                         <span className='field-label-value'>
                             {(() => {
                                 switch (this.state.info.companyaddress) {
-                                    case "": return <span className='text text-muted'>Not Provided</span>;
+                                    case "Not Provided": return <span className='text text-muted'>Not Provided</span>;
                                     default: return <span className='field-label-value'>{this.state.info.companypostalcode}</span>
                                 }
                             })()}
@@ -118,7 +118,8 @@ class ProfilePage extends Component {
                         <span className='field-label-value'>
                             {(() => {
                                 switch (this.state.info.officenumber) {
-                                    case "": return <span className='text text-muted'>Not Provided</span>;
+                                    case "Not Provided": return <span className='text text-muted'>Not Provided</span>;
+                                    case "Not Provided-undefined": return <span className='text text-muted'>Not Provided</span>;
                                     default: return this.state.info.officenumber
                                 }
                             })()}

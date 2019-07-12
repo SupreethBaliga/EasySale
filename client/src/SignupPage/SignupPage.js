@@ -10,10 +10,10 @@ class SignupPage extends Component {
             mobile_number: "",
             address: "",
             delivery_postal_code: "",
-            company_address: "",
-            landline_number: "",
-            company_postal_code: "",
-            gst_number: "",
+            company_address: "Not Provided",
+            landline_number: "Not Provided",
+            company_postal_code: "Not Provided",
+            gst_number: "Not Provided",
             organisation_name: "",
             email: "",
             password: "",
@@ -92,6 +92,7 @@ class SignupPage extends Component {
 
     handleClick = (event) =>{
         if(this.state.password !== this.state.password_confirm){
+            alert("Passwords don't match!");
             return;
         }
         axios.post("/api/join",
@@ -109,10 +110,18 @@ class SignupPage extends Component {
             "password": this.state.password
         })
         .then(res => {
-            // console.log(this.state.landline_number);
+            console.log(res.data.split('title')[1]);
+            if(res.data.split('title')[1] === ">Join</") {
+                alert("Signup Failed!");
+                return;
+            }
+            else {
+                alert("Signup Successful")
+            }
             window.location.pathname = '/login';
         })
         .catch(error => {
+            // alert("Signup Failed!");
             console.log(error);
         })
     }
@@ -209,7 +218,7 @@ class SignupPage extends Component {
                     </div>
                     <br />
                     <div className='form-group col-md-6 offset-sm-3'>
-                        <button onClick={() => this.handleClick()} type='submit' className='btn btn-dark form-control button'>SIGN-UP</button>
+                        <button onClick={() => this.handleClick()} type='button' className='btn btn-dark form-control button'>SIGN-UP</button>
                     </div>
                 </form>
             </div>

@@ -37,6 +37,7 @@ class LoginPage extends Component {
                 }
             }
             else {
+                alert("Invalid Credentials!");
                 window.location.pathname = '/login';
             }
         }).catch(error=>{

@@ -3,6 +3,7 @@
     padding-top: 10vh;
     height: 91vh;
     padding-bottom: 20px;
+    overflow-y: scroll;
 }
 
 .productImage {

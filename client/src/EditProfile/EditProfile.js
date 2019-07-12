@@ -200,8 +200,23 @@ class EditProfile extends Component {
                                                     <div className='col-md-6 form-group'>
                                                         <label className='labelText'>Landline No:</label>
                                                         <div className='row form-group ml-1'>
-                                                            <input id="landline_code_edit_profile" onChange={()=> this.changeLandlineCode()} placeholder={this.state.landline_code} size='4' type='text' /> &nbsp;-&nbsp;
-                                                            <input id="landline_number_edit_profile" onChange={()=> this.changeLandlineNumber()} placeholder={this.state.landline_number} size='20' type='text' />
+                                                            <input id="landline_code_edit_profile" onChange={()=> this.changeLandlineCode()} size='4' type='text' placeholder = {
+                                                                (() => {
+                                                                    switch(this.state.landline_code) {
+                                                                        case "Not Provided": return "";
+                                                                        default : return this.state.landline_code;
+                                                                    }
+                                                                })
+                                                            }/> &nbsp;-&nbsp;
+                                                            <input id="landline_number_edit_profile" onChange={()=> this.changeLandlineNumber()} size='20' type='text' placeholder = {
+                                                                (() => {
+                                                                    // console.log(this.state.landline_code);
+                                                                    switch(this.state.landline_number) {
+                                                                        case "undefined": return "";
+                                                                        default : return this.state.landline_number;
+                                                                    }
+                                                                })
+                                                            }/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -210,7 +225,18 @@ class EditProfile extends Component {
                                                         <div className='col-md-8'>
                                                             <div className='form-group'>
                                                                 <label className='labelText'>Company Address:</label>
-                                                                <textarea id="company_address_edit_profile" onChange={()=> this.changeCompanyAddress()} rows='2' className='form-control' placeholder={this.state.info.companyaddress} />
+                
+                                                                <textarea id="company_address_edit_profile" onChange={()=> this.changeCompanyAddress()} rows='2' className='form-control' placeholder = {this.state.company_address}
+                                                                // (() => {
+                                                                //     // {console.log("a");}
+                                                                //     // console.log(this.state.company_address);
+                                                                //     switch(this.state.company_address) {
+                                                                //         case "\n": return "Not Provided";
+                                                                //         case "Not Provided": return "Not Provided";
+                                                                //         default : return this.state.company_address;
+                                                                //     }
+                                                                // })
+                                                              />
                                                             </div>
                                                         </div>
                                                         <div className='col-md-4'>
