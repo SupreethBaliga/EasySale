@@ -17,9 +17,7 @@ EasySale i an attempt to take small scale industries online. In the current scen
 
 ## Poster:
 
-x-special/nautilus-clipboard
-copy
-file:///home/supreethbaliga/Downloads/POSTER.jpg
+![Easy Sale Poster](https://user-images.githubusercontent.com/42595858/61105940-1d4c4500-a499-11e9-8149-31674f9412b5.jpg)
 
 
 ### Short Working Video of the WebApp: https://www.youtube.com/watch?v=N23n17gYr-E
