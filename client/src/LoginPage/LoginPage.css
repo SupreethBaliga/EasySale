@@ -3,7 +3,8 @@
     padding-bottom: 50px;
     padding-top: 30px;
     width: 60vw;
-    border-radius: 20px;
+    border-radius: 30px;
+    height: 100px;
 }
 
 .loginLabelText {
@@ -15,4 +16,5 @@
     font-weight: bold;
     font-size: 20px;
     border-radius: 20px;
+    border-style: solid;
 }

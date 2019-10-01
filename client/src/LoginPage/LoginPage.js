@@ -55,6 +55,13 @@ class LoginPage extends Component {
             password: document.getElementById("password-login-page").value
         }));
     }
+
+    clearForm=() => {
+        this.setState((state,props) => ({
+            email: "",
+            password: ''
+        }));
+    }
                 
     render() {
         return (
@@ -74,6 +81,11 @@ class LoginPage extends Component {
                         <div className='form-group'>
                             <div className='col-sm-6 offset-sm-3'>
                                 <button type='button' className='btn btn-dark form-control button' onClick={() => this.handleLogin()}>LOGIN</button>
+                            </div>
+                        </div>
+                        <div className='form-group'>
+                            <div className='col-sm-6 offset-sm-3'>
+                                <button type='button' className='btn btn-dark form-control button' onClick={() => this.clearForm()}>CLEAR</button>
                             </div>
                         </div>
                     </div>
