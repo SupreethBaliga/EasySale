@@ -15,7 +15,7 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "^1.1.1",
     "react-swipeable-views": "^0.13.3",
-    "yarn": "^1.16.0"
+    "yarn": "^1.22.0"
   },
   "scripts": {
     "start": "PORT=3000 react-scripts start",
